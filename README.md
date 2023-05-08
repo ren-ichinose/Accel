@@ -20,8 +20,7 @@
 ![アプリケーションのイメージ](/img/rough_design.png)
 
 
-<details>
-<summary><b>本プロダクトの開発に関する情報は、こちらより展開してご覧ください。</b></summary>　　
+**本プロダクトの開発に関する情報は、下記より展開してご覧ください。**
 
 <details>
 <summary><h2>企画・構想・要求分析</h2></summary>　　
@@ -424,6 +423,5 @@
 
 別途エクセルにて定義。  
 
-</details>
 </details>
 </details>
