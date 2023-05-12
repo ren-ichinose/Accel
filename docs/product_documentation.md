@@ -398,6 +398,8 @@
 <details>
 <summary><h3>各画面に必要な機能とデータ</3></summary>　　
 
+![ワイヤーフレーム](./img/screen-design.png)
+
 - 認証
   - 機能：新規登録、ログイン
   - データ：事業者コード、メールアドレス、パスワード
@@ -419,9 +421,48 @@
 ---
 
 <details>
-<summary><h3>画面とAPIのURL設計</3></summary>　　
+<summary><h3>データベース設計</3></summary>　　
 
-別途エクセルにて定義。  
+<details>
+<summary><h4>ER図</h4></summary>　　
+
+![ER図](./img/entity-relationship-diagram.png)
+
+</details>
+
+</details>
+</details>
+
+---
+
+<details>
+<summary><h2>📄ドキュメント<h2></summary>　
+
+<details>
+<summary><h3>業務フロー図</3></summary>　　
+
+![業務フロー図](./img/business-process-diagram.png)
+
+</details>
+
+<details>
+<summary><h3>ワイヤーフレーム</3></summary>　　
+
+![ワイヤーフレーム](./img/screen-design.png)
+
+</details>
+
+<details>
+<summary><h3>画面遷移図</3></summary>　　
+
+![画面遷移図](./img/screen-transition-diagram.png)
+
+</details>
+
+<details>
+<summary><h3>ER図</3></summary>　　
+
+![ER図](./img/entity-relationship-diagram.png)
 
 </details>
 </details>
