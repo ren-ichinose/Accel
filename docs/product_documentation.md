@@ -19,6 +19,16 @@
 ### アプリケーションのイメージ
 ![アプリケーションのイメージ](./img/rough_design.png)
 
+### 技術スタック
+| Category          | Technology Stack                       |
+| ----------------- | ------------------------------------   |
+| Frontend          | TypeScript, Next.js                    |
+| Backend           | TypeScript, NestJS, Prisma             |
+| Infrastructure    | Vercel, Amazon Web Services            |
+| Database          | PostgreSQL                             |
+| Environment setup | Docker                                 |
+| etc.              | ESLint, Prettier, Git, GitHub          |
+
 
 **本プロダクトの開発に関する情報は、下記より展開してご覧ください。**
 
