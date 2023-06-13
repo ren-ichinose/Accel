@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   id String @db.VarChar(36) @default(uuid()) @id
-  userId String @db.VarChar(255) @unique
+  loginId String @db.VarChar(255) @unique
   password String @db.VarChar(255)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

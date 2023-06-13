@@ -3,7 +3,7 @@ import { IsString, MinLength } from 'class-validator';
 export default class AuthDto {
   @MinLength(4)
   @IsString()
-  userId: string;
+  loginId: string;
 
   @MinLength(8)
   @IsString()

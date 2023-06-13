@@ -8,12 +8,12 @@ import * as bcrypt from 'bcrypt';
 export class UserService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async createUser({ userId, password }: User): Promise<void> {
+  async createUser({ loginId, password }: User): Promise<void> {
     try {
       const salt = await bcrypt.genSalt();
       const hashedPassword = await bcrypt.hash(password, salt);
 
-      const data = { userId, password: hashedPassword };
+      const data = { loginId, password: hashedPassword };
       await this.prisma.user.create({ data });
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
