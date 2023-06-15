@@ -37,4 +37,11 @@ export class AuthController {
     });
     return { message: 'ok' };
   }
+
+  @Post('logout')
+  @HttpCode(HttpStatus.OK)
+  logout(@Res({ passthrough: true }) res: Response): Msg {
+    res.clearCookie('access_token');
+    return { message: 'ok' };
+  }
 }
