@@ -3,6 +3,7 @@ import { Prisma } from '@prisma/client';
 import { User } from 'src/auth/interfaces/auth.interface';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as bcrypt from 'bcrypt';
+import { UserWithoutTimestamps } from './interfaces/user.interface';
 
 @Injectable()
 export class UserService {
@@ -23,5 +24,14 @@ export class UserService {
       }
       throw new Error('Something went wrong');
     }
+  }
+
+  async getByloginId(loginId: string): Promise<UserWithoutTimestamps> {
+    const getedUser = await this.prisma.user.findUnique({
+      where: { loginId },
+    });
+    if (!getedUser) return null;
+    const { createdAt, updatedAt, ...rest } = getedUser;
+    return rest;
   }
 }
