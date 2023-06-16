@@ -10,3 +10,10 @@ export interface Msg {
 export interface Jwt {
   accessToken: string;
 }
+
+export interface Payload {
+  sub: string;
+  loginId: string;
+  businessId?: string;
+  businessName?: string;
+}
