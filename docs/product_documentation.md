@@ -39,7 +39,7 @@
 ※3 会計ソフトに効率的に取り込むことができる機能については、取引データをCSV形式で出力する、または会計ソフトとのAPI連携を検討しています。
 
 ### アプリケーションのイメージ
-![アプリケーションのイメージ](./img/rough_design.png)
+![アプリケーションのイメージ](./img/screen-design/screen-design_1.0.png)
 
 ### 技術スタック
 | Category          | Technology Stack                       |
@@ -430,7 +430,7 @@
 <details>
 <summary><h3>請求書デザイン</3></summary>　　
 
-![請求書デザイン](./img/invoice_design.png)
+![請求書デザイン](./img/invoice_design/invoice_design.png)
 
 </details>
 
@@ -442,7 +442,7 @@
 <details>
 <summary><h4>ER図</h4></summary>　　
 
-![ER図](./img/entity-relationship-diagram_2.0.png)
+![ER図](./img/entity-relationship-diagram/entity-relationship-diagram_1.1.png)
 
 </details>
 
@@ -540,7 +540,7 @@
 <details>
 <summary><h3>認証フロー</3></summary>　　
 
-![認証フローの図](./img/authentication-floq.png)
+![認証フローの図](./img/authentication-floq/authentication-flow.png)
 
 </details>
 </details>
@@ -553,35 +553,35 @@
 <details>
 <summary><h3>業務フロー図</3></summary>　　
 
-![業務フロー図](./img/business-process-diagram.png)
+![業務フロー図](./img/business-process-diagram/business-process-diagram.png)
 
 </details>
 
 <details>
 <summary><h3>ワイヤーフレーム</3></summary>　　
 
-![ワイヤーフレーム](./img/screen-design_2.0.png)
+![ワイヤーフレーム](./img/screen-design/screen-design_1.1.png)
 
 </details>
 
 <details>
 <summary><h3>画面遷移図</3></summary>　　
 
-![画面遷移図](./img/screen-transition-diagram_2.0.png)
+![画面遷移図](./img/screen-transition-diagram/screen-transition-diagram_1.1.png)
 
 </details>
 
 <details>
 <summary><h3>請求書デザイン</3></summary>　　
 
-![請求書デザイン](./img/invoice_design.png)
+![請求書デザイン](./img/invoice_design/invoice_design.png)
 
 </details>
 
 <details>
 <summary><h3>ER図</3></summary>　　
 
-![ER図](./img/entity-relationship-diagram_2.0.png)
+![ER図](./img/entity-relationship-diagram/entity-relationship-diagram_1.1.png)
 
 </details>
 
@@ -676,7 +676,7 @@
 <details>
 <summary><h3>認証フロー</3></summary>　　
 
-![認証フローの図](./img/authentication-floq.png)
+![認証フローの図](./img/authentication-floq/authentication-flow.png)
 
 </details>
 
