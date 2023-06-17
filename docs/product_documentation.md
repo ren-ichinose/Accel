@@ -39,7 +39,11 @@
 ※3 会計ソフトに効率的に取り込むことができる機能については、取引データをCSV形式で出力する、または会計ソフトとのAPI連携を検討しています。
 
 ### アプリケーションのイメージ
+<<<<<<< HEAD
 ![アプリケーションのイメージ](./img/screen-design/screen-design_1.0.png)
+=======
+![アプリケーションのイメージ](./img/screen-design/screen-design_1.2.png)
+>>>>>>> d6c4aa0 (docs_fix_img_screen-design_screen-transition-diagram)
 
 ### 技術スタック
 | Category          | Technology Stack                       |
@@ -421,7 +425,7 @@
 <details>
 <summary><h3>画面に必要な機能とデータ</3></summary>　　
 
-![ワイヤーフレーム](./img/screen-design_2.0.png)
+![ワイヤーフレーム](./img/screen-design/screen-design_1.2.png)
 
 </details>
 
@@ -430,7 +434,11 @@
 <details>
 <summary><h3>請求書デザイン</3></summary>　　
 
+<<<<<<< HEAD
 ![請求書デザイン](./img/invoice_design/invoice_design.png)
+=======
+![請求書デザイン](./img/invoice_design/invoice_design_1.0.png)
+>>>>>>> d6c4aa0 (docs_fix_img_screen-design_screen-transition-diagram)
 
 </details>
 
@@ -540,7 +548,11 @@
 <details>
 <summary><h3>認証フロー</3></summary>　　
 
+<<<<<<< HEAD
 ![認証フローの図](./img/authentication-floq/authentication-flow.png)
+=======
+![認証フローの図](./img/authentication-floq/authentication-floq.png)
+>>>>>>> d6c4aa0 (docs_fix_img_screen-design_screen-transition-diagram)
 
 </details>
 </details>
@@ -560,21 +572,33 @@
 <details>
 <summary><h3>ワイヤーフレーム</3></summary>　　
 
+<<<<<<< HEAD
 ![ワイヤーフレーム](./img/screen-design/screen-design_1.1.png)
+=======
+![ワイヤーフレーム](./img/screen-design/screen-design_1.2.png)
+>>>>>>> d6c4aa0 (docs_fix_img_screen-design_screen-transition-diagram)
 
 </details>
 
 <details>
 <summary><h3>画面遷移図</3></summary>　　
 
+<<<<<<< HEAD
 ![画面遷移図](./img/screen-transition-diagram/screen-transition-diagram_1.1.png)
+=======
+![画面遷移図](./img/screen-transition-diagram/screen-transition-diagram_1.2.png)
+>>>>>>> d6c4aa0 (docs_fix_img_screen-design_screen-transition-diagram)
 
 </details>
 
 <details>
 <summary><h3>請求書デザイン</3></summary>　　
 
+<<<<<<< HEAD
 ![請求書デザイン](./img/invoice_design/invoice_design.png)
+=======
+![請求書デザイン](./img/invoice_design/invoice_design_1.0.png)
+>>>>>>> d6c4aa0 (docs_fix_img_screen-design_screen-transition-diagram)
 
 </details>
 
