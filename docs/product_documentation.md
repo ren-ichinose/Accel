@@ -421,9 +421,118 @@
 <summary><h2>📄設計<h2></summary>　　
 
 <details>
-<summary><h3>画面に必要な機能とデータ</3></summary>　　
+<summary><h3>画面設計</3></summary>　　
 
 ![ワイヤーフレーム](./img/screen-design/screen-design_1.2.png)
+
+- 新規登録画面
+  - 機能
+    - ユーザの新規登録
+  - データ
+    - サーバに送信するデータ
+      - ログインID(login_id)　パスワード(password)
+- ログイン画面
+  - 機能
+    - ユーザーの認証
+  - データ
+    - サーバーへ送信するデータ
+      - ログインID(login_id)　パスワード(password)
+- 事業者登録画面
+  - 機能
+    - 事業者登録
+  - データ
+    - サーバーへ送信するデータ
+      - 認証情報(access_token)　事業者名(business_name)　登録番号(business_invoice_number)
+- 事業者選択画面
+  - 機能
+    - 作業する事業者を選択
+  - データ
+    - サーバーから受信するデータ
+      - 事業者ID(business_id)　事業者名(business_name)
+    - サーバーへ送信するデータ
+      - 認証情報(access_token)　事業者ID(business_id)
+- ホーム画面
+  - データ
+    - サーバーから受信するデータ
+      - 事業者名(business_name)
+- 請求書一覧画面
+  - 機能
+    - ユーザーが選択した事業者に紐づく請求書の一覧表示
+  - データ
+    - サーバから受信するデータ
+      - 事業者名(business_name)　請求書データ(以下記載)
+        - 請求書データ
+          - 請求書ID(id)　取引先名(customer_name)　作成日(document_created_at)　書類番号(document_number)　税込合計金額( SUM(price × tax_classification) )
+    - サーバへ送信するデータ
+      - 認証情報(access_token)　請求書ID(id)
+- 請求書作成画面
+  - 機能
+    - 請求書の作成
+    - 各商品の金額計算
+      - 税抜 合計金額 の計算
+    - 税率別の金額計算
+      - 全商品の 税率別 税抜合計金額 の計算
+      - 全商品の 税率別 消費税合計金額 の計算
+      - 全商品の 税率別 税込合計金額 の計算
+    - 全商品の金額計算
+      - 全商品の 税抜合計金額 の計算
+      - 全商品の 消費税合計金額 の計算
+      - 全商品の 税込合計金額 の計算
+    - 事業者情報を入力欄に表示
+    - 支払先情報を備考欄に表示
+  - データ
+    - サーバから受信するデータ
+      - 事業者名(business_name)　事業者情報(business_details)　角印(m_seals_id)　金融機関名(financial_institution_name)　支店名(branch_name)　口座名義(account_name)　口座種別(account_type)　口座番号(account_number)
+    - サーバーへ送信するデータ
+      - 認証情報(access_token)　請求書データ(以下記載)　商品データ(以下記載)
+        - 請求書データ
+          - 請求日(document_created_at)
+          - 請求番号(document_number)
+          - 取引先名(customer_name)
+          - 事業者情報(business_details)
+          - 角印(m_seals_id)
+          - 備考(notes)
+        - 商品データ
+          - 日付(transaction_date)
+          - 品名・品番(product_name)
+          - 数量(quantity)
+          - 単位(unit)
+          - 単価(price)
+          - 税区分(tax_classification)
+- 請求書確認画面
+  - 機能
+    - 請求書のプレビュー出力
+    - 請求書のPDF出力
+    - 各商品の金額計算
+      - 税抜 合計金額 の計算
+    - 税率別の金額計算
+      - 全商品の 税率別 税抜合計金額 の計算
+      - 全商品の 税率別 消費税合計金額 の計算
+      - 全商品の 税率別 税込合計金額 の計算
+    - 全商品の金額計算
+      - 全商品の 税抜合計金額 の計算
+      - 全商品の 消費税合計金額 の計算
+      - 全商品の 税込合計金額 の計算
+  - データ
+    - サーバから受信するデータ
+      - 事業者名(business_name)　請求書データ(以下記載)　商品データ(以下記載)
+        - 請求書データ
+          - 請求書ID(id)
+          - 請求日(document_created_at)
+          - 請求番号(document_number)
+          - 取引先名(customer_name)
+          - 事業者情報(business_details)
+          - 角印(m_seals_id)
+          - 備考(notes)
+        - 商品データ
+          - 日付(transaction_date)
+          - 品名・品番(product_name)
+          - 数量(quantity)
+          - 単位(unit)
+          - 単価(price)
+          - 税区分(tax_classification)
+    - サーバーに送信するデータ
+      - 認証情報(access_token)　請求書ID(id)
 
 </details>
 
