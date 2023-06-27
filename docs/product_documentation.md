@@ -38,8 +38,8 @@
 ※2 取引データとは、仕入先・販売先・摘要・仕入日・支払日・売上日・入金日・金額・消費税・利益・利益率などに関する情報を指します。  
 ※3 会計ソフトに効率的に取り込むことができる機能については、取引データをCSV形式で出力する、または会計ソフトとのAPI連携を検討しています。
 
-### アプリケーションのイメージ
-![アプリケーションのイメージ](./img/screen-design/screen-design_1.2.png)
+### システム構成図
+![システム構成図](./img/system-architecture/system-architecture.png)
 
 ### 技術スタック
 | Category          | Technology Stack                       |
@@ -666,6 +666,15 @@
 ---
 
 <details>
+<summary><h3>システム構成図</3></summary>　　
+
+![システム構成図](./img/system-architecture/system-architecture.png)
+
+</details>
+
+---
+
+<details>
 <summary><h3>認証フロー</3></summary>　　
 
 ![認証フローの図](./img/authentication-flow/authentication-flow.png)
@@ -813,6 +822,13 @@
 | 3  | 事業者情報     | business_details             | VARCHAR    | 510  |    |    |    | NN |       |                    |                                         |
 | 4  | 作成日        | created_at                   | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
 | 5  | 更新日        | updated_at                   | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
+
+</details>
+
+<details>
+<summary><h3>システム構成図</3></summary>　　
+
+![システム構成図](./img/system-architecture/system-architecture.png)
 
 </details>
 
