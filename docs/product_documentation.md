@@ -46,11 +46,13 @@
 | ----------------- | ------------------------------------   |
 | Frontend          | TypeScript, Next.js                    |
 | Backend           | TypeScript, NestJS, Prisma             |
-| Infrastructure    | Vercel, Amazon Web Services            |
+| Infrastructure    | Amazon Web Services, Vercel            |
 | Database          | PostgreSQL                             |
+| Monitoring        | Sentry, UptimeRobot                    |
 | Environment setup | Docker                                 |
-| etc.              | ESLint, Prettier, Git, GitHub          |
-
+| CI/CD             | GitHub Actions                         |
+| Design            | Figma, Lucid                           |
+| etc.              | ESLint, Prettier, Jest, Git, GitHub    |
 
 **本プロダクトの開発に関する情報は、下記より展開してご覧ください。**
 
