@@ -425,7 +425,7 @@
 <details>
 <summary><h3>画面設計</3></summary>　　
 
-![ワイヤーフレーム](./img/screen-design/screen-design_1.2.png)
+![ワイヤーフレーム](./img/screen-design/screen-design_1.3.png)
 
 - 新規登録画面
   - 機能
@@ -697,7 +697,7 @@
 <details>
 <summary><h3>ワイヤーフレーム</3></summary>　　
 
-![ワイヤーフレーム](./img/screen-design/screen-design_1.2.png)
+![ワイヤーフレーム](./img/screen-design/screen-design_1.3.png)
 
 </details>
 
