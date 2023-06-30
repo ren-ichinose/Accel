@@ -678,7 +678,7 @@
 <details>
 <summary><h3>認証フロー</3></summary>　　
 
-![認証フローの図](./img/authentication-flow/authentication-flow.png)
+![認証フローの図](./img/authentication-flow/authentication-flow_1.1.png)
 
 </details>
 </details>
@@ -691,7 +691,7 @@
 <details>
 <summary><h3>業務フロー図</3></summary>　　
 
-![業務フロー図](./img/business-process-diagram/business-process-diagram.png)
+![業務フロー図](./img/business-process-diagram/business-process-diagram_1.1.png)
 
 </details>
 
@@ -705,7 +705,7 @@
 <details>
 <summary><h3>画面遷移図</3></summary>　　
 
-![画面遷移図](./img/screen-transition-diagram/screen-transition-diagram_1.2.png)
+![画面遷移図](./img/screen-transition-diagram/screen-transition-diagram_1.3.png)
 
 </details>
 
@@ -838,7 +838,7 @@
 <details>
 <summary><h3>認証フロー</3></summary>　　
 
-![認証フローの図](./img/authentication-flow/authentication-flow.png)
+![認証フローの図](./img/authentication-flow/authentication-flow_1.1.png)
 
 </details>
 
