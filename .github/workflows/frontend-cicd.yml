@@ -2,11 +2,9 @@ name: frontend CI/CD
 
 on:
   push:
-    branches: [ main, all_add_ci_#19 ]
     paths:
         - 'frontend/**'
   pull_request:
-    branches: [ main ]
     paths:
         - 'frontend/**'
 
@@ -34,6 +32,6 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Format code
-        run: yarn format
+        run: yarn prettier
       - name: Lint code
         run: yarn lint
