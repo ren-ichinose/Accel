@@ -19,10 +19,10 @@ export class UserService {
     } catch (error) {
       if (error instanceof Prisma.PrismaClientKnownRequestError) {
         if (error.code === 'P2002') {
-          throw new ForbiddenException('Email already exists');
+          throw new ForbiddenException('このログインIDは使用できません');
         }
       }
-      throw new Error('Something went wrong');
+      throw new Error('登録ができませんでした');
     }
   }
 
