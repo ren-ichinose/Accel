@@ -17,7 +17,7 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('signup')
-  async signUp(@Body('user') dto: AuthDto): Promise<Msg> {
+  async signUp(@Body() dto: AuthDto): Promise<Msg> {
     const msg = await this.authService.signUp(dto);
     return msg;
   }
@@ -25,7 +25,7 @@ export class AuthController {
   @Post('login')
   @HttpCode(HttpStatus.OK)
   async login(
-    @Body('user') dto: AuthDto,
+    @Body() dto: AuthDto,
     @Res({ passthrough: true }) res: Response,
   ): Promise<Msg> {
     const { accessToken } = await this.authService.login(dto);

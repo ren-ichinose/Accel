@@ -23,12 +23,10 @@ export default class UserJwtStrategy extends PassportStrategy(
     });
   }
 
-  async validate(
-    payload: Payload,
-  ): Promise<{ user: { id: string; loginId: string } }> {
+  async validate(payload: Payload): Promise<{ id: string; loginId: string }> {
     const user = await this.userService.getByloginId(payload.loginId);
     if (!user) throw new UnauthorizedException('');
     const { password, ...rest } = user;
-    return { user: rest };
+    return rest;
   }
 }

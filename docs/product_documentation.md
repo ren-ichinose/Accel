@@ -580,7 +580,7 @@
 | 3  | 作成日                  | created_at                  | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |       |
 | 4  | 更新日                  | updated_at                  | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |       |
 
-**user_permissions**
+**business_memberships**
 
 | № | カラム論理名    | カラム物理名   | データ型    | 桁数  | PK | FK | UK | NN | INDEX | 初期値             | 備考                                     |
 | -- | ------------ | ------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |
@@ -745,7 +745,7 @@
 | 3  | 作成日                  | created_at                  | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |       |
 | 4  | 更新日                  | updated_at                  | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |       |
 
-**user_permissions**
+**business_memberships**
 
 | № | カラム論理名    | カラム物理名   | データ型    | 桁数  | PK | FK | UK | NN | INDEX | 初期値             | 備考                                     |
 | -- | ------------ | ------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |

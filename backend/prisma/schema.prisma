@@ -10,10 +10,42 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum Role {
+  ADMIN
+  MENBER
+}
+
 model User {
   id String @db.VarChar(36) @default(uuid()) @id
   loginId String @db.VarChar(255) @unique
   password String @db.VarChar(255)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  businessMemberships BusinessMembership[]
+
+  @@map("users")
+}
+
+model Business {
+  id String @db.VarChar(36) @default(uuid()) @id
+  businessName String @db.VarChar(255)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  businessMemberships BusinessMembership[]
+
+  @@map("businesses")
+}
+
+model BusinessMembership {
+  userId String @db.VarChar(36)
+  businessId String @db.VarChar(36)
+  role Role
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id])
+  business Business @relation(fields: [businessId], references: [id])
+
+  @@id([userId, businessId])
+  @@map("business_memberships")
 }
