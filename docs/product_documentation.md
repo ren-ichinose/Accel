@@ -586,7 +586,7 @@
 | -- | ------------ | ------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |
 | 1  | ユーザー_id   | user_id      | VARCHAR   | 36   | PK | FK |    |    |       | UUID v4           | テーブルUsersのidカラムを参照                  |
 | 2  | 事業者_id    | business_id  | VARCHAR   | 36   | PK | FK |    |    |       |                   | テーブルbusinessesのidカラムを参照             |
-| 3  | 権限         | permission   | INT       |      |    |    |    | NN |       |                   | 1.管理者 2.一般                            |
+| 3  | 権限         | role         | VARCHAR   |      |    |    |    | NN |       |                   | Admin または Menber                        |
 | 4  | 作成日       | created_at   | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 | 5  | 更新日       | updated_at   | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 
@@ -751,7 +751,7 @@
 | -- | ------------ | ------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |
 | 1  | ユーザー_id   | user_id      | VARCHAR   | 36   | PK | FK |    |    |       | UUID v4           | テーブルUsersのidカラムを参照                  |
 | 2  | 事業者_id    | business_id  | VARCHAR   | 36   | PK | FK |    |    |       |                   | テーブルbusinessesのidカラムを参照             |
-| 3  | 権限         | permission   | INT       |      |    |    |    | NN |       |                   | 1.管理者 2.一般                            |
+| 3  | 権限         | role         | VARCHAR   |      |    |    |    | NN |       |                   | Admin または Menber                        |
 | 4  | 作成日       | created_at   | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 | 5  | 更新日       | updated_at   | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 
