@@ -2,7 +2,7 @@ name: realworld CI/CD
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, all_add_ci_#19 ]
     paths:
         - 'backend/**'
   pull_request:
