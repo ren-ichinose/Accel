@@ -16,4 +16,6 @@ model User {
   password String @db.VarChar(255)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("users")
 }
