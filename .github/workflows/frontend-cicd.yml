@@ -32,6 +32,6 @@ jobs:
       - name: Install dependencies
         run: yarn
       - name: Format code
-        run: yarn prettier
+        run: yarn prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css,scss}'
       - name: Lint code
         run: yarn lint
