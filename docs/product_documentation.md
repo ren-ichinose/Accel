@@ -554,7 +554,7 @@
 <details>
 <summary><h4>ER図</h4></summary>　　
 
-![ER図](./img/entity-relationship-diagram/entity-relationship-diagram_1.3.png)
+![ER図](./img/entity-relationship-diagram/entity-relationship-diagram_1.4.png)
 
 </details>
 
@@ -595,15 +595,16 @@
 | №  | カラム論理名              | カラム物理名            | データ型   | 桁数  | PK | FK | UK | NN | INDEX | 初期値           | 備考                                      |
 | -- | ------------------------ | -------------------- | --------- | ---- | -- | -- | -- | -- | ----- | ---------------- | ----------------------------------------- |
 | 1  | id                       | id                   | VARCHAR   | 36   | PK |    |    |    |       | UUID v4          |                                           |
-| 2  | 請求書_id                 | invoice_id           | VARCHAR   | 36   |    | FK |    | NN |       |                  | テーブルinvoicesのidカラムを参照         |
-| 3  | 取引日                   | transaction_date     | DATE      |      |    |    |    |    |       |                  |                                           |
-| 4  | 商品名                   | product_name         | VARCHAR   | 255  |    |    |    | NN |       |                  |                                           |
-| 5  | 数量                     | quantity             | BIGINT    |      |    |    |    |    |       |                  |                                           |
-| 6  | 単位                     | unit                 | VARCHAR   | 20   |    |    |    |    |       |                  |                                           |
-| 7  | 単価                     | price                | BIGINT    |      |    |    |    |    |       |                  |                                           |
-| 8  | 税区分                   | tax_classification   | INT       |      |    |    |    |    |       |                  | 0. 対象外　1. 8%（軽減税率）　2. 10％ |
-| 9  | 作成日                   | created_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
-| 10 | 更新日                   | updated_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
+| 2  | 請求書_id                 | invoice_id           | VARCHAR   | 36   |    | FK |    | NN |       |                  | テーブルinvoicesのidカラムを参照              |
+| 3  | 明細順序                  | item_order           | INT       |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
+| 4  | 取引日                    | transaction_date     | DATE      |      |    |    |    |    |       |                  |                                           |
+| 5  | 商品名                    | product_name         | VARCHAR   | 255  |    |    |    | NN |       |                  |                                           |
+| 6  | 数量                      | quantity             | BIGINT    |      |    |    |    |    |       |                  |                                           |
+| 7  | 単位                      | unit                 | VARCHAR   | 20   |    |    |    |    |       |                  |                                           |
+| 8  | 単価                      | price                | BIGINT    |      |    |    |    |    |       |                  |                                           |
+| 9  | 税区分                    | tax_classification   | INT       |      |    |    |    |    |       |                  | 0. 対象外　1. 8%（軽減税率）　2. 10％          |
+| 10 | 作成日                    | created_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
+| 11 | 更新日                    | updated_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 
 **invoices**
 
@@ -611,15 +612,14 @@
 | -- | --------------------------- | ------------------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |
 | 1  | id                          | id                       | VARCHAR    | 36   | PK |    |    |    |       | UUID v4           |                                          |
 | 2  | 事業者_id                    | business_id              | VARCHAR    | 36   |    | FK |    | NN |       |                   | テーブルbusinessesのidカラムを参照        |
-| 3  | 書類作成日                   | document_created_at      | DATE       |      |    |    |    | NN |       |                   |                                          |
+| 3  | 書類発行日                   | document_issue_date      | DATE       |      |    |    |    | NN |       |                   |                                          |
 | 4  | 書類番号                     | document_number          | VARCHAR    | 50   |    |    |    | NN |       |                   |                                          |
 | 5  | 取引先名                     | customer_name            | VARCHAR    | 255  |    |    |    | NN |       |                   |                                          |
 | 6  | 事業者情報                   | business_details         | VARCHAR    | 510  |    |    |    | NN |       |                   |                                          |
 | 7  | マスタ_角印_id               | m_seals_id               | VARCHAR    | 36   |    | FK |    |    |       |                   | テーブルm_sealsのidカラムを参照           |
-| 8  | 支払期限                     | payment_due_date         | DATE       |      |    |    |    |    |       |                   |                                          |
-| 9  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
-| 10 | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
-| 11 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+| 8  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
+| 9  | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+| 10 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
 
 **m_seals**
 
@@ -642,12 +642,13 @@
 | 2  | 事業者_id     | business_id                  | VARCHAR    | 36   |    | FK |    | NN |       |                    | テーブルbusinessesのidカラムを参照         |
 | 3  | 管理名        | name                         | VARCHAR    |  50  | PK |    | UK | NN |       |                    |                                         |
 | 4  | 金融機関名    | financial_institution_name    | VARCHAR    | 50   |    |    |    | NN |       |                    |                                         |
-| 5  | 支店名       | branch_name                   | VARCHAR    | 50   |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
-| 6  | 口座名義      | account_name                 | VARCHAR    | 50   |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
-| 7  | 口座種別      | account_type                 | VARCHAR    | 20   |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
-| 8  | 口座番号      | account_number               | INT        |      |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
-| 9  | 作成日       | created_at                    | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
-| 10  | 更新日       | updated_at                    | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
+| 5  | 支店名       | branch_name                   | VARCHAR    | 50   |    |    |    | NN |       |                    |                                         |
+| 6  | 口座名義      | account_name                 | VARCHAR    | 50   |    |    |    | NN |       |                    |                                         |
+| 7  | 口座種別      | account_type                 | VARCHAR    | 20   |    |    |    | NN |       |                    |                                         |
+| 8  | 口座番号      | account_number               | INT        |      |    |    |    | NN |       |                    |                                          |
+| 9  | 選択フラグ     | select_flag                  | INT        |      |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
+| 10  | 作成日       | created_at                    | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
+| 11  | 更新日       | updated_at                    | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
 
 
 **m_business_details**
@@ -658,8 +659,9 @@
 | 2  | 事業者_id     | business_id                  | VARCHAR    | 36   |    | FK |    | NN |       |                    | テーブルbusinessesのidカラムを参照         |
 | 4  | 管理名        | name                         | VARCHAR    |  50  | PK |    | UK | NN |       |                    |                                         |
 | 5  | 事業者情報     | business_details             | VARCHAR    | 510  |    |    |    | NN |       |                    |                                         |
-| 6  | 作成日        | created_at                   | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
-| 7  | 更新日        | updated_at                   | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
+| 6  | 選択フラグ     | select_flag                  | INT        |      |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
+| 7  | 作成日        | created_at                   | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
+| 8  | 更新日        | updated_at                   | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
 
 </details>
 </details>
@@ -719,7 +721,7 @@
 <details>
 <summary><h3>ER図</3></summary>　　
 
-![ER図](./img/entity-relationship-diagram/entity-relationship-diagram_1.3.png)
+![ER図](./img/entity-relationship-diagram/entity-relationship-diagram_1.4.png)
 
 </details>
 
@@ -760,15 +762,16 @@
 | №  | カラム論理名              | カラム物理名            | データ型   | 桁数  | PK | FK | UK | NN | INDEX | 初期値           | 備考                                      |
 | -- | ------------------------ | -------------------- | --------- | ---- | -- | -- | -- | -- | ----- | ---------------- | ----------------------------------------- |
 | 1  | id                       | id                   | VARCHAR   | 36   | PK |    |    |    |       | UUID v4          |                                           |
-| 2  | 請求書_id                 | invoice_id           | VARCHAR   | 36   |    | FK |    | NN |       |                  | テーブルinvoicesのidカラムを参照         |
-| 3  | 取引日                   | transaction_date     | DATE      |      |    |    |    |    |       |                  |                                           |
-| 4  | 商品名                   | product_name         | VARCHAR   | 255  |    |    |    | NN |       |                  |                                           |
-| 5  | 数量                     | quantity             | BIGINT    |      |    |    |    |    |       |                  |                                           |
-| 6  | 単位                     | unit                 | VARCHAR   | 20   |    |    |    |    |       |                  |                                           |
-| 7  | 単価                     | price                | BIGINT    |      |    |    |    |    |       |                  |                                           |
-| 8  | 税区分                   | tax_classification   | INT       |      |    |    |    |    |       |                  | 0. 対象外　1. 8%（軽減税率）　2. 10％ |
-| 9  | 作成日                   | created_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
-| 10 | 更新日                   | updated_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
+| 2  | 請求書_id                 | invoice_id           | VARCHAR   | 36   |    | FK |    | NN |       |                  | テーブルinvoicesのidカラムを参照              |
+| 3  | 明細順序                  | item_order           | INT       |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
+| 4  | 取引日                    | transaction_date     | DATE      |      |    |    |    |    |       |                  |                                           |
+| 5  | 商品名                    | product_name         | VARCHAR   | 255  |    |    |    | NN |       |                  |                                           |
+| 6  | 数量                      | quantity             | BIGINT    |      |    |    |    |    |       |                  |                                           |
+| 7  | 単位                      | unit                 | VARCHAR   | 20   |    |    |    |    |       |                  |                                           |
+| 8  | 単価                      | price                | BIGINT    |      |    |    |    |    |       |                  |                                           |
+| 9  | 税区分                    | tax_classification   | INT       |      |    |    |    |    |       |                  | 0. 対象外　1. 8%（軽減税率）　2. 10％          |
+| 10 | 作成日                    | created_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
+| 11 | 更新日                    | updated_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 
 **invoices**
 
@@ -776,15 +779,14 @@
 | -- | --------------------------- | ------------------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |
 | 1  | id                          | id                       | VARCHAR    | 36   | PK |    |    |    |       | UUID v4           |                                          |
 | 2  | 事業者_id                    | business_id              | VARCHAR    | 36   |    | FK |    | NN |       |                   | テーブルbusinessesのidカラムを参照        |
-| 3  | 書類作成日                   | document_created_at      | DATE       |      |    |    |    | NN |       |                   |                                          |
+| 3  | 書類発行日                   | document_issue_date      | DATE       |      |    |    |    | NN |       |                   |                                          |
 | 4  | 書類番号                     | document_number          | VARCHAR    | 50   |    |    |    | NN |       |                   |                                          |
 | 5  | 取引先名                     | customer_name            | VARCHAR    | 255  |    |    |    | NN |       |                   |                                          |
 | 6  | 事業者情報                   | business_details         | VARCHAR    | 510  |    |    |    | NN |       |                   |                                          |
 | 7  | マスタ_角印_id               | m_seals_id               | VARCHAR    | 36   |    | FK |    |    |       |                   | テーブルm_sealsのidカラムを参照           |
-| 8  | 支払期限                     | payment_due_date         | DATE       |      |    |    |    |    |       |                   |                                          |
-| 9  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
-| 10 | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
-| 11 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+| 8  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
+| 9  | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+| 10 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
 
 **m_seals**
 
@@ -807,12 +809,13 @@
 | 2  | 事業者_id     | business_id                  | VARCHAR    | 36   |    | FK |    | NN |       |                    | テーブルbusinessesのidカラムを参照         |
 | 3  | 管理名        | name                         | VARCHAR    |  50  | PK |    | UK | NN |       |                    |                                         |
 | 4  | 金融機関名    | financial_institution_name    | VARCHAR    | 50   |    |    |    | NN |       |                    |                                         |
-| 5  | 支店名       | branch_name                   | VARCHAR    | 50   |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
-| 6  | 口座名義      | account_name                 | VARCHAR    | 50   |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
-| 7  | 口座種別      | account_type                 | VARCHAR    | 20   |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
-| 8  | 口座番号      | account_number               | INT        |      |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
-| 9  | 作成日       | created_at                    | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
-| 10  | 更新日       | updated_at                    | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
+| 5  | 支店名       | branch_name                   | VARCHAR    | 50   |    |    |    | NN |       |                    |                                         |
+| 6  | 口座名義      | account_name                 | VARCHAR    | 50   |    |    |    | NN |       |                    |                                         |
+| 7  | 口座種別      | account_type                 | VARCHAR    | 20   |    |    |    | NN |       |                    |                                         |
+| 8  | 口座番号      | account_number               | INT        |      |    |    |    | NN |       |                    |                                          |
+| 9  | 選択フラグ     | select_flag                  | INT        |      |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
+| 10  | 作成日       | created_at                    | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
+| 11  | 更新日       | updated_at                    | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
 
 
 **m_business_details**
@@ -823,8 +826,9 @@
 | 2  | 事業者_id     | business_id                  | VARCHAR    | 36   |    | FK |    | NN |       |                    | テーブルbusinessesのidカラムを参照         |
 | 4  | 管理名        | name                         | VARCHAR    |  50  | PK |    | UK | NN |       |                    |                                         |
 | 5  | 事業者情報     | business_details             | VARCHAR    | 510  |    |    |    | NN |       |                    |                                         |
-| 6  | 作成日        | created_at                   | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
-| 7  | 更新日        | updated_at                   | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
+| 6  | 選択フラグ     | select_flag                  | INT        |      |    |    |    | NN |       |                    | 1. 選択　2.非選択                         |
+| 7  | 作成日        | created_at                   | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
+| 8  | 更新日        | updated_at                   | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP  |                                         |
 
 </details>
 
