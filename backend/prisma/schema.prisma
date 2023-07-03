@@ -32,6 +32,8 @@ model Business {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   businessMemberships BusinessMembership[]
+  invoices invoice[]
+  mSeals mSeal[]
 
   @@map("businesses")
 }
@@ -48,4 +50,56 @@ model BusinessMembership {
 
   @@id([userId, businessId])
   @@map("business_memberships")
+}
+
+model invoice {
+  id String @db.VarChar(36) @default(uuid()) @id
+  businessId String @db.VarChar(36)
+  documentIssueDate DateTime
+  documentNumber String @db.VarChar(50)
+  customerName String @db.VarChar(255)
+  businessDetails String @db.VarChar(510)
+  mSealsId String? @db.VarChar(36)
+  notes String? @db.Text 
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  invoiceProducts invoiceProduct[]
+
+  business Business @relation(fields: [businessId], references: [id])
+  mSeals mSeal? @relation(fields: [mSealsId], references: [id])
+
+  @@map("invoices")
+}
+
+model invoiceProduct {
+  id String @db.VarChar(36) @default(uuid()) @id
+  invoiceId String @db.VarChar(36)
+  itemOrder Int
+  transactionDate DateTime?
+  productName String @db.VarChar(255)
+  quantity BigInt? @db.BigInt
+  unit String? @db.VarChar(20)
+  price Decimal? @db.Decimal(12,2)
+  taxClassification Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  invoice invoice @relation(fields: [invoiceId], references: [id])
+
+  @@map("invoice_products")
+}
+
+model mSeal {
+  id String @db.VarChar(36) @default(uuid()) @id
+  businessId String @db.VarChar(36)
+  name String @db.VarChar(50)
+  imageUrl String @db.Text
+  selectFlag Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  invoices invoice[]
+
+  business Business @relation(fields: [businessId], references: [id])
+
+  @@map("m_seals")
 }
