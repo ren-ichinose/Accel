@@ -16,7 +16,7 @@ export default class RegisterInvoiceProductsDto {
 
   @IsOptional()
   @IsDateString()
-  transactionDate: string;
+  transactionDate: Date;
 
   @IsNotEmpty()
   @IsString()

@@ -1,7 +1,7 @@
 import { Decimal } from '@prisma/client/runtime';
 
 export interface InvoiceData {
-  documentIssueDate: string;
+  documentIssueDate: Date;
   documentNumber: string;
   customerName: string;
   businessDetails: string;
@@ -12,7 +12,7 @@ export interface InvoiceData {
 
 export interface InvoiceProductData {
   itemOrder: number;
-  transactionDate: string;
+  transactionDate: Date;
   productName: string;
   quantity: number;
   unit: string;

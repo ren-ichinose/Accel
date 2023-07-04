@@ -12,7 +12,7 @@ import CreateInvoiceProductsDto from './create-invoice-products.dto';
 export default class CreateInvoiceDto {
   @IsNotEmpty()
   @IsDateString()
-  documentIssueDate: string;
+  documentIssueDate: Date;
 
   @IsNotEmpty()
   @IsString()
