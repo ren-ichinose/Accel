@@ -66,7 +66,7 @@ model Invoice {
   invoiceProducts InvoiceProduct[]
 
   business Business @relation(fields: [businessId], references: [id])
-  mSeals MSeal? @relation(fields: [mSealsId], references: [id])
+  mSeal MSeal? @relation(fields: [mSealsId], references: [id])
 
   @@map("invoices")
 }
@@ -77,7 +77,7 @@ model InvoiceProduct {
   itemOrder Int
   transactionDate DateTime?
   productName String @db.VarChar(255)
-  quantity BigInt? @db.BigInt
+  quantity Int?
   unit String? @db.VarChar(20)
   price Decimal? @db.Decimal(12,2)
   taxClassification Int?
