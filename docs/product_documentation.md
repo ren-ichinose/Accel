@@ -599,7 +599,7 @@
 | 3  | 明細順序                  | item_order           | INT       |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 | 4  | 取引日                    | transaction_date     | DATE      |      |    |    |    |    |       |                  |                                           |
 | 5  | 商品名                    | product_name         | VARCHAR   | 255  |    |    |    | NN |       |                  |                                           |
-| 6  | 数量                      | quantity             | BIGINT    |      |    |    |    |    |       |                  |                                           |
+| 6  | 数量                      | quantity             | INT       |      |    |    |    |    |       |                  |                                           |
 | 7  | 単位                      | unit                 | VARCHAR   | 20   |    |    |    |    |       |                  |                                           |
 | 8  | 単価                      | price                | DECIAML   | 12   |    |    |    |    |       |                  | 小数点以下の桁数：2                          |
 | 9  | 税区分                    | tax_classification   | INT       |      |    |    |    |    |       |                  | 0. 対象外　1. 8%（軽減税率）　2. 10％          |
@@ -766,7 +766,7 @@
 | 3  | 明細順序                  | item_order           | INT       |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 | 4  | 取引日                    | transaction_date     | DATE      |      |    |    |    |    |       |                  |                                           |
 | 5  | 商品名                    | product_name         | VARCHAR   | 255  |    |    |    | NN |       |                  |                                           |
-| 6  | 数量                      | quantity             | BIGINT    |      |    |    |    |    |       |                  |                                           |
+| 6  | 数量                      | quantity             | INT       |      |    |    |    |    |       |                  |                                           |
 | 7  | 単位                      | unit                 | VARCHAR   | 20   |    |    |    |    |       |                  |                                           |
 | 8  | 単価                      | price                | DECIAML   | 12   |    |    |    |    |       |                  | 小数点以下の桁数：2                          |
 | 9  | 税区分                    | tax_classification   | INT       |      |    |    |    |    |       |                  | 0. 対象外　1. 8%（軽減税率）　2. 10％          |
