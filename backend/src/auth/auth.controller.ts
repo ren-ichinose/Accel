@@ -31,7 +31,7 @@ export class AuthController {
     const { accessToken } = await this.authService.login(dto);
     res.cookie('access_token', accessToken, {
       httpOnly: true,
-      secure: true,
+      secure: false,
       sameSite: 'none',
       path: '/',
     });
