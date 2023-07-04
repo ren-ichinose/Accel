@@ -1,4 +1,8 @@
-import { ForbiddenException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ForbiddenException,
+  Injectable,
+} from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Msg } from 'src/interfaces/main.interfaces';
 import { Invoice, Prisma } from '@prisma/client';
@@ -6,6 +10,8 @@ import CreateInvoiceDto from './dto/create-invoice.dto';
 import {
   InvoiceData,
   InvoiceProductData,
+  InvoiceResponse,
+  // InvoiceResponse,
 } from './interfaces/invoice.interface';
 
 @Injectable()
@@ -36,6 +42,52 @@ export class InvoiceService {
     } catch (error) {
       throw new Error('請求書の作成ができませんでした');
     }
+  }
+
+  async findById(id: string, userId: string): Promise<InvoiceResponse> {
+    const findedIvoice = await this.prisma.invoice.findUnique({
+      where: { id },
+      select: {
+        id: true,
+        businessId: true,
+        documentIssueDate: true,
+        documentNumber: true,
+        customerName: true,
+        businessDetails: true,
+        notes: true,
+        mSeal: {
+          select: {
+            id: true,
+            name: true,
+            imageUrl: true,
+            selectFlag: true,
+          },
+        },
+        invoiceProducts: {
+          select: {
+            id: true,
+            itemOrder: true,
+            transactionDate: true,
+            productName: true,
+            quantity: true,
+            unit: true,
+            price: true,
+            taxClassification: true,
+          },
+        },
+      },
+    });
+
+    if (!findedIvoice)
+      throw new BadRequestException('請求書が見つかりませんでした');
+
+    const isMember = await this.checkBusinessMembership(
+      findedIvoice.businessId,
+      userId,
+    );
+    if (!isMember) throw new ForbiddenException('アクセス権限がありません');
+
+    return findedIvoice;
   }
 
   private async checkBusinessMembership(
