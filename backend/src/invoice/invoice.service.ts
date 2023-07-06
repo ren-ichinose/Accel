@@ -53,6 +53,7 @@ export class InvoiceService {
         documentIssueDate: true,
         documentNumber: true,
         customerName: true,
+        customerTitle: true,
         businessDetails: true,
         notes: true,
         mSeal: {
