@@ -58,6 +58,7 @@ model Invoice {
   documentIssueDate DateTime
   documentNumber String @db.VarChar(50)
   customerName String @db.VarChar(255)
+  customerTitle String? @db.VarChar(50)
   businessDetails String @db.VarChar(510)
   mSealsId String? @db.VarChar(36)
   notes String? @db.Text 

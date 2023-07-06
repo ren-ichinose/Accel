@@ -22,6 +22,10 @@ export default class CreateInvoiceDto {
   @IsString()
   customerName: string;
 
+  @IsOptional()
+  @IsString()
+  customerTitle: string;
+
   @IsNotEmpty()
   @IsString()
   businessDetails: string;

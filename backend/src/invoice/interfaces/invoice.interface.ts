@@ -4,6 +4,7 @@ export interface InvoiceData {
   documentIssueDate: Date;
   documentNumber: string;
   customerName: string;
+  customerTitle?: string;
   businessDetails: string;
   mSealsId?: string;
   notes: string;
@@ -45,6 +46,7 @@ export interface InvoiceResponse {
   documentIssueDate: Date;
   documentNumber: string;
   customerName: string;
+  customerTitle?: string;
   businessDetails: string;
   notes?: string;
   mSeals?: MSealResponse;
