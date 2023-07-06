@@ -24,7 +24,7 @@ export default class CreateInvoiceDto {
 
   @IsOptional()
   @IsString()
-  customerTitle: string;
+  customerTitle?: string;
 
   @IsNotEmpty()
   @IsString()
