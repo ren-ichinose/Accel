@@ -554,7 +554,7 @@
 <details>
 <summary><h4>ER図</h4></summary>　　
 
-![ER図](./img/entity-relationship-diagram/entity-relationship-diagram_1.4.png)
+![ER図](./img/entity-relationship-diagram/entity-relationship-diagram_1.5.png)
 
 </details>
 
@@ -611,15 +611,16 @@
 | №  | カラム論理名                 | カラム物理名                | データ型    | 桁数  | PK | FK | UK | NN | INDEX | 初期値            | 備考                                     |
 | -- | --------------------------- | ------------------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |
 | 1  | id                          | id                       | VARCHAR    | 36   | PK |    |    |    |       | UUID v4           |                                          |
-| 2  | 事業者_id                    | business_id              | VARCHAR    | 36   |    | FK |    | NN |       |                   | テーブルbusinessesのidカラムを参照        |
+| 2  | 事業者_id                    | business_id              | VARCHAR    | 36   |    | FK |    | NN |       |                   | テーブルbusinessesのidカラムを参照           |
 | 3  | 書類発行日                   | document_issue_date      | DATE       |      |    |    |    | NN |       |                   |                                          |
 | 4  | 書類番号                     | document_number          | VARCHAR    | 50   |    |    |    | NN |       |                   |                                          |
 | 5  | 取引先名                     | customer_name            | VARCHAR    | 255  |    |    |    | NN |       |                   |                                          |
-| 6  | 事業者情報                   | business_details         | VARCHAR    | 510  |    |    |    | NN |       |                   |                                          |
-| 7  | マスタ_角印_id               | m_seals_id               | VARCHAR    | 36   |    | FK |    |    |       |                   | テーブルm_sealsのidカラムを参照           |
-| 8  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
-| 9  | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
-| 10 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+| 6  | 敬称                        | customer_title           | VARCHAR    | 50   |    |    |    |    |       |                   |                                          |
+| 7  | 事業者情報                   | business_details         | VARCHAR    | 510  |    |    |    | NN |       |                   |                                          |
+| 8  | マスタ_角印_id               | m_seals_id               | VARCHAR    | 36   |    | FK |    |    |       |                   | テーブルm_sealsのidカラムを参照             |
+| 9  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
+| 10 | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+| 11 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
 
 **m_seals**
 
@@ -721,7 +722,7 @@
 <details>
 <summary><h3>ER図</3></summary>　　
 
-![ER図](./img/entity-relationship-diagram/entity-relationship-diagram_1.4.png)
+![ER図](./img/entity-relationship-diagram/entity-relationship-diagram_1.5.png)
 
 </details>
 
@@ -778,15 +779,16 @@
 | №  | カラム論理名                 | カラム物理名                | データ型    | 桁数  | PK | FK | UK | NN | INDEX | 初期値            | 備考                                     |
 | -- | --------------------------- | ------------------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |
 | 1  | id                          | id                       | VARCHAR    | 36   | PK |    |    |    |       | UUID v4           |                                          |
-| 2  | 事業者_id                    | business_id              | VARCHAR    | 36   |    | FK |    | NN |       |                   | テーブルbusinessesのidカラムを参照        |
+| 2  | 事業者_id                    | business_id              | VARCHAR    | 36   |    | FK |    | NN |       |                   | テーブルbusinessesのidカラムを参照          |
 | 3  | 書類発行日                   | document_issue_date      | DATE       |      |    |    |    | NN |       |                   |                                          |
 | 4  | 書類番号                     | document_number          | VARCHAR    | 50   |    |    |    | NN |       |                   |                                          |
 | 5  | 取引先名                     | customer_name            | VARCHAR    | 255  |    |    |    | NN |       |                   |                                          |
-| 6  | 事業者情報                   | business_details         | VARCHAR    | 510  |    |    |    | NN |       |                   |                                          |
-| 7  | マスタ_角印_id               | m_seals_id               | VARCHAR    | 36   |    | FK |    |    |       |                   | テーブルm_sealsのidカラムを参照           |
-| 8  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
-| 9  | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
-| 10 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+| 6  | 敬称                        | customer_title           | VARCHAR    | 50   |    |    |    |    |       |                   |                                          |
+| 7  | 事業者情報                   | business_details         | VARCHAR    | 510  |    |    |    | NN |       |                   |                                          |
+| 8  | マスタ_角印_id               | m_seals_id               | VARCHAR    | 36   |    | FK |    |    |       |                   | テーブルm_sealsのidカラムを参照              |
+| 9  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
+| 10 | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+| 11 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
 
 **m_seals**
 
