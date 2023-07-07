@@ -1,0 +1,10 @@
+.logoText {
+  display: block;
+  width: 100%;
+  height: 72px;
+  padding-top: 8px;
+  font-size: 21px;
+  line-height: 72px;
+  text-align: center;
+  letter-spacing: 0.15em;
+}
