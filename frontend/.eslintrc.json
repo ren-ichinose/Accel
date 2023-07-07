@@ -4,7 +4,8 @@
     "plugin:@typescript-eslint/recommended",
     "airbnb-typescript",
     "next/core-web-vitals",
-    "prettier"
+    "prettier",
+    "plugin:storybook/recommended"
   ],
   "parserOptions": {
     "project": "./tsconfig.json"

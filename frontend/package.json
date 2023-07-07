@@ -9,7 +9,9 @@
     "lint": "next lint",
     "prepare": "cd .. && husky install frontend/.husky",
     "lint:style": "stylelint --ignore-path .gitignore './**/*.{css,scss}'",
-    "lint:style:fix": "stylelint --ignore-path .gitignore --fix './**/*.{css,scss}'"
+    "lint:style:fix": "stylelint --ignore-path .gitignore --fix './**/*.{css,scss}'",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@types/node": "20.1.4",
@@ -23,15 +25,24 @@
     "typescript": "5.0.4"
   },
   "devDependencies": {
+    "@storybook/addon-essentials": "^7.0.26",
+    "@storybook/addon-interactions": "^7.0.26",
+    "@storybook/addon-links": "^7.0.26",
+    "@storybook/blocks": "^7.0.26",
+    "@storybook/nextjs": "^7.0.26",
+    "@storybook/react": "^7.0.26",
+    "@storybook/testing-library": "^0.0.14-next.2",
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
     "@typescript-eslint/eslint-plugin": "^5.59.5",
     "@typescript-eslint/parser": "^5.59.5",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-storybook": "^0.6.12",
     "husky": "^8.0.3",
     "lint-staged": "^13.2.2",
     "prettier": "^2.8.8",
+    "storybook": "^7.0.26",
     "stylelint": "^15.7.0",
     "stylelint-config-prettier": "^9.0.5",
     "stylelint-config-recess-order": "^4.2.0",
