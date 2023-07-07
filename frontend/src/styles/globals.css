@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+:root {
+  --dark-color: #333;
+  --light-dark-color: #ccc;
+  --main-color: #333;
+  --accent-color: #e53a40;
+  --background-header-color: #333;
+  --background-base-color: #fff;
+  --background-main-color: #eee;
+}
+
+html {
+  color: var(--dark-color);
+  letter-spacing: 0.05em;
+  background-color: var(--background-base-color);
+}
