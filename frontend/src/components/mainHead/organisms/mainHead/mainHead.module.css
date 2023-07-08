@@ -1,0 +1,10 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 180px;
+  z-index: 999;
+  display: flex;
+  justify-content: space-between;
+  width: calc(100vw - 180px);
+  border-bottom: 1px solid var(--light-dark-color);
+}
