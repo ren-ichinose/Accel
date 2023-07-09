@@ -6,6 +6,7 @@
 
 .th,
 .td {
+  width: 50%;
   height: 56px;
   vertical-align: middle;
   border-bottom: 1px solid var(--light-dark-color);
