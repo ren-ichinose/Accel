@@ -1,0 +1,31 @@
+.container {
+  width: 100%;
+  text-align: center;
+}
+
+.header {
+  padding-bottom: 12px;
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  border-bottom: 2px solid var(--light-dark-color);
+}
+
+.transactionDate,
+.quantity,
+.price,
+.totalPrice {
+  width: 160px;
+}
+
+.unit {
+  width: 80px;
+}
+
+.taxType {
+  width: 120px;
+}
+
+.productName {
+  width: calc(100% - 160px - 160px - 80px - 160px - 120px - 160px);
+}
