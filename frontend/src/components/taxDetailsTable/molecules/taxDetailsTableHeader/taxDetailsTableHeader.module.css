@@ -1,0 +1,13 @@
+.container {
+  width: 100%;
+  height: 56px;
+  border-top: 2px solid var(--light-dark-color);
+  border-bottom: 1px solid var(--light-dark-color);
+}
+
+.headerItem {
+  width: 25%;
+  font-weight: 400;
+  text-align: center;
+  vertical-align: middle;
+}
