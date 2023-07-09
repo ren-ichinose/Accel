@@ -1,0 +1,11 @@
+.container {
+  width: 50%;
+  padding-right: 24px;
+  padding-bottom: 16px;
+  border-right: 1px solid var(--light-dark-color);
+}
+
+.wrapper {
+  display: flex;
+  align-items: end;
+}
