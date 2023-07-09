@@ -15,7 +15,7 @@ export interface TaxDetailsProps {
 
 // 小計（税抜合計）、消費税、合計（税込合計）の3つの金額
 export interface TotalAmountTableProps {
-  TotalTaxExcludedPrice: number
-  TotalTaxPrice: number
-  TotalTaxIncludedPrice: number
+  totalTaxExcludedPrice: number
+  totalTaxPrice: number
+  totalTaxIncludedPrice: number
 }

@@ -11,15 +11,15 @@ export default function TotalAmountTable({
       <tbody>
         <tr>
           <th className={styles.th}>小計</th>
-          <td className={styles.td}>{totalAmount.TotalTaxExcludedPrice}</td>
+          <td className={styles.td}>{totalAmount.totalTaxExcludedPrice}</td>
         </tr>
         <tr>
           <th className={styles.th}>消費税</th>
-          <td className={styles.td}>{totalAmount.TotalTaxPrice}</td>
+          <td className={styles.td}>{totalAmount.totalTaxPrice}</td>
         </tr>
         <tr>
           <th className={styles.th}>合計</th>
-          <td className={styles.td}>{totalAmount.TotalTaxIncludedPrice}</td>
+          <td className={styles.td}>{totalAmount.totalTaxIncludedPrice}</td>
         </tr>
       </tbody>
     </table>
