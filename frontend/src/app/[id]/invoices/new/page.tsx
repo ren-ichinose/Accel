@@ -2,6 +2,7 @@ import DocumentDetails from '@/components/documentDetails/organisms/documentDeta
 import FinancialSummary from '@/components/financialSummary/financialSummary'
 import ContentMarginBottom from '@/components/layout/contentMarginBottom/contentMarginBottom'
 import MainContentPadding from '@/components/layout/mainContentPadding/mainContentPadding'
+import MainFood from '@/components/mainFood/mainFood'
 import MainHead from '@/components/mainHead/organisms/mainHead/mainHead'
 import Notes from '@/components/notes/notes'
 import ProductsTable from '@/components/productsTable/organisms/productsTable/productsTable'
@@ -23,6 +24,7 @@ export default function CreateInvoice() {
             <FinancialSummary />
           </ContentMarginBottom>
           <Notes />
+          <MainFood />
         </MainContentPadding>
       </FixedElementOffset>
     </main>
