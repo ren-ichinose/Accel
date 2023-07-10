@@ -11,7 +11,7 @@ export default function BasicInfo() {
       marginBottom: '8px',
     },
     {
-      title: '請求日',
+      title: '請求番号',
       inputId: 'documentNumber',
       width: '50%',
       marginBottom: '8px',

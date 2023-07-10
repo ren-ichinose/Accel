@@ -14,12 +14,11 @@
 }
 
 .input:focus {
-  border-bottom: 1px dashed var(--accent-color);
   outline: none;
 }
 
 .container:hover {
-  cursor: pointer;
+  cursor: text;
 }
 
 .container:hover .input {
