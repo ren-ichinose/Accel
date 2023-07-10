@@ -1,0 +1,31 @@
+.button {
+  text-align: center;
+  border-radius: 5px;
+}
+
+.mainFootSubmit {
+  width: 128px;
+  height: 48px;
+  color: #fff;
+  background-color: var(--main-color);
+  transition: 0.1s;
+}
+
+.mainFootSubmit:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+
+.mainFootCancel {
+  width: 128px;
+  height: 48px;
+  color: var(--dark-color);
+  background-color: #fff;
+  border: 1px solid var(--main-color);
+  transition: 0.1s;
+}
+
+.mainFootCancel:hover {
+  color: var(--accent-color);
+  transition: 0.1s;
+}
