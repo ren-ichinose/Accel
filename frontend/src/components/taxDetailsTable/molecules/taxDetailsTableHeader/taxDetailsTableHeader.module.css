@@ -1,6 +1,6 @@
 .container {
   width: 100%;
-  height: 56px;
+  height: 64px;
   border-bottom: 1px solid var(--light-dark-color);
 }
 

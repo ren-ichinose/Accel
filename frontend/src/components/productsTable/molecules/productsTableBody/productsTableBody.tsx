@@ -1,4 +1,6 @@
 import ProductsTableBodyItem from '../../atoms/productsTableBodyItem/productsTableBodyItem'
+import TaxRateSelect from '../../atoms/taxRateSelect/taxRateSelect'
+import TotalPrice from '../../atoms/totalPrice/totalPrice'
 
 const data = [
   {
@@ -37,12 +39,15 @@ export default function ProductsTableBody() {
     <tbody>
       {rowId.map((id) => (
         <tr key={id}>
-          {data.map((column) => (
-            <ProductsTableBodyItem
-              key={column.columnName}
-              textAlign={column.textAlign}
-            />
-          ))}
+          {data.map(({ columnName, textAlign }) => {
+            if (columnName === 'taxType')
+              return <TaxRateSelect key={columnName} />
+            if (columnName === 'totalPrice')
+              return <TotalPrice key={columnName} totalPrice={1000000} />
+            return (
+              <ProductsTableBodyItem key={columnName} textAlign={textAlign} />
+            )
+          })}
         </tr>
       ))}
     </tbody>

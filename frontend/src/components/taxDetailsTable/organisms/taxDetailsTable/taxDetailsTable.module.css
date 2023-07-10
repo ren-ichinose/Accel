@@ -1,5 +1,4 @@
 .table {
   width: 100%;
-  border-top: 2px solid var(--light-dark-color);
-  border-bottom: 2px solid var(--light-dark-color);
+  background-color: var(--background-main-color);
 }
