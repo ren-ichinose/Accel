@@ -2,7 +2,7 @@ import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWi
 import DocumentDetailsTitle from '../../atoms/documentDetailsTitle/documentDetailsTitle'
 import styles from './basicInfo.module.css'
 
-export default function BasicInfo() {
+export default function BasicInfo({ register }: { register: any }) {
   const InputWithLabels = [
     {
       title: '発行日',
@@ -27,6 +27,7 @@ export default function BasicInfo() {
           inputId={inputId}
           width={width || undefined}
           marginBottom={marginBottom || undefined}
+          register={register}
         />
       ))}
       <div className={styles.wrapper}>
@@ -35,8 +36,13 @@ export default function BasicInfo() {
           inputId="customerName"
           width="calc(100% - 84px)"
           marginRight="12px"
+          register={register}
         />
-        <InputWithLabel inputId="customerTitle" width="72px" />
+        <InputWithLabel
+          inputId="customerTitle"
+          width="72px"
+          register={register}
+        />
       </div>
     </div>
   )

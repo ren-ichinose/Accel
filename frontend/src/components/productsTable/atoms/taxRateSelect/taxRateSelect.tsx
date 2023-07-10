@@ -1,13 +1,25 @@
 import styles from './taxRateSelect.module.css'
 
-export default function TaxRateSelect() {
+export default function TaxRateSelect({
+  itemOrder,
+  register,
+}: TaxRateSelectProps) {
   return (
     <td className={styles.container}>
-      <select className={styles.select}>
+      <select
+        className={styles.select}
+        // eslint-disable-next-line react/jsx-props-no-spreading
+        {...(register && register(`invoiceProducts[${itemOrder}][taxType]`))}
+      >
         <option value="2">10%</option>
         <option value="1">軽減8%</option>
         <option value="0">対象外</option>
       </select>
     </td>
   )
+}
+
+interface TaxRateSelectProps {
+  itemOrder: number
+  register: any
 }

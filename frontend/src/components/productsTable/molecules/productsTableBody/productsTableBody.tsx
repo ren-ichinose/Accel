@@ -32,20 +32,32 @@ const data = [
   },
 ]
 
-const rowId = [0, 1, 2, 3, 4]
+const itemOrders = [0, 1, 2, 3, 4]
 
-export default function ProductsTableBody() {
+export default function ProductsTableBody({ register }: { register: any }) {
   return (
     <tbody>
-      {rowId.map((id) => (
-        <tr key={id}>
+      {itemOrders.map((itemOrder) => (
+        <tr key={itemOrder}>
           {data.map(({ columnName, textAlign }) => {
             if (columnName === 'taxType')
-              return <TaxRateSelect key={columnName} />
+              return (
+                <TaxRateSelect
+                  key={columnName}
+                  register={register}
+                  itemOrder={itemOrder}
+                />
+              )
             if (columnName === 'totalPrice')
               return <TotalPrice key={columnName} totalPrice={1000000} />
             return (
-              <ProductsTableBodyItem key={columnName} textAlign={textAlign} />
+              <ProductsTableBodyItem
+                key={columnName}
+                textAlign={textAlign}
+                columnName={columnName}
+                register={register}
+                itemOrder={itemOrder}
+              />
             )
           })}
         </tr>
