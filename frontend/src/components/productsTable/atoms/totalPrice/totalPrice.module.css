@@ -1,0 +1,16 @@
+.container {
+  height: 64px;
+  padding-right: 12px;
+  padding-left: 12px;
+  vertical-align: middle; 
+  border-bottom: 1px solid var(--light-dark-color);
+}
+
+.totalPrice {
+  width: 100%;
+  padding-right: 12px;
+  padding-left: 12px;
+  line-height: 36px;
+  text-align: right;
+  background-color: var(--background-main-color);
+}

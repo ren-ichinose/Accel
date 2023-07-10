@@ -1,0 +1,25 @@
+.container {
+  height: 64px;
+  padding-right: 12px;
+  padding-left: 12px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--light-dark-color);
+}
+
+.input {
+  width: 100%;
+  line-height: 36px;
+  border-bottom: 1px dashed var(--light-dark-color);
+}
+
+.input:focus {
+  outline: none;
+}
+
+.container:hover {
+  cursor: text;
+}
+
+.container:hover .input {
+  border-bottom: 1px dashed var(--accent-color);
+}

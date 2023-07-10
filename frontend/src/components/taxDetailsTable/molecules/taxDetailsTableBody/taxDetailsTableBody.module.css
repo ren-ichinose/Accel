@@ -1,0 +1,10 @@
+.rowHeader {
+  font-weight: 400;
+}
+
+.tbody td,
+.tbody .rowHeader {
+  height: 64px;
+  text-align: center;
+  vertical-align: middle;
+}

@@ -1,0 +1,10 @@
+.container {
+  position: fixed;
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+  width: 180px;
+  height: 100vh;
+  color: #fff;
+  background-color: var(--background-header-color);
+}

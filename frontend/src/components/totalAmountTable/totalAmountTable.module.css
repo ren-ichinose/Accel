@@ -1,0 +1,27 @@
+.table {
+  width: 100%;
+  background-color: var(--background-main-color);
+}
+
+.th,
+.td {
+  width: 50%;
+  height: 64px;
+  vertical-align: middle;
+  border-bottom: 1px solid var(--light-dark-color);
+}
+
+.th {
+  font-weight: 400;
+  text-align: center;
+}
+
+.td {
+  padding-right: 24px;
+  text-align: right;
+}
+
+tr:last-child .th,
+tr:last-child .td {
+  border-bottom: none;
+}
