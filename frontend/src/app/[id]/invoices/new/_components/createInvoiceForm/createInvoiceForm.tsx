@@ -11,7 +11,13 @@ import { useForm } from 'react-hook-form'
 
 export default function CreateInvoiceForm() {
   const { register, handleSubmit } = useForm()
-  const onSubmit = (data: any) => console.log(data)
+  const onSubmit = (data: any) => {
+    const invoiceProducts = data.invoiceProducts.map(
+      (product: any, index: any) => ({ itemOrder: index, ...product })
+    )
+    const newData = { ...data, invoiceProducts }
+    console.log(newData)
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
