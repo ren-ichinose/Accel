@@ -1,9 +1,9 @@
-import styles from './totalPrice.module.css';
+import styles from './totalPrice.module.css'
 
-export default function TotalPrice({ totalPrice }: { totalPrice: number }) {
+export default function TotalPrice({ totalPrice }: { totalPrice: string }) {
   return (
     <td className={styles.container}>
-      <div className={styles.totalPrice}>{totalPrice > 0 && totalPrice}</div>
+      <div className={styles.totalPrice}>{totalPrice}</div>
     </td>
-  );
+  )
 }

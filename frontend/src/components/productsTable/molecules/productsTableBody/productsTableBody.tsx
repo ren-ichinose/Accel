@@ -1,13 +1,13 @@
-import ProductsTableRow from '../productsTableRow/productsTableRow';
+import ProductsTableRow from '../productsTableRow/productsTableRow'
 
-const rows = [0, 1, 2, 3, 4, 5, 6];
+const rows = [0, 1, 2, 3, 4, 5, 6]
 
 export default function ProductsTableBody({
   register,
   control,
 }: {
-  register: any;
-  control: any;
+  register: any
+  control: any
 }) {
   return (
     <tbody>
@@ -20,5 +20,5 @@ export default function ProductsTableBody({
         />
       ))}
     </tbody>
-  );
+  )
 }

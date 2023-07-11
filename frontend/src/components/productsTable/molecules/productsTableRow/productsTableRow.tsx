@@ -1,9 +1,10 @@
-import { useWatch } from 'react-hook-form';
-import ProductsTableBodyItem from '../../atoms/productsTableBodyItem/productsTableBodyItem';
-import TaxRateSelect from '../../atoms/taxRateSelect/taxRateSelect';
-import TotalPrice from '../../atoms/totalPrice/totalPrice';
+import formatToJPY from '@/utils/formatToJPY'
+import { useWatch } from 'react-hook-form'
+import ProductsTableBodyItem from '../../atoms/productsTableBodyItem/productsTableBodyItem'
+import TaxRateSelect from '../../atoms/taxRateSelect/taxRateSelect'
+import TotalPrice from '../../atoms/totalPrice/totalPrice'
 
-const colum = [
+const colums = [
   {
     columnName: 'transactionDate',
     textAlign: 'center' as const,
@@ -31,32 +32,31 @@ const colum = [
     columnName: 'totalPrice',
     textAlign: 'right' as const,
   },
-];
+]
 
 export default function ProductsTableRow({
   itemOrder,
   register,
   control,
 }: {
-  itemOrder: number;
-  register: any;
-  control: any;
+  itemOrder: number
+  register: any
+  control: any
 }) {
   const watchPrice = useWatch({
     control,
     name: `invoiceProducts[${itemOrder}][price]`,
-  });
+  })
 
   const watchQuantity = useWatch({
     control,
     name: `invoiceProducts[${itemOrder}][quantity]`,
-  });
+  })
 
-  const totalPrice = watchPrice * watchQuantity;
-
+  const totalPrice = formatToJPY(watchPrice * watchQuantity)
   return (
     <tr>
-      {colum.map(({ columnName, textAlign }) => {
+      {colums.map(({ columnName, textAlign }) => {
         if (columnName === 'taxType')
           return (
             <TaxRateSelect
@@ -64,9 +64,9 @@ export default function ProductsTableRow({
               register={register}
               itemOrder={itemOrder}
             />
-          );
+          )
         if (columnName === 'totalPrice') {
-          return <TotalPrice key={columnName} totalPrice={totalPrice} />;
+          return <TotalPrice key={columnName} totalPrice={totalPrice} />
         }
         return (
           <ProductsTableBodyItem
@@ -76,8 +76,8 @@ export default function ProductsTableRow({
             register={register}
             itemOrder={itemOrder}
           />
-        );
+        )
       })}
     </tr>
-  );
+  )
 }
