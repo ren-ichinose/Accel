@@ -1,6 +1,5 @@
 {
   "singleQuote": true,
-  "semi": false,
   "importOrder": [
     "^(react/(.*)$)|^(react$)",
     "^(next/(.*)$)|^(next$)",

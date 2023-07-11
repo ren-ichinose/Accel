@@ -8,6 +8,8 @@
 
 .input {
   width: 100%;
+  padding-right: 12px;
+  padding-left: 12px;
   line-height: 36px;
   border-bottom: 1px dashed var(--light-dark-color);
 }
