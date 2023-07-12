@@ -1,6 +1,8 @@
 .table {
   width: 100%;
   background-color: var(--background-main-color);
+  border-radius: 5px;
+
 }
 
 .th,

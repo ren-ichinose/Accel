@@ -20,16 +20,18 @@ export default function TaxDetailsTableBody({
     <tbody className={styles.tbody}>
       <tr>
         <th className={styles.rowHeader}>10% 対象</th>
-        <td>{taxExcludedPrice8}</td>
-        <td>{taxPrice8}</td>
-        <td>{taxIncludedPrice8}</td>
-      </tr>
-      <tr>
-        <th className={styles.rowHeader}>軽減 8% 対象</th>
         <td>{taxExcludedPrice10}</td>
         <td>{taxPrice10}</td>
         <td>{taxIncludedPrice10}</td>
       </tr>
+      {taxExcludedPrice8 && (
+        <tr>
+          <th className={styles.rowHeader}>軽減 8% 対象</th>
+          <td>{taxExcludedPrice8}</td>
+          <td>{taxPrice8}</td>
+          <td>{taxIncludedPrice8}</td>
+        </tr>
+      )}
     </tbody>
   )
 }

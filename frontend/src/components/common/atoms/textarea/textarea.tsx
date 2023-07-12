@@ -6,6 +6,7 @@ export default function Textarea({
   width,
   height,
   marginBottom,
+  register,
 }: TextareaProps) {
   const textareaStyles = {
     width,
@@ -19,6 +20,8 @@ export default function Textarea({
       placeholder={placeholder}
       id={textareaId}
       style={textareaStyles}
+      // eslint-disable-next-line react/jsx-props-no-spreading
+      {...(register && register(textareaId))}
     />
   )
 }
@@ -28,6 +31,7 @@ Textarea.defaultProps = {
   width: '100%',
   height: '128px',
   marginBottom: '0',
+  register: '',
 }
 
 interface TextareaProps {
@@ -36,4 +40,5 @@ interface TextareaProps {
   width?: string
   height?: string
   marginBottom?: string
+  register?: any
 }

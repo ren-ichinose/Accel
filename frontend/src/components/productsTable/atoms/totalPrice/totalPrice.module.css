@@ -2,12 +2,13 @@
   height: 64px;
   padding-right: 12px;
   padding-left: 12px;
-  vertical-align: middle; 
+  vertical-align: middle;
   border-bottom: 1px solid var(--light-dark-color);
 }
 
 .totalPrice {
   width: 100%;
+  height: 36px;
   padding-right: 12px;
   padding-left: 12px;
   line-height: 36px;

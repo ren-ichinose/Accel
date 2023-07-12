@@ -1,26 +1,60 @@
+import formatToJPY from '@/utils/formatToJPY'
+import { useWatch } from 'react-hook-form'
 import TaxDetailsTable from '../taxDetailsTable/organisms/taxDetailsTable/taxDetailsTable'
 import TotalAmountTable from '../totalAmountTable/totalAmountTable'
 import styles from './financialSummary.module.css'
 
-const taxDetails8 = {
-  taxExcludedPrice: 3000000,
-  taxPrice: 240000,
-  taxIncludedPrice: 3240000,
-}
+export default function FinancialSummary({ control }: { control: any }) {
+  const watchProducts = useWatch({ control, name: 'invoiceProducts' })
 
-const taxDetails10 = {
-  taxExcludedPrice: 7000000,
-  taxPrice: 700000,
-  taxIncludedPrice: 7700000,
-}
+  const taxExcludedPrice10 = watchProducts?.reduce((acc: number, cur: any) => {
+    if (cur.taxType === '2') {
+      return acc + cur.price * cur.quantity
+    }
+    return acc
+  }, 0)
 
-const totalAmount = {
-  totalTaxExcludedPrice: 10000000,
-  totalTaxPrice: 940000,
-  totalTaxIncludedPrice: 10940000,
-}
+  const taxPrice10 = watchProducts?.reduce((acc: number, cur: any) => {
+    if (cur.taxType === '2') {
+      return acc + cur.price * cur.quantity * 0.1
+    }
+    return acc
+  }, 0)
 
-export default function FinancialSummary() {
+  const taxExcludedPrice8 = watchProducts?.reduce((acc: number, cur: any) => {
+    if (cur.taxType === '1') {
+      return acc + cur.price * cur.quantity
+    }
+    return acc
+  }, 0)
+
+  const taxPrice8 = watchProducts?.reduce((acc: number, cur: any) => {
+    if (cur.taxType === '1') {
+      return acc + cur.price * cur.quantity * 0.08
+    }
+    return acc
+  }, 0)
+
+  const taxDetails10 = {
+    taxExcludedPrice: formatToJPY(taxExcludedPrice10),
+    taxPrice: formatToJPY(taxPrice10),
+    taxIncludedPrice: formatToJPY(taxExcludedPrice10 + taxPrice10),
+  }
+
+  const taxDetails8 = {
+    taxExcludedPrice: formatToJPY(taxExcludedPrice8),
+    taxPrice: formatToJPY(taxPrice8),
+    taxIncludedPrice: formatToJPY(taxExcludedPrice8 + taxPrice8),
+  }
+
+  const totalAmount = {
+    totalTaxExcludedPrice: formatToJPY(taxExcludedPrice10 + taxExcludedPrice8),
+    totalTaxPrice: formatToJPY(taxPrice10 + taxPrice8),
+    totalTaxIncludedPrice: formatToJPY(
+      taxExcludedPrice10 + taxExcludedPrice8 + taxPrice10 + taxPrice8
+    ),
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.taxDetailsTableContainer}>

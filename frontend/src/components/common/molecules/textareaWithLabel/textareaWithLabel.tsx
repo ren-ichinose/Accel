@@ -9,6 +9,7 @@ export default function TextareaWithLabel({
   height,
   marginRight,
   marginBottom,
+  register,
 }: TextareaWithLabelProps) {
   const labelStyles = {
     width,
@@ -26,6 +27,7 @@ export default function TextareaWithLabel({
         textareaId={textareaId}
         height={height}
         marginBottom={marginBottom}
+        register={register}
       />
     </div>
   )
@@ -38,6 +40,7 @@ TextareaWithLabel.defaultProps = {
   height: '128px',
   marginRight: '0',
   marginBottom: '0',
+  register: '',
 }
 
 interface TextareaWithLabelProps {
@@ -48,4 +51,5 @@ interface TextareaWithLabelProps {
   height?: string
   marginRight?: string
   marginBottom?: string
+  register?: any
 }
