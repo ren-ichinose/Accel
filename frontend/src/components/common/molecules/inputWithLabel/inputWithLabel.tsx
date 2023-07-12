@@ -10,6 +10,7 @@ export default function InputWithLabel({
   marginRight,
   marginBottom,
   register,
+  type,
 }: InputWithLabelProps) {
   const labelStyles = {
     width,
@@ -28,6 +29,7 @@ export default function InputWithLabel({
         height={height}
         marginBottom={marginBottom}
         register={register}
+        type={type}
       />
     </div>
   )
@@ -36,6 +38,7 @@ export default function InputWithLabel({
 InputWithLabel.defaultProps = {
   title: '',
   placeholder: '',
+  type: 'text',
   width: '100%',
   height: '36px',
   marginRight: '0',
@@ -47,6 +50,7 @@ interface InputWithLabelProps {
   title?: string
   inputId: string
   placeholder?: string
+  type?: string
   width?: string
   height?: string
   marginRight?: string

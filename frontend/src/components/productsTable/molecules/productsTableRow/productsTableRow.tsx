@@ -8,6 +8,7 @@ const colums = [
   {
     columnName: 'transactionDate',
     textAlign: 'center' as const,
+    type: 'date',
   },
   {
     columnName: 'productName',
@@ -27,10 +28,12 @@ const colums = [
   {
     columnName: 'taxType',
     textAlign: 'center' as const,
+    type: 'taxType',
   },
   {
     columnName: 'totalPrice',
     textAlign: 'right' as const,
+    type: 'totalPrice',
   },
 ]
 
@@ -56,8 +59,8 @@ export default function ProductsTableRow({
   const totalPrice = formatToJPY(watchPrice * watchQuantity)
   return (
     <tr>
-      {colums.map(({ columnName, textAlign }) => {
-        if (columnName === 'taxType')
+      {colums.map(({ columnName, textAlign, type }) => {
+        if (type === 'taxType')
           return (
             <TaxRateSelect
               key={columnName}
@@ -65,8 +68,20 @@ export default function ProductsTableRow({
               itemOrder={itemOrder}
             />
           )
-        if (columnName === 'totalPrice') {
+        if (type === 'totalPrice') {
           return <TotalPrice key={columnName} totalPrice={totalPrice} />
+        }
+        if (type === 'date') {
+          return (
+            <ProductsTableBodyItem
+              key={columnName}
+              textAlign={textAlign}
+              columnName={columnName}
+              register={register}
+              itemOrder={itemOrder}
+              type={type}
+            />
+          )
         }
         return (
           <ProductsTableBodyItem

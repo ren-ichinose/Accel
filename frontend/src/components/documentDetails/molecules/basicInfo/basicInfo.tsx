@@ -9,6 +9,7 @@ export default function BasicInfo({ register }: { register: any }) {
       inputId: 'documentIssueDate',
       width: '50%',
       marginBottom: '8px',
+      type: 'date',
     },
     {
       title: '請求番号',
@@ -20,7 +21,7 @@ export default function BasicInfo({ register }: { register: any }) {
   return (
     <div className={styles.container}>
       <DocumentDetailsTitle title="基本情報" />
-      {InputWithLabels.map(({ title, inputId, width, marginBottom }) => (
+      {InputWithLabels.map(({ title, inputId, width, marginBottom, type }) => (
         <InputWithLabel
           key={inputId}
           title={title}
@@ -28,6 +29,7 @@ export default function BasicInfo({ register }: { register: any }) {
           width={width || undefined}
           marginBottom={marginBottom || undefined}
           register={register}
+          type={type || undefined}
         />
       ))}
       <div className={styles.wrapper}>

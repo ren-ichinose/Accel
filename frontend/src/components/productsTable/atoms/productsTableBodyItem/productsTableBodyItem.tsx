@@ -5,12 +5,13 @@ export default function ProductsTableBodyItem({
   itemOrder,
   columnName,
   register,
+  type,
 }: ProductsTableBodyItemProps) {
   return (
     <td className={styles.container}>
       <input
         className={styles.input}
-        type="text"
+        type={type}
         style={{ textAlign }}
         // eslint-disable-next-line react/jsx-props-no-spreading
         {...(register &&
@@ -22,6 +23,7 @@ export default function ProductsTableBodyItem({
 
 ProductsTableBodyItem.defaultProps = {
   textAlign: 'left' as const,
+  type: undefined,
 }
 
 interface ProductsTableBodyItemProps {
@@ -29,4 +31,5 @@ interface ProductsTableBodyItemProps {
   itemOrder: number
   columnName: string
   register: any
+  type?: string
 }
