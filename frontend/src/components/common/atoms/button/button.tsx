@@ -32,7 +32,7 @@ Button.defaultProps = {
 }
 
 interface ButtonProps {
-  className?: 'button' | 'mainFootSubmit' | 'mainFootCancel'
+  className?: 'button' | 'mainFootSubmit' | 'mainFootCancel' | 'authSubmid'
   type: 'submit' | 'button'
   text: string
 }

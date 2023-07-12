@@ -29,3 +29,17 @@
   color: var(--accent-color);
   transition: 0.1s;
 }
+
+.authSubmid {
+  width: 100%;
+  height: 48px;
+  margin-bottom: 48px;
+  color: #fff;
+  background-color: var(--main-color);
+  transition: 0.1s ease-in-out;
+}
+
+.authSubmid:hover {
+  opacity: 0.8;
+  transition: 0.1s ease-in-out;
+}
