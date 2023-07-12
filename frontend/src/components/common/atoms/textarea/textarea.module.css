@@ -9,3 +9,7 @@
   border: 1px solid var(--accent-color);
   outline: none;
 }
+
+.input::placeholder {
+  color: var(--light-dark-color);
+}

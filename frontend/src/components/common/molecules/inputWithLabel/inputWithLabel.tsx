@@ -27,7 +27,6 @@ export default function InputWithLabel({
         placeholder={placeholder}
         inputId={inputId}
         height={height}
-        marginBottom={marginBottom}
         register={register}
         type={type}
       />

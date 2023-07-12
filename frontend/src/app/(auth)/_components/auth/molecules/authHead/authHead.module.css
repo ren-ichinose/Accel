@@ -1,0 +1,21 @@
+.icon {
+  width: 100%;
+  margin-bottom: 16px;
+  font-size: 56px;
+  text-align: center;
+  transform: translateX(-3px);
+}
+
+.title {
+  margin-bottom: 48px;
+  font-size: 24px;
+  text-align: center;
+  letter-spacing: 0.075em;
+}
+
+.select {
+  margin-bottom: 32px;
+  font-size: 24px;
+  text-align: center;
+  letter-spacing: 0.075em;
+}

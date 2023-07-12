@@ -8,14 +8,14 @@ export default function BasicInfo({ register }: { register: any }) {
       title: '発行日',
       inputId: 'documentIssueDate',
       width: '50%',
-      marginBottom: '8px',
+      marginBottom: '16px',
       type: 'date',
     },
     {
       title: '請求番号',
       inputId: 'documentNumber',
       width: '50%',
-      marginBottom: '8px',
+      marginBottom: '16px',
     },
   ]
   return (

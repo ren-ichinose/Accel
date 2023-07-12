@@ -8049,6 +8049,7 @@ __metadata:
     react: 18.2.0
     react-dom: 18.2.0
     react-hook-form: ^7.45.1
+    react-icons: ^4.10.1
     storybook: ^7.0.26
     stylelint: ^15.7.0
     stylelint-config-prettier: ^9.0.5
@@ -11802,6 +11803,15 @@ __metadata:
   peerDependencies:
     react: ^16.8.0 || ^17 || ^18
   checksum: 3abe1dcf449a3d438b4e5403d93d1502f6dab05afd5c5215f0fc88a32f3d06e7f4b77bee75479359c22a418af6ea0f52711478c73773cb5fd0f43da50669aa17
+  languageName: node
+  linkType: hard
+
+"react-icons@npm:^4.10.1":
+  version: 4.10.1
+  resolution: "react-icons@npm:4.10.1"
+  peerDependencies:
+    react: "*"
+  checksum: b6c8d4fe482b112e1041515d93ef7670a0af128855c926052a076b64d0b991cdd4391394b26467100f8da3859db1ebd8f9c6b7614fa5969fde83de45c71031a3
   languageName: node
   linkType: hard
 
