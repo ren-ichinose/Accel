@@ -1,0 +1,16 @@
+.container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding-top: 32px;
+  border-top: 1px solid var(--light-dark-color);
+}
+
+.text {
+  color: var(--light-dark-color);
+  transition: color 0.1s ease-in-out;
+}
+
+.text:hover {
+  color: var(--main-color);
+}
