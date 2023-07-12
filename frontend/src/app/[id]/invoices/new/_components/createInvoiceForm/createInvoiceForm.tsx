@@ -63,9 +63,9 @@ export default function CreateInvoiceForm() {
   })
 
   const onSubmit = (data: any) => {
-    const invoiceProducts = data.invoiceProducts.map(
-      (product: any, index: any) => ({ itemOrder: index, ...product })
-    )
+    const invoiceProducts = data.invoiceProducts
+      .map((product: any, index: any) => ({ itemOrder: index, ...product }))
+      .filter((product: any) => product.productName)
     const newData = { ...data, invoiceProducts }
     console.log(newData)
   }
