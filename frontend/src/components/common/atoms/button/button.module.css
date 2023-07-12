@@ -35,6 +35,8 @@
   height: 48px;
   margin-bottom: 48px;
   color: #fff;
+  text-indent: 0.5em;
+  letter-spacing: 0.5em;
   background-color: var(--main-color);
   transition: 0.1s ease-in-out;
 }
