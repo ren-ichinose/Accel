@@ -9,7 +9,8 @@ export default function TaxRateSelect({
       <select
         className={styles.select}
         // eslint-disable-next-line react/jsx-props-no-spreading
-        {...(register && register(`invoiceProducts[${itemOrder}][taxType]`))}
+        {...(register &&
+          register(`invoiceProducts[${itemOrder}][taxClassification]`))}
       >
         <option value="2">10%</option>
         <option value="1">軽減8%</option>

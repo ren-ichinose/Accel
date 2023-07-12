@@ -1,6 +1,7 @@
 'use client'
 
 import DocumentDetails from '@/components/documentDetails/organisms/documentDetails/documentDetails'
+import ErrorMassages from '@/components/errorMassages/errorMassages'
 import FinancialSummary from '@/components/financialSummary/financialSummary'
 import MainFood from '@/components/mainFood/mainFood'
 import Notes from '@/components/notes/notes'
@@ -14,19 +15,40 @@ export default function CreateInvoiceForm() {
     documentIssueDate: yup.date().required(),
     documentNumber: yup.string().required(),
     customerName: yup.string().required(),
-    customerTitle: yup.string(),
+    customerTitle: yup.string().required(),
     businessDetails: yup.string().required(),
-    mSealsId: yup.string(),
-    notes: yup.string(),
+    mSealsId: yup
+      .string()
+      .nullable()
+      .transform((curr, origin) => (origin === '' ? null : curr)),
+    notes: yup
+      .string()
+      .nullable()
+      .transform((curr, origin) => (origin === '' ? null : curr)),
     invoiceProducts: yup.array().of(
       yup.object().shape({
-        itemOrder: yup.number().required(),
-        transactionDate: yup.date(),
-        productName: yup.string(),
-        quantity: yup.number(),
-        unit: yup.string(),
-        price: yup.number(),
-        taxClassification: yup.string().required(),
+        transactionDate: yup
+          .date()
+          .nullable()
+          .transform((curr, origin) => (origin === '' ? null : curr)),
+        productName: yup
+          .string()
+          .nullable()
+          .transform((curr, origin) => (origin === '' ? null : curr)),
+        quantity: yup
+          .number()
+          .nullable()
+          .transform((curr, origin) => (origin === '' ? null : curr)),
+        unit: yup
+          .string()
+          .nullable()
+          .transform((curr, origin) => (origin === '' ? null : curr)),
+        price: yup
+          .number()
+          .optional()
+          .nullable()
+          .transform((curr, origin) => (origin === '' ? null : curr)),
+        taxClassification: yup.number().required(),
       })
     ),
   })
@@ -49,28 +71,15 @@ export default function CreateInvoiceForm() {
   }
 
   // Yupのエラーのメッセージを配列に格納する
-  const errorMessages = Object.values(errors)
-    .filter((error) => error.message !== undefined)
-    .map((error) => error.message && error.message)
-
-  // const invoiceProductsError0 = errors.invoiceProducts?.[0]
-  // const invoiceProductsError1 = errors.invoiceProducts?.[1]
-  // const invoiceProductsError2 = errors.invoiceProducts?.[2]
-  // const invoiceProductsError3 = errors.invoiceProducts?.[3]
-  // const invoiceProductsError4 = errors.invoiceProducts?.[4]
-
-  // 'undefined' の可能性があるオブジェクトを呼び出すことはできません。ts(2722)
-  // invoiceProductsのエラーが表示できないため、余裕が出来次第対応する。
-  // const invoiceProductsErrors = errors.invoiceProducts
-  // if (invoiceProductsErrors !== undefined) {
-  //   invoiceProductsErrors.map(() => {})
-  // }
+  // const errorMessages = Object.values(errors)
+  //   .filter((error) => error.message !== undefined)
+  //   .map((error) => error.message)
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      {errorMessages.map((errorMassage) => (
-        <p key={errorMassage}>{errorMassage}</p>
-      ))}
+      {Object.values(errors).length > 0 && (
+        <ErrorMassages errorMassages={['Error:入力内容を確認してください。']} />
+      )}
       <DocumentDetails register={register} />
       <ProductsTable register={register} control={control} />
       <FinancialSummary control={control} />
