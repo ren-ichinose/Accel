@@ -12,7 +12,7 @@ export default function Register() {
         placeholder="半角英数字4文字以上"
         inputId="loginId"
         height="48px"
-        marginBottom="32px"
+        marginBottom="16px"
       />
       <InputWithLabel
         title="パスワード"

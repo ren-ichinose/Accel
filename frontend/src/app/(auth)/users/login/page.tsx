@@ -12,7 +12,7 @@ export default function Login() {
         placeholder="ログインIDを入力してください"
         inputId="loginId"
         height="48px"
-        marginBottom="32px"
+        marginBottom="16px"
       />
       <InputWithLabel
         title="パスワード"
