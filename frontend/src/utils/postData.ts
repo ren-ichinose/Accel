@@ -5,6 +5,11 @@ export default async function postData(url: string, data: any) {
     credentials: 'include',
     body: JSON.stringify(data),
   })
-  if (!res.ok) throw new Error()
+  if (!res.ok) {
+    const error: any = new Error()
+    error.info = await res.json()
+    error.status = res.status
+    throw error
+  }
   return res.json()
 }
