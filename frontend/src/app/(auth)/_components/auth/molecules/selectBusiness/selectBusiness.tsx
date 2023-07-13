@@ -1,28 +1,56 @@
+'use client'
+
+import { useEffect, useState } from 'react'
+import getData from '@/utils/getData'
+import { Control, UseFormRegister, useWatch } from 'react-hook-form'
 import styles from './selectBusiness.module.css'
 
-const businessList = [
-  {
-    id: 'businessId01',
-    name: '○○商事株式会社',
-  },
-  {
-    id: 'businessId02',
-    name: '株式会社○○デザイン',
-  },
-  {
-    id: 'businessId03',
-    name: '○○コンサルティング株式会社',
-  },
-]
+export default function SelectBusiness({
+  register,
+  control,
+}: {
+  register: UseFormRegister<{ businessId: string }>
+  control: Control<
+    {
+      businessId: string
+    },
+    any
+  >
+}) {
+  const [businessList, setBusinessList] = useState<
+    { id: string; businessName: string }[]
+  >([])
 
-export default function SelectBusiness() {
+  const watchBusinessId = useWatch({ control, name: 'businessId' })
+
+  const createClassName = (businessId: string) => {
+    if (businessId === watchBusinessId) {
+      return `${styles.selected} ${styles.label}`
+    }
+    return styles.label
+  }
+
+  useEffect(() => {
+    const getBusinessAll = async (): Promise<void> => {
+      const data = await getData(`${process.env.NEXT_PUBLIC_API_URL}/business`)
+      setBusinessList(data)
+    }
+    getBusinessAll()
+  }, [])
+
   return (
     <div className={styles.container}>
       {businessList.map((business) => (
         <div key={business.id}>
-          <label className={styles.label} htmlFor={business.id}>
-            <input type="radio" value={business.id} id={business.id} />
-            {business.name}
+          <label className={createClassName(business.id)} htmlFor={business.id}>
+            <input
+              type="radio"
+              value={business.id}
+              id={business.id}
+              // eslint-disable-next-line react/jsx-props-no-spreading
+              {...register('businessId')}
+            />
+            {business.businessName}
           </label>
         </div>
       ))}

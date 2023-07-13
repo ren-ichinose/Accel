@@ -10,11 +10,19 @@
   border-bottom: 1px solid var(--light-dark-color);
 }
 
+.label:hover {
+  opacity: 0.6;
+}
+
 .firstlLabel {
   padding-top: 0;
 }
 
-.label:hover {
+.selected {
   background-color: var(--background-main-color);
-  transition: background-color 0.1s ease-in-out;
+}
+
+.selected:hover {
+  background-color: var(--background-main-color);
+  opacity: 1;
 }
