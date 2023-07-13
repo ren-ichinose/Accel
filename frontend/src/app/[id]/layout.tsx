@@ -17,7 +17,7 @@ export default function Layout({
 }) {
   return (
     <QueryBusiness businessId={params.id}>
-      <Header />
+      <Header busunessId={params.id} />
       {children}
     </QueryBusiness>
   )
