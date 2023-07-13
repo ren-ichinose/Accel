@@ -36,17 +36,9 @@ export default function Register() {
 
   const onSubmit = async (data: UserAuth) => {
     try {
-      const resSignup = await postData(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/signup`,
-        data
-      )
-      if (!resSignup.ok) throw new Error()
+      await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, data)
 
-      const resLogin = await postData(
-        `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
-        data
-      )
-      if (!resLogin.ok) throw new Error()
+      await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, data)
 
       router.push('/businesses/register')
     } catch (error) {
