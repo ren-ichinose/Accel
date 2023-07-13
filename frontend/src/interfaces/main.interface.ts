@@ -1,3 +1,8 @@
+export interface UserAuth {
+  loginId: string
+  password: string
+}
+
 export interface TaxDetails8 {
   taxExcludedPrice: string
   taxPrice: string

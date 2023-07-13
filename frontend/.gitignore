@@ -34,3 +34,4 @@ yarn-error.log*
 next-env.d.ts
 /src/components/tmp
 /src/components/tmp-d
+.env
