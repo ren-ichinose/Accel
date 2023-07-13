@@ -3,6 +3,10 @@ export interface UserAuth {
   password: string
 }
 
+export interface BussinesAuth {
+  businessName: string
+}
+
 export interface TaxDetails8 {
   taxExcludedPrice: string
   taxPrice: string
