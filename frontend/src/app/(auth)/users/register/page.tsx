@@ -1,10 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Button from '@/components/common/atoms/button/button'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
-import type { UserAuth } from '@/interfaces/main.interface'
+import type { User } from '@/interfaces/main.interface'
 import postData from '@/utils/postData'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
@@ -14,6 +15,7 @@ import AuthHead from '../../_components/auth/molecules/authHead/authHead'
 
 export default function Register() {
   const router = useRouter()
+  const [serverErrors, setServerErrors] = useState<string[]>([])
 
   const errorScheme = yup.object().shape({
     loginId: yup
@@ -30,35 +32,36 @@ export default function Register() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserAuth>({
+  } = useForm<User>({
     resolver: yupResolver(errorScheme),
   })
 
-  const onSubmit = async (data: UserAuth) => {
+  const onSubmit = async (data: User) => {
     try {
       await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, data)
-
       await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, data)
-
       router.push('/businesses/register')
-    } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(error.message)
-      }
-      throw new Error('エラーが発生しました')
+    } catch (error: any) {
+      if (error.status === 403) setServerErrors([error.info.message])
     }
   }
 
-  const errorMessages = Object.values(errors)
+  const clientErrors = Object.values(errors)
     .filter((error) => error.message !== undefined)
     .map((error) => error.message)
+
+  const showErrors = (sErrors: string[], cErrors: (string | undefined)[]) => {
+    if (cErrors.length > 0)
+      return <ErrorMassages errorMassages={clientErrors} />
+    if (sErrors.length > 0)
+      return <ErrorMassages errorMassages={serverErrors} />
+    return null
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <AuthHead title="新規登録" />
-      {errorMessages.length > 0 && (
-        <ErrorMassages errorMassages={errorMessages} />
-      )}
+      {showErrors(serverErrors, clientErrors)}
       <InputWithLabel
         title="ログインID"
         placeholder="半角英数字4文字以上"

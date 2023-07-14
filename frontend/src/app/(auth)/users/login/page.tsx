@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import Button from '@/components/common/atoms/button/button'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
-import { UserAuth } from '@/interfaces/main.interface'
+import { User } from '@/interfaces/main.interface'
 import postData from '@/utils/postData'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
@@ -30,7 +30,7 @@ export default function Login() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserAuth>({
+  } = useForm<User>({
     resolver: yupResolver(errorScheme),
   })
 
@@ -38,7 +38,7 @@ export default function Login() {
     .filter((error) => error.message !== undefined)
     .map((error) => error.message)
 
-  const onSubmit = async (data: UserAuth) => {
+  const onSubmit = async (data: User) => {
     try {
       await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, data)
 
