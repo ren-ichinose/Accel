@@ -9,7 +9,7 @@ export default function QueryBusiness({
   children: React.ReactNode
   businessId: string
 }) {
-  useQueryBusiness(businessId)
+  const { isSuccess } = useQueryBusiness(businessId)
 
-  return <div>{children}</div>
+  return isSuccess ? <div>{children}</div> : null
 }
