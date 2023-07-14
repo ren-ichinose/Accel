@@ -51,8 +51,10 @@ export default function Register() {
     .map((error) => error.message)
 
   const showErrors = (sErrors: string[], cErrors: (string | undefined)[]) => {
-    if (cErrors.length > 0)
+    if (cErrors.length > 0) {
+      if (serverErrors.length > 0) setServerErrors([])
       return <ErrorMassages errorMassages={clientErrors} />
+    }
     if (sErrors.length > 0)
       return <ErrorMassages errorMassages={serverErrors} />
     return null

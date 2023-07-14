@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Button from '@/components/common/atoms/button/button'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
@@ -14,6 +15,7 @@ import AuthHead from '../../_components/auth/molecules/authHead/authHead'
 
 export default function Login() {
   const router = useRouter()
+  const [serverErrors, setServerErrors] = useState<string[]>([])
 
   const errorScheme = yup.object().shape({
     loginId: yup
@@ -34,7 +36,7 @@ export default function Login() {
     resolver: yupResolver(errorScheme),
   })
 
-  const errorMessages = Object.values(errors)
+  const clientErrors = Object.values(errors)
     .filter((error) => error.message !== undefined)
     .map((error) => error.message)
 
@@ -43,20 +45,25 @@ export default function Login() {
       await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, data)
 
       router.push('/businesses/select')
-    } catch (error) {
-      if (error instanceof Error) {
-        throw new Error(error.message)
-      }
-      throw new Error('エラーが発生しました')
+    } catch (error: any) {
+      if (error.status === 403) setServerErrors([error.info.message])
     }
+  }
+
+  const showErrors = (sErrors: string[], cErrors: (string | undefined)[]) => {
+    if (cErrors.length > 0) {
+      if (serverErrors.length > 0) setServerErrors([])
+      return <ErrorMassages errorMassages={clientErrors} />
+    }
+    if (sErrors.length > 0)
+      return <ErrorMassages errorMassages={serverErrors} />
+    return null
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <AuthHead title="ログイン" />
-      {errorMessages.length > 0 && (
-        <ErrorMassages errorMassages={errorMessages} />
-      )}
+      {showErrors(serverErrors, clientErrors)}
       <InputWithLabel
         title="ログインID"
         placeholder="ログインIDを入力してください"
