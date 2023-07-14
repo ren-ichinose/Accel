@@ -3,13 +3,13 @@ import MainHead from '@/components/mainHead/organisms/mainHead/mainHead'
 import FixedElementOffset from '../../../../components/common/layout/fixedElementOffset/fixedElementOffset'
 import CreateInvoiceForm from './_components/createInvoiceForm/createInvoiceForm'
 
-export default function CreateInvoice() {
+export default function CreateInvoice({ params }: { params: { id: string } }) {
   return (
     <>
       <MainHead title="請求書作成" businessName="○○商事株式会社" />
       <FixedElementOffset>
         <MainContentPadding>
-          <CreateInvoiceForm />
+          <CreateInvoiceForm params={params} />
         </MainContentPadding>
       </FixedElementOffset>
     </>
