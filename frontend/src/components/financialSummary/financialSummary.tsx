@@ -8,28 +8,28 @@ export default function FinancialSummary({ control }: { control: any }) {
   const watchProducts = useWatch({ control, name: 'invoiceProducts' })
 
   const taxExcludedPrice10 = watchProducts?.reduce((acc: number, cur: any) => {
-    if (cur.taxType === '2') {
+    if (cur.taxClassification === '2') {
       return acc + cur.price * cur.quantity
     }
     return acc
   }, 0)
 
   const taxPrice10 = watchProducts?.reduce((acc: number, cur: any) => {
-    if (cur.taxType === '2') {
+    if (cur.taxClassification === '2') {
       return acc + cur.price * cur.quantity * 0.1
     }
     return acc
   }, 0)
 
   const taxExcludedPrice8 = watchProducts?.reduce((acc: number, cur: any) => {
-    if (cur.taxType === '1') {
+    if (cur.taxClassification === '1') {
       return acc + cur.price * cur.quantity
     }
     return acc
   }, 0)
 
   const taxPrice8 = watchProducts?.reduce((acc: number, cur: any) => {
-    if (cur.taxType === '1') {
+    if (cur.taxClassification === '1') {
       return acc + cur.price * cur.quantity * 0.08
     }
     return acc

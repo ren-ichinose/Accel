@@ -1,4 +1,5 @@
 import { Noto_Sans_JP } from 'next/font/google'
+import QueryProvider from '@/components/common/layout/queryProvider/queryProvider'
 import 'src/styles/reset.css'
 import 'src/styles/globals.css'
 
@@ -21,7 +22,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ja">
-      <body className={notoSansJp.className}>{children}</body>
+      <body className={notoSansJp.className}>
+        <QueryProvider>{children}</QueryProvider>
+      </body>
     </html>
   )
 }

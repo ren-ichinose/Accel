@@ -1,6 +1,11 @@
-export interface UserAuth {
+export interface User {
   loginId: string
   password: string
+}
+
+export interface Business {
+  id: number
+  businessName: string
 }
 
 export interface BussinesAuth {

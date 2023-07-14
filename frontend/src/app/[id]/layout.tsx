@@ -1,17 +1,24 @@
 import Header from '@/components/header/organismss/header/header'
 import 'src/styles/reset.css'
 import 'src/styles/globals.css'
+import QueryBusiness from './_components/queryBusiness'
 
 export const metadata = {
-  title: '請求書作成',
-  description: '請求書を作成するページです',
+  title: 'ホーム',
+  description: 'ホームページです',
 }
 
-export default function Layout({ children }: { children: React.ReactNode }) {
+export default function Layout({
+  children,
+  params,
+}: {
+  children: React.ReactNode
+  params: { id: string }
+}) {
   return (
-    <>
-      <Header />
+    <QueryBusiness businessId={params.id}>
+      <Header busunessId={params.id} />
       {children}
-    </>
+    </QueryBusiness>
   )
 }

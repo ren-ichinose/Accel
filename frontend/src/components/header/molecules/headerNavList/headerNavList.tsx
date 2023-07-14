@@ -1,26 +1,27 @@
 import HeaderNavItem from '../../atoms/headerNavItem/headerNavItem'
 
-export default function HeaderNavList() {
+export default function HeaderNavList({ busunessId }: { busunessId: string }) {
   const navItems = [
-    { key: 'home', title: 'ホーム', href: '/:businessId' },
+    { id: 'home', title: 'ホーム', href: `/${busunessId}` },
     {
-      key: 'createInvoice',
+      id: 'createInvoice',
       title: '請求書作成',
-      href: '/:businessId/invoices/new',
+      href: `/${busunessId}/invoices/new`,
     },
     {
-      key: 'invoiceList',
+      id: 'invoiceList',
       title: '請求書一覧',
-      href: '/:businessId/invoices/list',
+      href: `/${busunessId}/invoices/list`,
     },
-    { key: 'logout', title: 'ログアウト', href: '*' },
+    { id: 'logout', title: 'ログアウト', href: '*' },
   ]
   return (
     <nav>
       <ul>
         {navItems.map((navItem) => (
           <HeaderNavItem
-            key={navItem.key}
+            key={navItem.id}
+            id={navItem.id}
             title={navItem.title}
             href={navItem.href}
           />
