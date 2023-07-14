@@ -30,7 +30,6 @@ export class UserService {
     const getedUser = await this.prisma.user.findUnique({
       where: { loginId },
     });
-    if (!getedUser) return null;
     const { createdAt, updatedAt, ...rest } = getedUser;
     return rest;
   }
