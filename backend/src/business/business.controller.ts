@@ -9,9 +9,9 @@ import {
 } from '@nestjs/common';
 import UserAuthGuard from 'src/auth/guards/user.guard';
 import { Business, User } from '@prisma/client';
-import { Msg } from 'src/interfaces/main.interfaces';
 import RegisterBusinessDto from './dto/register-bussiness.dto';
 import { BusinessService } from './business.service';
+import { BusinessWithoutTimestamps } from './interfaces/business.interface';
 
 @UseGuards(UserAuthGuard)
 @Controller('business')
@@ -22,9 +22,9 @@ export class BusinessController {
   async register(
     @Body() dto: RegisterBusinessDto,
     @Req() { user }: { user: Omit<User, 'password'> },
-  ): Promise<Msg> {
-    const message = await this.businessService.register(dto, user.id);
-    return message;
+  ): Promise<BusinessWithoutTimestamps> {
+    const gotBusiness = await this.businessService.register(dto, user.id);
+    return gotBusiness;
   }
 
   @Get()

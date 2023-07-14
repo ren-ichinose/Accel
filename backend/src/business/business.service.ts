@@ -1,22 +1,27 @@
 import { ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
-import { Msg } from 'src/interfaces/main.interfaces';
 import { Business } from '@prisma/client';
 import RegisterBusinessDto from './dto/register-bussiness.dto';
 import { Role } from './enums/business.enum';
+import { BusinessWithoutTimestamps } from './interfaces/business.interface';
 
 @Injectable()
 export class BusinessService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async register(dto: RegisterBusinessDto, userId: string): Promise<Msg> {
+  async register(
+    dto: RegisterBusinessDto,
+    userId: string,
+  ): Promise<BusinessWithoutTimestamps> {
     const { businessName } = dto;
 
     const data = { businessName };
-    const { id: businessId } = await this.prisma.business.create({ data });
+    const { createdAt, updatedAt, ...rest } = await this.prisma.business.create(
+      { data },
+    );
 
-    await this.createBusinessMenbership(businessId, userId);
-    return { message: 'ok' };
+    await this.createBusinessMenbership(rest.id, userId);
+    return rest;
   }
 
   async createBusinessMenbership(
