@@ -1,11 +1,15 @@
+'use client'
+
+import useQueryBusiness from '@/hooks/useQueryBusiness'
 import styles from './mainHeadBusinessName.module.css'
 
 export default function MainHeadBusinessName({
-  businessName,
+  businessId,
 }: MainHeadBusinessNameProprs) {
-  return <p className={styles.businessName}>{businessName}</p>
+  const { data: business } = useQueryBusiness(businessId)
+  return <p className={styles.businessName}>{business?.businessName}</p>
 }
 
 interface MainHeadBusinessNameProprs {
-  businessName: string
+  businessId: string
 }
