@@ -6,7 +6,7 @@ import CreateInvoiceForm from './_components/createInvoiceForm/createInvoiceForm
 export default function CreateInvoice({ params }: { params: { id: string } }) {
   return (
     <>
-      <MainHead title="請求書作成" businessName="○○商事株式会社" />
+      <MainHead title="請求書作成" businessId={params.id} />
       <FixedElementOffset>
         <MainContentPadding>
           <CreateInvoiceForm params={params} />

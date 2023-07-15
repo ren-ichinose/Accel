@@ -2,16 +2,16 @@ import MainHeadBusinessName from '../../atoms/mainHeadBusinessName/mainHeadBusin
 import MainHeadTitle from '../../atoms/mainHeadTitle/mainHeadTitle'
 import styles from './mainHead.module.css'
 
-export default function MainHead({ title, businessName }: MainHeadProps) {
+export default function MainHead({ title, businessId }: MainHeadProps) {
   return (
     <div className={styles.container}>
       <MainHeadTitle title={title} />
-      <MainHeadBusinessName businessName={businessName} />
+      <MainHeadBusinessName businessId={businessId} />
     </div>
   )
 }
 
 interface MainHeadProps {
   title: string
-  businessName: string
+  businessId: string
 }

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation'
 import Button from '@/components/common/atoms/button/button'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
-import { BussinesAuth } from '@/interfaces/main.interface'
+import { Business, BussinesAuth } from '@/interfaces/main.interface'
 import postData from '@/utils/postData'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
@@ -33,9 +33,12 @@ export default function Register() {
 
   const onSubmit = async (data: BussinesAuth) => {
     try {
-      await postData(`${process.env.NEXT_PUBLIC_API_URL}/business`, data)
+      const business: Business = await postData(
+        `${process.env.NEXT_PUBLIC_API_URL}/business`,
+        data
+      )
 
-      router.push('/businessId')
+      router.push(`/${business.id}`)
     } catch (error) {
       if (error instanceof Error) {
         throw new Error(error.message)
