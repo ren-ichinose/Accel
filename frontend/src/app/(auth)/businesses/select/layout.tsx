@@ -1,5 +1,6 @@
 import 'src/styles/reset.css'
 import 'src/styles/globals.css'
+import QueryUser from '../_components/queryUser'
 
 export const metadata = {
   title: '事業者選択',
@@ -7,5 +8,5 @@ export const metadata = {
 }
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return <div>{children}</div>
+  return <QueryUser>{children}</QueryUser>
 }

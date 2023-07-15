@@ -1,8 +1,7 @@
 import { Controller, Get, Req, UseGuards } from '@nestjs/common';
+import UserAuthGuard from 'src/auth/guards/user.guard';
 import { UserWithoutTimestamps } from './interfaces/user.interface';
 import { UserService } from './user.service';
-import UserAuthGuard from 'src/auth/guards/user.guard';
-import { User } from 'src/auth/interfaces/auth.interface';
 
 @UseGuards(UserAuthGuard)
 @Controller('user')

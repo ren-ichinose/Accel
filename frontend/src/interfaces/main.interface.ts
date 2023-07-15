@@ -4,7 +4,7 @@ export interface User {
 }
 
 export interface Business {
-  id: number
+  id: string
   businessName: string
 }
 
