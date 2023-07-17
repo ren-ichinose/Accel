@@ -13,5 +13,5 @@ export default meta
 type Story = StoryObj<typeof MainHeadBusinessName>
 
 export const Default: Story = {
-  args: { businessName: '○○商事株式会社' },
+  args: { businessId: 'businessId' },
 }

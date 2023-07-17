@@ -13,5 +13,5 @@ export default meta
 type Story = StoryObj<typeof TotalPrice>
 
 export const Default: Story = {
-  args: { totalPrice: 700000 },
+  args: { totalPrice: '700,000' },
 }
