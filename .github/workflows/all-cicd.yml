@@ -63,3 +63,22 @@ jobs:
         run: yarn format
       - name: Lint code
         run: yarn lint
+
+  backend-cd:
+    needs: [ci] 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Execute remote ssh commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_NAME }}
+          username: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ${{ secrets.APP_DIR }}
+            git fetch --all
+            git reset --hard origin/main
+            yarn install
+            yarn build
+            pm2 restart dist/main.js
