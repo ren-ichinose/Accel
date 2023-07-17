@@ -6,7 +6,11 @@ import AppModule from './app.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.enableCors({
-    origin: ['http://localhost:3000', 'https://ren-app.jp'],
+    origin: [
+      'http://localhost:3000',
+      'https://ren-app.jp',
+      'https://www.ren-app.jp',
+    ],
     credentials: true,
   });
   app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
