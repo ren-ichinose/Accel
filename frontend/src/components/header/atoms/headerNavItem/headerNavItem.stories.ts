@@ -14,7 +14,7 @@ type Story = StoryObj<typeof HeaderNavItem>
 
 export const Default: Story = {
   args: {
-    key: 'Home',
+    id: 'Home',
     title: 'Home',
     href: '/',
   },
