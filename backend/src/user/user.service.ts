@@ -27,10 +27,11 @@ export class UserService {
   }
 
   async getByloginId(loginId: string): Promise<UserWithoutTimestamps> {
-    const getedUser = await this.prisma.user.findUnique({
+    const findedUser = await this.prisma.user.findUnique({
       where: { loginId },
     });
-    const { createdAt, updatedAt, ...rest } = getedUser;
+    if (!findedUser) return null;
+    const { createdAt, updatedAt, ...rest } = findedUser;
     return rest;
   }
 }
