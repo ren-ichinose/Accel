@@ -2,11 +2,16 @@ name: backend CI/CD
 
 on:
   push:
+    branches: [ main ]
+    paths:
+        - 'backend/**'
+  pull_request:
+    branches: [ main ]
     paths:
         - 'backend/**'
 
 jobs:
-  ci:
+  backend-ci:
 
     runs-on: ubuntu-latest
 
@@ -35,3 +40,22 @@ jobs:
         run: yarn format
       - name: Lint code
         run: yarn lint
+
+  backend-cd:
+    needs: [backend-ci] 
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Execute remote ssh commands
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST_NAME }}
+          username: ${{ secrets.USER_NAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd ${{ secrets.APP_DIR }}
+            git fetch --all
+            git reset --hard origin/main
+            yarn install
+            yarn build
+            pm2 restart dist/main.js
