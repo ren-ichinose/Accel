@@ -1,3 +1,4 @@
+import FixedElementOffset from '@/components/common/layout/fixedElementOffset/fixedElementOffset'
 import Header from '@/components/header/organismss/header/header'
 import 'src/styles/reset.css'
 import 'src/styles/globals.css'
@@ -18,7 +19,7 @@ export default function Layout({
   return (
     <QueryBusiness businessId={params.id}>
       <Header busunessId={params.id} />
-      {children}
+      <FixedElementOffset>{children}</FixedElementOffset>
     </QueryBusiness>
   )
 }
