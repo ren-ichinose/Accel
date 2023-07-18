@@ -16,3 +16,10 @@
   height: 96px;
   margin: 0 auto;
 }
+
+@media screen and (1340px >= width) {
+  .wrapper {
+    left: 0px;
+    width: 100%;
+  }
+}

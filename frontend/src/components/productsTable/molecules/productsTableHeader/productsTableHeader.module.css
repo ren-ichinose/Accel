@@ -14,17 +14,14 @@
 .quantity,
 .price,
 .totalPrice {
-  width: 160px;
+  width: 128px;
 }
 
-.unit {
-  width: 80px;
-}
-
+.unit,
 .taxType {
-  width: 120px;
+  width: 96px;
 }
 
-.productName {
-  width: calc(100% - 160px - 160px - 80px - 160px - 120px - 160px);
+.totalPrice {
+  width: 160px;
 }

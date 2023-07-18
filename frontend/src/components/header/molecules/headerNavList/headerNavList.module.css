@@ -1,0 +1,5 @@
+@media screen and (1340px >= width) {
+  .container {
+    display: none;
+  }
+}

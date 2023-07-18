@@ -13,5 +13,6 @@
   padding-left: 12px;
   line-height: 36px;
   text-align: right;
+  letter-spacing: 0;
   background-color: var(--background-main-color);
 }

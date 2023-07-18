@@ -1,4 +1,5 @@
 import HeaderNavItem from '../../atoms/headerNavItem/headerNavItem'
+import styles from './headerNavList.module.css'
 
 export default function HeaderNavList({ busunessId }: { busunessId: string }) {
   const navItems = [
@@ -16,7 +17,7 @@ export default function HeaderNavList({ busunessId }: { busunessId: string }) {
     { id: 'logout', title: 'ログアウト', href: '*' },
   ]
   return (
-    <nav>
+    <nav className={styles.container}>
       <ul>
         {navItems.map((navItem) => (
           <HeaderNavItem

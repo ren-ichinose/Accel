@@ -8,3 +8,11 @@
   color: #fff;
   background-color: var(--background-header-color);
 }
+
+@media screen and (1340px >= width) {
+  .container {
+    z-index: 1000;
+    width: 100%;
+    height: 72px;
+  }
+}

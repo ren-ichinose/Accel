@@ -9,3 +9,9 @@
   background-color: #fff;
   border-bottom: 1px solid var(--light-dark-color);
 }
+
+@media screen and (1340px >= width) {
+  .container {
+    display: none;
+  }
+}
