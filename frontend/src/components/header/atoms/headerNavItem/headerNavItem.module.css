@@ -16,3 +16,11 @@
   background-color: rgb(255 255 255 / 20%);
   transition: 0.05s;
 }
+
+@media screen and (1340px >= width) {
+  .container {
+    width: 160px;
+    padding: 0;
+    text-align: center;
+  }
+}

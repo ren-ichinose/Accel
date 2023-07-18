@@ -6,5 +6,6 @@
 .tbody .rowHeader {
   height: 64px;
   text-align: center;
+  letter-spacing: 0;
   vertical-align: middle;
 }

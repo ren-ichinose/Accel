@@ -8,7 +8,7 @@ export default function ProductsTableHeader() {
     },
     {
       columnName: 'productName',
-      label: '品名・品番',
+      label: '摘要',
     },
     {
       columnName: 'quantity',

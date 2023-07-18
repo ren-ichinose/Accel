@@ -3,6 +3,7 @@ import { useWatch } from 'react-hook-form'
 import ProductsTableBodyItem from '../../atoms/productsTableBodyItem/productsTableBodyItem'
 import TaxRateSelect from '../../atoms/taxRateSelect/taxRateSelect'
 import TotalPrice from '../../atoms/totalPrice/totalPrice'
+import styles from './productsTableRow.module.css'
 
 const colums = [
   {
@@ -58,7 +59,7 @@ export default function ProductsTableRow({
 
   const totalPrice = formatToJPY(watchPrice * watchQuantity)
   return (
-    <tr>
+    <tr className={styles.row}>
       {colums.map(({ columnName, textAlign, type }) => {
         if (type === 'taxType')
           return (

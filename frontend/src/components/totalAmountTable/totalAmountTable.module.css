@@ -2,7 +2,6 @@
   width: 100%;
   background-color: var(--background-main-color);
   border-radius: 5px;
-
 }
 
 .th,
@@ -21,6 +20,7 @@
 .td {
   padding-right: 24px;
   text-align: right;
+  letter-spacing: 0;
 }
 
 tr:last-child .th,
