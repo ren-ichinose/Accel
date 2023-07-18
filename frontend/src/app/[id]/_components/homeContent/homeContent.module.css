@@ -3,14 +3,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
-  font-size: 18px;
-  letter-spacing: 0.07em;
+  margin-top: calc(32vh);
 }
 
-.wrapper h1 {
-  padding: 16px;
-  font-size: 64px;
+.wrapper p {
+  font-size: 48px;
   font-weight: 700;
   color: transparent;
   letter-spacing: 0.05em;
@@ -22,9 +19,9 @@
   background-clip: text;
 }
 
-.newLink {
+.link {
   padding: 16px 24px;
-  font-size: 24px;
+  font-size: 21px;
   transition: 0.2s;
 }
 
@@ -32,7 +29,7 @@
   margin-left: 8px;
 }
 
-.newLink:hover {
+.link:hover {
   opacity: 0.6;
   transition: 0.2s;
 }

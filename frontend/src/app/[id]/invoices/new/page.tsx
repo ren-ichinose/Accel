@@ -1,17 +1,17 @@
-import MainContentPadding from '@/components/common/layout/mainContentPadding/mainContentPadding'
+import CreateInvoiceFormContainer from '@/components/common/layout/createInvoiceFormContainer/createInvoiceFormContainer'
+import MainContentWrapper from '@/components/common/layout/mainContentWrapper/mainContetWrapper'
 import MainHead from '@/components/mainHead/organisms/mainHead/mainHead'
-import FixedElementOffset from '../../../../components/common/layout/fixedElementOffset/fixedElementOffset'
 import CreateInvoiceForm from './_components/createInvoiceForm/createInvoiceForm'
 
 export default function CreateInvoice({ params }: { params: { id: string } }) {
   return (
     <>
       <MainHead title="請求書作成" businessId={params.id} />
-      <FixedElementOffset>
-        <MainContentPadding>
+      <MainContentWrapper marginBottom="96px">
+        <CreateInvoiceFormContainer>
           <CreateInvoiceForm params={params} />
-        </MainContentPadding>
-      </FixedElementOffset>
+        </CreateInvoiceFormContainer>
+      </MainContentWrapper>
     </>
   )
 }

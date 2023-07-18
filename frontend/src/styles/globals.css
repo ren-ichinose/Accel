@@ -2,16 +2,16 @@
 
 :root {
   --dark-color: #333;
-  --light-dark-color: #ccc;
-  --main-color: #333;
-  --accent-color: #e53a40;
-  --background-header-color: #333;
+  --light-dark-color: #b8c3c8;
+  --main-color: #153f4f;
+  --accent-color: #43c6ac;
+  --background-header-color: #153f4f;
   --background-base-color: #fff;
-  --background-main-color: #eee;
+  --background-main-color: #f3f9ff;
 }
 
 html {
   color: var(--dark-color);
-  letter-spacing: 0.075em;
+  letter-spacing: 0.175em;
   background-color: var(--background-base-color);
 }
