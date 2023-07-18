@@ -2,7 +2,7 @@ import styles from './mainContentWrapper.module.css'
 
 export default function MainContentWrapper({
   children,
-  marginBottom,
+  marginBottom = '0px',
 }: {
   children: React.ReactNode
   marginBottom?: string
@@ -13,8 +13,4 @@ export default function MainContentWrapper({
       {children}
     </div>
   )
-}
-
-MainContentWrapper.defaultProps = {
-  marginBottom: '0px',
 }

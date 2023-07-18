@@ -1,12 +1,12 @@
 import styles from './textarea.module.css'
 
 export default function Textarea({
-  placeholder,
+  placeholder = '',
   textareaId,
-  width,
-  height,
-  marginBottom,
-  register,
+  width = '100%',
+  height = '128px',
+  marginBottom = '0',
+  register = '',
 }: TextareaProps) {
   const textareaStyles = {
     width,
@@ -24,14 +24,6 @@ export default function Textarea({
       {...(register && register(textareaId))}
     />
   )
-}
-
-Textarea.defaultProps = {
-  placeholder: '',
-  width: '100%',
-  height: '128px',
-  marginBottom: '0',
-  register: '',
 }
 
 interface TextareaProps {

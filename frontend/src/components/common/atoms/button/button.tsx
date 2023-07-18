@@ -27,10 +27,6 @@ export default function Button({
   }
 }
 
-Button.defaultProps = {
-  className: 'button' as const,
-}
-
 interface ButtonProps {
   className?: 'button' | 'mainFootSubmit' | 'mainFootCancel' | 'authSubmid'
   type: 'submit' | 'button'
