@@ -2,6 +2,5 @@
   .list {
     display: flex;
     justify-content: center;
-    background-color: var(--accent-color);
   }
 }

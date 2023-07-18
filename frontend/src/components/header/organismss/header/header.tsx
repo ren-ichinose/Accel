@@ -6,7 +6,9 @@ export default function Header({ busunessId }: { busunessId: string }) {
   return (
     <header className={styles.container}>
       <Logo busunessId={busunessId} />
-      <HeaderNavList busunessId={busunessId} />
+      <div className={styles.navModal}>
+        <HeaderNavList busunessId={busunessId} />
+      </div>
     </header>
   )
 }
