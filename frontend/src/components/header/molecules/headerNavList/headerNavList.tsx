@@ -8,11 +8,11 @@ export default function HeaderNavList({ busunessId }: { busunessId: string }) {
       title: '請求書作成',
       href: `/${busunessId}/invoices/new`,
     },
-    {
-      id: 'invoiceList',
-      title: '請求書一覧',
-      href: `/${busunessId}/invoices/list`,
-    },
+    // {
+    //   id: 'invoiceList',
+    //   title: '請求書一覧',
+    //   href: `/${busunessId}/invoices/list`,
+    // },
     { id: 'logout', title: 'ログアウト', href: '*' },
   ]
   return (

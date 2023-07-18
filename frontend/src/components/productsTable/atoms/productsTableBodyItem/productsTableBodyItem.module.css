@@ -15,6 +15,7 @@
 }
 
 .input:focus {
+  border-bottom: 1px dashed var(--accent-color);
   outline: none;
 }
 
