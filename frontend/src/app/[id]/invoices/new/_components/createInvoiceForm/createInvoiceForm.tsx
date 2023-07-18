@@ -4,7 +4,7 @@ import { useState } from 'react'
 import DocumentDetails from '@/components/documentDetails/organisms/documentDetails/documentDetails'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
 import FinancialSummary from '@/components/financialSummary/financialSummary'
-import MainFood from '@/components/mainFood/mainFood'
+import MainFoot from '@/components/mainFoot/mainFoot'
 import Notes from '@/components/notes/notes'
 import ProductsTable from '@/components/productsTable/organisms/productsTable/productsTable'
 import useMutateInvoice from '@/hooks/useMutateInvoice'
@@ -101,7 +101,7 @@ export default function CreateInvoiceForm({
       <ProductsTable register={register} control={control} />
       <FinancialSummary control={control} />
       <Notes register={register} />
-      <MainFood />
+      <MainFoot />
     </form>
   )
 }

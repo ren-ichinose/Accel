@@ -7,7 +7,7 @@ import useQueryBusinessAll from '@/hooks/useQueryBusinessAll'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
-import AuthFood from '../../_components/auth/atoms/formFood/authFood'
+import AuthFoot from '../../_components/auth/atoms/formFoot/authFoot'
 import AuthHead from '../../_components/auth/molecules/authHead/authHead'
 import SelectBusiness from '../../_components/auth/molecules/selectBusiness/selectBusiness'
 
@@ -49,7 +49,7 @@ export default function Select() {
           businessList={businessList}
         />
         <Button className="authSubmid" type="submit" text="決定" />
-        <AuthFood href="/businesses/register" text="事業者の新規登録はこちら" />
+        <AuthFoot href="/businesses/register" text="事業者の新規登録はこちら" />
       </form>
     )
   )

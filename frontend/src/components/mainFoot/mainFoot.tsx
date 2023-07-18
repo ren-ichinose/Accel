@@ -1,7 +1,7 @@
 import Button from '../common/atoms/button/button'
-import styles from './mainFood.module.css'
+import styles from './mainFoot.module.css'
 
-export default function MainFood() {
+export default function MainFoot() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>

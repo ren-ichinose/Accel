@@ -9,7 +9,7 @@ import postData from '@/utils/postData'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
-import AuthFood from '../../_components/auth/atoms/formFood/authFood'
+import AuthFoot from '../../_components/auth/atoms/formFoot/authFoot'
 import AuthHead from '../../_components/auth/molecules/authHead/authHead'
 
 export default function Register() {
@@ -62,7 +62,7 @@ export default function Register() {
         register={register}
       />
       <Button className="authSubmid" type="submit" text="登録" />
-      <AuthFood href="/businesses/select" text="現在登録済みの事業者はこちら" />
+      <AuthFoot href="/businesses/select" text="現在登録済みの事業者はこちら" />
     </form>
   )
 }

@@ -1,16 +1,16 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import 'src/styles/reset.css'
 import 'src/styles/globals.css'
-import MainFood from './mainFood'
+import MainFoot from './mainFoot'
 
-const meta: Meta<typeof MainFood> = {
-  title: 'MainFood/MainFood',
-  component: MainFood,
+const meta: Meta<typeof MainFoot> = {
+  title: 'MainFoot/MainFoot',
+  component: MainFoot,
   tags: ['autodocs'],
 }
 
 export default meta
-type Story = StoryObj<typeof MainFood>
+type Story = StoryObj<typeof MainFoot>
 
 export const Default: Story = {
   args: {},
