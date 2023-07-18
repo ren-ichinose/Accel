@@ -26,7 +26,7 @@
 }
 
 .mainFootCancel:hover {
-  color: var(--accent-color);
+  opacity: 0.6;
   transition: 0.1s;
 }
 

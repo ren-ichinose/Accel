@@ -7,11 +7,12 @@
   display: block;
   width: 100%;
   padding: 12px 16px;
+  color: #eee;
   border-radius: 4px;
   transition: 0.2s;
 }
 
 .item:hover {
-  background-color: rgb(255 255 255 / 10%);
+  background-color: rgb(255 255 255 / 20%);
   transition: 0.05s;
 }
