@@ -19,7 +19,7 @@
 
 @media screen and (1340px >= width) {
   .wrapper {
-    left: 0px;
+    left: 0;
     width: 100%;
   }
 }

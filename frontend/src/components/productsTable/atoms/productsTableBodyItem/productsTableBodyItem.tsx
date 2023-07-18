@@ -1,11 +1,11 @@
 import styles from './productsTableBodyItem.module.css'
 
 export default function ProductsTableBodyItem({
-  textAlign,
+  textAlign = 'left',
   itemOrder,
   columnName,
   register,
-  type,
+  type = undefined,
 }: ProductsTableBodyItemProps) {
   return (
     <td className={styles.container}>
@@ -19,11 +19,6 @@ export default function ProductsTableBodyItem({
       />
     </td>
   )
-}
-
-ProductsTableBodyItem.defaultProps = {
-  textAlign: 'left' as const,
-  type: undefined,
 }
 
 interface ProductsTableBodyItemProps {

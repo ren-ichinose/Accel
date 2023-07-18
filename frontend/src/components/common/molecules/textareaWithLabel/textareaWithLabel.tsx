@@ -2,14 +2,14 @@ import Textarea from '../../atoms/textarea/textarea'
 import styles from './textareaWithLabel.module.css'
 
 export default function TextareaWithLabel({
-  title,
+  title = '',
   textareaId,
-  placeholder,
-  width,
-  height,
-  marginRight,
-  marginBottom,
-  register,
+  placeholder = '',
+  width = '100%',
+  height = '128px',
+  marginRight = '0',
+  marginBottom = '0',
+  register = '',
 }: TextareaWithLabelProps) {
   const labelStyles = {
     width,
@@ -31,16 +31,6 @@ export default function TextareaWithLabel({
       />
     </div>
   )
-}
-
-TextareaWithLabel.defaultProps = {
-  title: '',
-  placeholder: '',
-  width: '100%',
-  height: '128px',
-  marginRight: '0',
-  marginBottom: '0',
-  register: '',
 }
 
 interface TextareaWithLabelProps {

@@ -3,13 +3,13 @@
 import styles from './input.module.css'
 
 export default function Input({
-  placeholder,
-  type,
+  placeholder = '',
+  type = 'text',
   inputId,
-  width,
-  height,
-  marginBottom,
-  register,
+  width = '100%',
+  height = '36px',
+  marginBottom = '0',
+  register = '',
 }: InputProps) {
   const inputStyles = {
     width,
@@ -28,15 +28,6 @@ export default function Input({
       {...(register && register(inputId))}
     />
   )
-}
-
-Input.defaultProps = {
-  placeholder: '',
-  type: 'text',
-  width: '100%',
-  height: '36px',
-  marginBottom: '0',
-  register: '',
 }
 
 interface InputProps {

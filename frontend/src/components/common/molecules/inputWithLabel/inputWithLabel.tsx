@@ -2,15 +2,15 @@ import Input from '../../atoms/input/input'
 import styles from './inputWithLabel.module.css'
 
 export default function InputWithLabel({
-  title,
+  title = '',
   inputId,
-  placeholder,
-  width,
-  height,
-  marginRight,
-  marginBottom,
-  register,
-  type,
+  placeholder = '',
+  type = 'text',
+  width = '100%',
+  height = '36px',
+  marginRight = '0',
+  marginBottom = '0',
+  register = '',
 }: InputWithLabelProps) {
   const labelStyles = {
     width,
@@ -32,17 +32,6 @@ export default function InputWithLabel({
       />
     </div>
   )
-}
-
-InputWithLabel.defaultProps = {
-  title: '',
-  placeholder: '',
-  type: 'text',
-  width: '100%',
-  height: '36px',
-  marginRight: '0',
-  marginBottom: '0',
-  register: '',
 }
 
 interface InputWithLabelProps {

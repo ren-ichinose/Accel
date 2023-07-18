@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import styles from './authFood.module.css'
+import styles from './authFoot.module.css'
 
-export default function AuthFood({
+export default function AuthFoot({
   href,
   text,
 }: {
