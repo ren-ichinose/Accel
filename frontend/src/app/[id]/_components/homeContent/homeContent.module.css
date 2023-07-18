@@ -1,0 +1,35 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: calc(32vh);
+}
+
+.wrapper p {
+  font-size: 48px;
+  font-weight: 700;
+  color: transparent;
+  letter-spacing: 0.05em;
+  background-image: linear-gradient(
+    15deg,
+    #13547a 0%,
+    var(--accent-color) 100%
+  );
+  background-clip: text;
+}
+
+.link {
+  padding: 16px 24px;
+  font-size: 21px;
+  transition: 0.2s;
+}
+
+.iconPencil {
+  margin-left: 8px;
+}
+
+.link:hover {
+  opacity: 0.6;
+  transition: 0.2s;
+}
