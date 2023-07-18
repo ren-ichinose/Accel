@@ -18,7 +18,7 @@ export default function HeaderNavList({ busunessId }: { busunessId: string }) {
   ]
   return (
     <nav className={styles.container}>
-      <ul>
+      <ul className={styles.list}>
         {navItems.map((navItem) => (
           <HeaderNavItem
             key={navItem.id}

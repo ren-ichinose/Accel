@@ -1,5 +1,7 @@
 @media screen and (1340px >= width) {
-  .container {
-    display: none;
+  .list {
+    display: flex;
+    justify-content: center;
+    background-color: var(--accent-color);
   }
 }
