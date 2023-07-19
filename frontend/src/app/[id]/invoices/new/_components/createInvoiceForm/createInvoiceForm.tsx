@@ -18,11 +18,20 @@ export default function CreateInvoiceForm({
   params: { id: string }
 }) {
   const errorScheme = yup.object().shape({
-    documentIssueDate: yup.date().required(),
-    documentNumber: yup.string().required(),
+    documentIssueDate: yup
+      .date()
+      .nullable()
+      .transform((curr, origin) => (origin === '' ? null : curr)),
+    documentNumber: yup
+      .string()
+      .nullable()
+      .transform((curr, origin) => (origin === '' ? null : curr)),
     customerName: yup.string().required(),
     customerTitle: yup.string().required(),
-    businessDetails: yup.string().required(),
+    businessDetails: yup
+      .string()
+      .nullable()
+      .transform((curr, origin) => (origin === '' ? null : curr)),
     mSealsId: yup
       .string()
       .nullable()
@@ -40,18 +49,35 @@ export default function CreateInvoiceForm({
         productName: yup
           .string()
           .nullable()
-          .transform((curr, origin) => (origin === '' ? null : curr)),
+          .when(['transactionDate', 'quantity', 'unit', 'price'], {
+            is: (
+              transactionDate: Date,
+              quantity: number,
+              unit: string,
+              price: number
+            ) => transactionDate || quantity || unit || price,
+            then: (schema) => schema.required(),
+            otherwise: (schema) =>
+              schema.transform((curr, origin) => (origin === '' ? null : curr)),
+          }),
         quantity: yup
           .number()
           .nullable()
-          .transform((curr, origin) => (origin === '' ? null : curr)),
+          .when(['price'], {
+            is: (price: number) => {
+              if (price === null) return false
+              return true
+            },
+            then: (schema) => schema.required(),
+            otherwise: (schema) =>
+              schema.transform((curr, origin) => (origin === '' ? null : curr)),
+          }),
         unit: yup
           .string()
           .nullable()
           .transform((curr, origin) => (origin === '' ? null : curr)),
         price: yup
           .number()
-          .optional()
           .nullable()
           .transform((curr, origin) => (origin === '' ? null : curr)),
         taxClassification: yup.number().required(),
