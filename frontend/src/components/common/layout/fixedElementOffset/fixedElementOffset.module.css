@@ -1,11 +1,11 @@
 .wrapper {
-  padding-top: 70px;
+  padding-top: 72px;
   padding-left: 180px;
 }
 
 @media screen and (1340px >= width) {
   .wrapper {
-    padding-top: 114px;
+    padding-top: 72px;
     padding-left: 0;
   }
 }

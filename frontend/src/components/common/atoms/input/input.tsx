@@ -24,6 +24,7 @@ export default function Input({
       placeholder={placeholder}
       id={inputId}
       style={inputStyles}
+      autoComplete={type === 'password' ? 'current-password' : undefined}
       // eslint-disable-next-line react/jsx-props-no-spreading
       {...(register && register(inputId))}
     />
