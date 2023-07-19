@@ -26,8 +26,8 @@ export default function CreateInvoiceForm({
       .string()
       .nullable()
       .transform((curr, origin) => (origin === '' ? null : curr)),
-    customerName: yup.string().required(),
-    customerTitle: yup.string().required(),
+    customerName: yup.string().required('取引先名：入力が必須の項目です。'),
+    customerTitle: yup.string().required('敬称：入力が必須の項目です。'),
     businessDetails: yup
       .string()
       .nullable()
@@ -110,15 +110,30 @@ export default function CreateInvoiceForm({
     setIsSccess(true)
   }
 
+  const prodauctsErrorMessages = [
+    '請求明細：以下を確認してください。',
+    '・摘要は日付、数量、単位、単価のいずれかを入力した場合、入力が必須の項目です。',
+    '・数量は単価を入力した場合、入力が必須の項目です。',
+    '・数量は半角数字で入力してください。',
+    '・単価は半角数字で入力してください。',
+  ]
+
   // Yupのエラーのメッセージを配列に格納する
-  // const errorMessages = Object.values(errors)
-  //   .filter((error) => error.message !== undefined)
-  //   .map((error) => error.message)
+  const errorMessages = Object.values(errors)
+    .filter((error) => error.message !== undefined)
+    .map((error) => error.message)
+
+  const createInvoiceErrors = () => {
+    if (errors.invoiceProducts) {
+      return [...errorMessages, ...prodauctsErrorMessages]
+    }
+    return [...errorMessages]
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {Object.values(errors).length > 0 && (
-        <ErrorMassages errorMassages={['Error:入力内容を確認してください。']} />
+        <ErrorMassages errorMassages={createInvoiceErrors()} />
       )}
       {isSccess && (
         <ErrorMassages errorMassages={['Success:請求書を作成しました。']} />
