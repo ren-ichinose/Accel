@@ -4,7 +4,8 @@
 }
 
 .item {
-  display: block;
+  display: flex;
+  align-items: center;
   width: 100%;
   padding: 12px 16px;
   color: #eee;
@@ -17,10 +18,18 @@
   transition: 0.05s;
 }
 
+.icon {
+  margin-right: 4px;
+  font-size: 21px;
+}
+
 @media screen and (1340px >= width) {
   .container {
     width: 160px;
     padding: 0;
-    text-align: center;
+  }
+
+  .item {
+    justify-content: center;
   }
 }
