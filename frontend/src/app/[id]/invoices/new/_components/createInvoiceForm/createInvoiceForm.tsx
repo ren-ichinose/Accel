@@ -123,7 +123,7 @@ export default function CreateInvoiceForm({
     .filter((error) => error.message !== undefined)
     .map((error) => error.message)
 
-  const createInvoiceErrors = () => {
+  const createInvoiceErrorMessages = () => {
     if (errors.invoiceProducts) {
       return [...errorMessages, ...prodauctsErrorMessages]
     }
@@ -133,7 +133,7 @@ export default function CreateInvoiceForm({
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {Object.values(errors).length > 0 && (
-        <ErrorMassages errorMassages={createInvoiceErrors()} />
+        <ErrorMassages errorMassages={createInvoiceErrorMessages()} />
       )}
       {isSccess && (
         <ErrorMassages errorMassages={['Success:請求書を作成しました。']} />
