@@ -9,11 +9,23 @@
   background-color: var(--background-header-color);
 }
 
+.menuIcon {
+  display: none;
+}
+
 @media screen and (1340px >= width) {
   .container {
     z-index: 1000;
     width: 100%;
     height: 72px;
+  }
+
+  .menuIcon {
+    position: absolute;
+    top: 22px;
+    right: 36px;
+    display: block;
+    font-size: 28px;
   }
 
   .navModal {
