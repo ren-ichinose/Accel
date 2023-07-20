@@ -1,11 +1,9 @@
-'use client'
-
 import Link from 'next/link'
 import Motion from '@/components/common/layout/motion/motion'
 import { HiPencilAlt } from 'react-icons/hi'
 import styles from './welcome.module.css'
 
-export default function welcome() {
+export default function Welcome() {
   return (
     <Motion>
       <main className={styles.wrapper}>
