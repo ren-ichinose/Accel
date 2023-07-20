@@ -31,6 +31,7 @@ export default function Login() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<User>({
     resolver: yupResolver(errorScheme),
@@ -43,7 +44,7 @@ export default function Login() {
   const onSubmit = async (data: User) => {
     try {
       await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, data)
-
+      reset()
       router.push('/businesses/select')
     } catch (error: any) {
       if (error.status === 403) setServerErrors([error.info.message])

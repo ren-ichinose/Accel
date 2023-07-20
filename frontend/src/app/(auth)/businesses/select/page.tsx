@@ -23,6 +23,7 @@ export default function Select() {
     register,
     control,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<{ businessId: string }>({
     resolver: yupResolver(errorScheme),
@@ -33,6 +34,7 @@ export default function Select() {
     .map((error) => error.message)
 
   const onSubmit = (data: { businessId: string }) => {
+    reset()
     router.push(`/${data.businessId}`)
   }
 

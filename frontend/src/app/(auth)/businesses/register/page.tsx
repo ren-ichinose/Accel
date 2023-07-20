@@ -24,6 +24,7 @@ export default function Register() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<BussinesAuth>({
     resolver: yupResolver(errorScheme),
@@ -39,7 +40,7 @@ export default function Register() {
         `${process.env.NEXT_PUBLIC_API_URL}/business`,
         data
       )
-
+      reset()
       router.push(`/${business.id}`)
     } catch (error) {
       if (error instanceof Error) {
