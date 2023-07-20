@@ -18,18 +18,18 @@ export class AuthService {
   }
 
   async login({ loginId, password }: AuthDto): Promise<Jwt> {
-    const getedUser = await this.userService.getByloginId(loginId);
-    if (!getedUser)
+    const findedUser = await this.userService.getByloginId(loginId);
+    if (!findedUser)
       throw new ForbiddenException(
         'ログインIDまたはパスワードを確認してください',
       );
 
-    const isValid = await bcrypt.compare(password, getedUser.password);
+    const isValid = await bcrypt.compare(password, findedUser.password);
     if (!isValid)
       throw new ForbiddenException(
         'ログインIDまたはパスワードを確認してください',
       );
-    const jwt = await this.generateJwt(getedUser.id, getedUser.loginId);
+    const jwt = await this.generateJwt(findedUser.id, findedUser.loginId);
     return jwt;
   }
 
