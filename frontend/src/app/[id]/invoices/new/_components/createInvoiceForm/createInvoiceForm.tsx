@@ -130,6 +130,11 @@ export default function CreateInvoiceForm({
     return [...errorMessages]
   }
 
+  const handeleCancel = () => {
+    // eslint-disable-next-line no-alert
+    if (window.confirm('入力内容をリセットしますか？')) reset()
+  }
+
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       {Object.values(errors).length > 0 && (
@@ -142,7 +147,7 @@ export default function CreateInvoiceForm({
       <ProductsTable register={register} control={control} />
       <FinancialSummary control={control} />
       <Notes register={register} />
-      <MainFoot />
+      <MainFoot cancelButtonOnClick={handeleCancel} />
     </form>
   )
 }

@@ -4,6 +4,7 @@ export default function Button({
   className = 'button',
   type,
   text,
+  onClick,
 }: ButtonProps) {
   switch (type) {
     case 'submit':
@@ -11,6 +12,7 @@ export default function Button({
         <button
           className={`${styles.button} ${styles[className]}`}
           type="submit"
+          onClick={onClick || undefined}
         >
           {text}
         </button>
@@ -20,6 +22,7 @@ export default function Button({
         <button
           className={`${styles.button} ${styles[className]}`}
           type="button"
+          onClick={onClick || undefined}
         >
           {text}
         </button>
@@ -31,4 +34,5 @@ interface ButtonProps {
   className?: 'button' | 'mainFootSubmit' | 'mainFootCancel' | 'authSubmid'
   type: 'submit' | 'button'
   text: string
+  onClick?: () => void
 }
