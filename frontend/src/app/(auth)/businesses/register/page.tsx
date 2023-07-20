@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import Button from '@/components/common/atoms/button/button'
+import Motion from '@/components/common/layout/motion/motion'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
 import useQueryBusinessAll from '@/hooks/useQueryBusinessAll'
@@ -24,6 +25,7 @@ export default function Register() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<BussinesAuth>({
     resolver: yupResolver(errorScheme),
@@ -39,7 +41,7 @@ export default function Register() {
         `${process.env.NEXT_PUBLIC_API_URL}/business`,
         data
       )
-
+      reset()
       router.push(`/${business.id}`)
     } catch (error) {
       if (error instanceof Error) {
@@ -50,26 +52,28 @@ export default function Register() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <AuthHead title="事業者登録" />
-      {errorMessages.length > 0 && (
-        <ErrorMassages errorMassages={errorMessages} />
-      )}
-      <InputWithLabel
-        title="事業者名"
-        placeholder="事業者名を入力してください"
-        inputId="businessName"
-        height="48px"
-        marginBottom="32px"
-        register={register}
-      />
-      <Button className="authSubmid" type="submit" text="登録" />
-      {isNewBusinesses && isNewBusinesses.length > 0 && (
-        <AuthFoot
-          href="/businesses/select"
-          text="現在登録済みの事業者はこちら"
+    <Motion>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <AuthHead title="事業者登録" />
+        {errorMessages.length > 0 && (
+          <ErrorMassages errorMassages={errorMessages} />
+        )}
+        <InputWithLabel
+          title="事業者名"
+          placeholder="事業者名を入力してください"
+          inputId="businessName"
+          height="48px"
+          marginBottom="32px"
+          register={register}
         />
-      )}
-    </form>
+        <Button className="authSubmid" type="submit" text="登録" />
+        {isNewBusinesses && isNewBusinesses.length > 0 && (
+          <AuthFoot
+            href="/businesses/select"
+            text="現在登録済みの事業者はこちら"
+          />
+        )}
+      </form>
+    </Motion>
   )
 }

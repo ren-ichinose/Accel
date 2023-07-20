@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Button from '@/components/common/atoms/button/button'
+import Motion from '@/components/common/layout/motion/motion'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
 import type { User } from '@/interfaces/main.interface'
@@ -31,6 +32,7 @@ export default function Register() {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<User>({
     resolver: yupResolver(errorScheme),
@@ -40,6 +42,7 @@ export default function Register() {
     try {
       await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, data)
       await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, data)
+      reset()
       router.push('/businesses/register')
     } catch (error: any) {
       if (error.status === 403) setServerErrors([error.info.message])
@@ -61,28 +64,30 @@ export default function Register() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <AuthHead title="新規登録" />
-      {showErrors(serverErrors, clientErrors)}
-      <InputWithLabel
-        title="ログインID"
-        placeholder="半角英数字4文字以上"
-        inputId="loginId"
-        height="48px"
-        marginBottom="16px"
-        register={register}
-      />
-      <InputWithLabel
-        title="パスワード"
-        placeholder="半角英数字8文字以上"
-        inputId="password"
-        height="48px"
-        marginBottom="32px"
-        type="password"
-        register={register}
-      />
-      <Button className="authSubmid" type="submit" text="新規登録" />
-      <AuthFoot href="/users/login" text="アカウントをお持ちの方はこちら" />
-    </form>
+    <Motion>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <AuthHead title="新規登録" />
+        {showErrors(serverErrors, clientErrors)}
+        <InputWithLabel
+          title="ログインID"
+          placeholder="半角英数字4文字以上"
+          inputId="loginId"
+          height="48px"
+          marginBottom="16px"
+          register={register}
+        />
+        <InputWithLabel
+          title="パスワード"
+          placeholder="半角英数字8文字以上"
+          inputId="password"
+          height="48px"
+          marginBottom="32px"
+          type="password"
+          register={register}
+        />
+        <Button className="authSubmid" type="submit" text="新規登録" />
+        <AuthFoot href="/users/login" text="アカウントをお持ちの方はこちら" />
+      </form>
+    </Motion>
   )
 }
