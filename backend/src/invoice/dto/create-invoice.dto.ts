@@ -4,39 +4,42 @@ import {
   IsNotEmpty,
   IsOptional,
   IsString,
+  MaxLength,
   ValidateNested,
 } from 'class-validator';
 import { Type } from 'class-transformer';
 import CreateInvoiceProductsDto from './create-invoice-products.dto';
 
 export default class CreateInvoiceDto {
-  @IsNotEmpty()
+  @IsOptional()
   @IsDateString()
-  documentIssueDate: Date;
+  documentIssueDate?: Date | null;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
-  documentNumber: string;
+  documentNumber?: string | null;
 
   @IsNotEmpty()
   @IsString()
   customerName: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsString()
-  customerTitle?: string;
+  @MaxLength(50)
+  customerTitle: string;
 
   @IsNotEmpty()
   @IsString()
-  businessDetails: string;
+  businessDetails?: string | null;
 
   @IsOptional()
   @IsString()
-  mSealsId?: string;
+  @MaxLength(36)
+  mSealsId?: string | null;
 
   @IsOptional()
   @IsString()
-  notes: string;
+  notes?: string | null;
 
   @IsArray()
   @ValidateNested({ each: true })

@@ -5,6 +5,7 @@ import {
   IsNumber,
   IsOptional,
   IsString,
+  MaxLength,
 } from 'class-validator';
 
 export default class RegisterInvoiceProductsDto {
@@ -14,7 +15,7 @@ export default class RegisterInvoiceProductsDto {
 
   @IsOptional()
   @IsDateString()
-  transactionDate: Date;
+  transactionDate?: Date | null;
 
   @IsNotEmpty()
   @IsString()
@@ -22,15 +23,16 @@ export default class RegisterInvoiceProductsDto {
 
   @IsOptional()
   @IsNumber()
-  quantity: number;
+  quantity?: number | null;
 
   @IsOptional()
   @IsString()
-  unit: string;
+  @MaxLength(20)
+  unit?: string | null;
 
   @IsOptional()
   @IsNumber()
-  price: number;
+  price?: number | null;
 
   @IsNotEmpty()
   @IsNumber()

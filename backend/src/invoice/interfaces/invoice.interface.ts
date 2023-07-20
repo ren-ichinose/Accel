@@ -1,23 +1,23 @@
-import { Decimal } from '@prisma/client/runtime';
+import { Decimal } from '@prisma/client/runtime/library';
 
 export interface InvoiceData {
-  documentIssueDate: Date;
-  documentNumber: string;
-  customerName: string;
-  customerTitle?: string;
-  businessDetails: string;
-  mSealsId?: string;
-  notes: string;
   businessId: string;
+  documentIssueDate?: Date | null;
+  documentNumber?: string | null;
+  customerName: string;
+  customerTitle: string;
+  businessDetails?: string | null;
+  mSealsId?: string | null;
+  notes?: string | null;
 }
 
 export interface InvoiceProductData {
   itemOrder: number;
-  transactionDate: Date;
+  transactionDate?: Date | null;
   productName: string;
-  quantity: number;
-  unit: string;
-  price: number;
+  quantity?: number | null;
+  unit?: string | null;
+  price?: number | null;
   taxClassification: number;
   invoiceId: string;
 }

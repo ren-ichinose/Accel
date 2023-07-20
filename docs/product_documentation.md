@@ -8,51 +8,21 @@
 ※3 経理・会計業務とは売上管理・利益管理・入金管理・支払管理・記帳・仕訳などに関する業務のことを指します。  
 ※4 フェーズ1とは、本プロダクトの開発における第1段階のことを指します。詳細はHOW（どのように課題を解決するのか）をご覧ください。
 
-### WHO（誰のため）
-- クライアント企業（依頼元企業）
-  - 従業員数：数名
-  - 事業所：東京都
-  - 業種：卸売業
-  - 事業内容：事務用品・日用品・防災用品などの卸売
-  - 取引先：民間企業、官公庁、教育機関など
-- クライアント企業の経営者（20代後半）
-- クライアント企業の経理事務担当者（20代後半）
-
-### WHAT（どのような課題を解決するのか）
-- インボイス制度への対応に伴うクライアント企業の負担。
-- 取引書類の作成業務における非効率な作業。
-- 経理・会計業務の複雑さ。
-- 求めている作業環境の快適さとのギャップ。
-
-### WHY（なぜ開発するのか）
-- より効率的に、より快適に作業ができる環境を提供し、ユーザー企業の事業発展に貢献したいという想いを実現するため。
-
-### HOW（どのように課題を解決するのか）
-- 取引書類の作成業務から経理・会計業務までを一元管理できる、統合的なソリューションを実現する。
-  - フェーズ1：新しい税制に対応した請求書を、Web上で作成・発行できるアプリケーションを開発する。
-  - フェーズ2：全ての 取引書類※1 を、Web上で作成・発行できる機能を追加する。
-  - フェーズ3：案件ごとの 取引データ※2 を管理できる機能を追加する。
-  - フェーズ4：取引データを、会計ソフトに効率的に取り込むことができる機能※3 を追加する。
-
-※1 取引書類とは見積書・発注書・請求書・納品書のことを指します。  
-※2 取引データとは、仕入先・販売先・摘要・仕入日・支払日・売上日・入金日・金額・消費税・利益・利益率などに関する情報を指します。  
-※3 会計ソフトに効率的に取り込むことができる機能については、取引データをCSV形式で出力する、または会計ソフトとのAPI連携を検討しています。
-
 ### システム構成図
 ![システム構成図](./img/system-architecture/system-architecture.png)
 
 ### 技術スタック
-| Category          | Technology Stack                       |
-| ----------------- | ------------------------------------   |
-| Frontend          | TypeScript, Next.js                    |
-| Backend           | TypeScript, NestJS, Prisma             |
-| Infrastructure    | Amazon Web Services, Vercel            |
-| Database          | PostgreSQL                             |
-| Monitoring        | Sentry, UptimeRobot                    |
-| Environment setup | Docker                                 |
-| CI/CD             | GitHub Actions                         |
-| Design            | Figma, Lucid                           |
-| etc.              | ESLint, Prettier, Jest, Git, GitHub    |
+| Category          | Technology Stack                                     |
+| ----------------- | --------------------------------------------------   |
+| Frontend          | TypeScript, Next.js, TanStack Query, Storybook       |
+| Backend           | TypeScript, NestJS, Prisma                           |
+| Infrastructure    | Amazon Web Services, Vercel                          |
+| Database          | PostgreSQL                                           |
+| Monitoring        | Sentry, UptimeRobot                                  |
+| Environment setup | Docker                                               |
+| CI/CD             | GitHub Actions                                       |
+| Design            | Figma, Lucid                                         |
+| etc.              | Stylelint, ESLint, Prettier, Husky Jest, Git, GitHub |
 
 **本プロダクトの開発に関する情報は、下記より展開してご覧ください。**
 
@@ -293,13 +263,36 @@
 <summary><h2>📄要件定義</h2></summary>　　　
 
 <details>
-<summary><h3>解決する課題を定義</3></summary>　　
+<summary><h3>意義</3></summary>　　
 
-- 解決する課題
-  - インボイス制度への対応に伴うクライアント企業の負担。
-  - 取引書類の作成業務における非効率な作業。
-  - 経理・会計業務の複雑さ。
-  - 求めている作業環境の快適さとのギャップ。
+- より効率的に、より快適に作業ができる環境を提供し、ユーザー企業の事業発展に貢献する。
+
+</details>
+
+---
+
+<details>
+<summary><h3>ターゲット</3></summary>　　
+
+- クライアント企業（依頼元企業）
+  - 従業員数：数名
+  - 事業所：東京都
+  - 業種：卸売業
+  - 事業内容：事務用品・日用品・防災用品などの卸売
+  - 取引先：民間企業、官公庁、教育機関など
+- クライアント企業の経営者（20代後半）
+- クライアント企業の経理事務担当者（20代後半）
+
+</details>
+
+---
+
+<details>
+<summary><h3>解決する課題</3></summary>　　
+
+- インボイス制度への対応に伴うクライアント企業の負担。
+- 取引書類の作成業務における非効率な作業。
+- 経理・会計業務の複雑さ。
 
 </details>
 
@@ -315,7 +308,7 @@
 ---
 
 <details>
-<summary><h3>課題解決の方法</3></summary>　　
+<summary><h3>開発計画</3></summary>　　
 
 - 取引書類の作成業務から経理・会計業務までを一元管理できる、統合的なソリューションを実現する。
   - フェーズ1：新しい税制に対応した請求書を、Web上で作成・発行できるアプリケーションを開発する。
@@ -430,42 +423,20 @@
 - 新規登録画面
   - 機能
     - ユーザの新規登録
-  - データ
-    - サーバに送信するデータ
-      - ログインID(login_id)　パスワード(password)
 - ログイン画面
   - 機能
     - ユーザーの認証
-  - データ
-    - サーバーへ送信するデータ
-      - ログインID(login_id)　パスワード(password)
 - 事業者登録画面
   - 機能
     - 事業者登録
-  - データ
-    - サーバーへ送信するデータ
-      - 認証情報(access_token)　事業者名(business_name)
   - 機能
     - 作業する事業者を選択
-  - データ
-    - サーバーから受信するデータ
-      - 事業者ID(business_id)　事業者名(business_name)
-    - サーバーへ送信するデータ
-      - 認証情報(access_token)　事業者ID(business_id)
 - ホーム画面
-  - データ
-    - サーバーから受信するデータ
-      - 事業者名(business_name)
+  - 機能
+    -　検討中
 - 請求書一覧画面
   - 機能
     - ユーザーが選択した事業者に紐づく請求書の一覧表示
-  - データ
-    - サーバから受信するデータ
-      - 事業者名(business_name)　請求書データ(以下記載)
-        - 請求書データ
-          - 請求書ID(id)　取引先名(customer_name)　作成日(document_created_at)　書類番号(document_number)　税込合計金額( SUM(price × tax_classification) )
-    - サーバへ送信するデータ
-      - 認証情報(access_token)　請求書ID(id)
 - 請求書作成画面
   - 機能
     - 請求書の作成
@@ -481,25 +452,6 @@
       - 全商品の 税込合計金額 の計算
     - 事業者情報を入力欄に表示
     - 支払先情報を備考欄に表示
-  - データ
-    - サーバから受信するデータ
-      - 事業者名(business_name)　事業者情報(business_details)　角印(m_seals_id)　金融機関名(financial_institution_name)　支店名(branch_name)　口座名義(account_name)　口座種別(account_type)　口座番号(account_number)
-    - サーバーへ送信するデータ
-      - 認証情報(access_token)　請求書データ(以下記載)　商品データ(以下記載)
-        - 請求書データ
-          - 請求日(document_created_at)
-          - 請求番号(document_number)
-          - 取引先名(customer_name)
-          - 事業者情報(business_details)
-          - 角印(m_seals_id)
-          - 備考(notes)
-        - 商品データ
-          - 日付(transaction_date)
-          - 品名・品番(product_name)
-          - 数量(quantity)
-          - 単位(unit)
-          - 単価(price)
-          - 税区分(tax_classification)
 - 請求書確認画面
   - 機能
     - 請求書のプレビュー表示
@@ -514,26 +466,6 @@
       - 全商品の 税抜合計金額 の計算
       - 全商品の 消費税合計金額 の計算
       - 全商品の 税込合計金額 の計算
-  - データ
-    - サーバから受信するデータ
-      - 事業者名(business_name)　請求書データ(以下記載)　商品データ(以下記載)
-        - 請求書データ
-          - 請求書ID(id)
-          - 請求日(document_created_at)
-          - 請求番号(document_number)
-          - 取引先名(customer_name)
-          - 事業者情報(business_details)
-          - 角印(m_seals_id)
-          - 備考(notes)
-        - 商品データ
-          - 日付(transaction_date)
-          - 品名・品番(product_name)
-          - 数量(quantity)
-          - 単位(unit)
-          - 単価(price)
-          - 税区分(tax_classification)
-    - サーバーに送信するデータ
-      - 認証情報(access_token)　請求書ID(id)
 
 </details>
 
@@ -590,6 +522,23 @@
 | 4  | 作成日       | created_at   | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 | 5  | 更新日       | updated_at   | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 
+**invoices**
+
+| №  | カラム論理名                 | カラム物理名                | データ型    | 桁数  | PK | FK | UK | NN | INDEX | 初期値            | 備考                                     |
+| -- | --------------------------- | ------------------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |
+| 1  | id                          | id                       | VARCHAR    | 36   | PK |    |    |    |       | UUID v4           |                                          |
+| 2  | 事業者_id                    | business_id              | VARCHAR    | 36   |    | FK |    | NN |       |                   | テーブルbusinessesのidカラムを参照           |
+| 3  | 書類発行日                   | document_issue_date      | DATE       |      |    |    |    |    |       |                   |                                          |
+| 4  | 書類番号                     | document_number          | VARCHAR    | 50   |    |    |    |    |       |                   |                                          |
+| 5  | 取引先名                     | customer_name            | VARCHAR    | 255  |    |    |    | NN |       |                   |                                          |
+| 6  | 敬称                        | customer_title           | VARCHAR    | 50   |    |    |    | NN |       |                   |                                          |
+| 7  | 事業者情報                   | business_details         | VARCHAR    | 510  |    |    |    |    |       |                   |                                          |
+| 8  | マスタ_角印_id               | m_seals_id               | VARCHAR    | 36   |    | FK |    |    |       |                   | テーブルm_sealsのidカラムを参照             |
+| 9  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
+| 10 | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+| 11 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+
+
 **invoice_products**
 
 | №  | カラム論理名              | カラム物理名            | データ型   | 桁数  | PK | FK | UK | NN | INDEX | 初期値           | 備考                                      |
@@ -602,25 +551,10 @@
 | 6  | 数量                      | quantity             | INT       |      |    |    |    |    |       |                  |                                           |
 | 7  | 単位                      | unit                 | VARCHAR   | 20   |    |    |    |    |       |                  |                                           |
 | 8  | 単価                      | price                | DECIAML   | 12   |    |    |    |    |       |                  | 小数点以下の桁数：2                          |
-| 9  | 税区分                    | tax_classification   | INT       |      |    |    |    |    |       |                  | 0. 対象外　1. 8%（軽減税率）　2. 10％          |
+| 9  | 税区分                    | tax_classification   | INT       |      |    |    |    | NN |       |                  | 0. 対象外　1. 8%（軽減税率）　2. 10％          |
 | 10 | 作成日                    | created_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 | 11 | 更新日                    | updated_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 
-**invoices**
-
-| №  | カラム論理名                 | カラム物理名                | データ型    | 桁数  | PK | FK | UK | NN | INDEX | 初期値            | 備考                                     |
-| -- | --------------------------- | ------------------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |
-| 1  | id                          | id                       | VARCHAR    | 36   | PK |    |    |    |       | UUID v4           |                                          |
-| 2  | 事業者_id                    | business_id              | VARCHAR    | 36   |    | FK |    | NN |       |                   | テーブルbusinessesのidカラムを参照           |
-| 3  | 書類発行日                   | document_issue_date      | DATE       |      |    |    |    | NN |       |                   |                                          |
-| 4  | 書類番号                     | document_number          | VARCHAR    | 50   |    |    |    | NN |       |                   |                                          |
-| 5  | 取引先名                     | customer_name            | VARCHAR    | 255  |    |    |    | NN |       |                   |                                          |
-| 6  | 敬称                        | customer_title           | VARCHAR    | 50   |    |    |    |    |       |                   |                                          |
-| 7  | 事業者情報                   | business_details         | VARCHAR    | 510  |    |    |    | NN |       |                   |                                          |
-| 8  | マスタ_角印_id               | m_seals_id               | VARCHAR    | 36   |    | FK |    |    |       |                   | テーブルm_sealsのidカラムを参照             |
-| 9  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
-| 10 | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
-| 11 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
 
 **m_seals**
 
@@ -758,6 +692,23 @@
 | 4  | 作成日       | created_at   | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 | 5  | 更新日       | updated_at   | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 
+**invoices**
+
+| №  | カラム論理名                 | カラム物理名                | データ型    | 桁数  | PK | FK | UK | NN | INDEX | 初期値            | 備考                                     |
+| -- | --------------------------- | ------------------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |
+| 1  | id                          | id                       | VARCHAR    | 36   | PK |    |    |    |       | UUID v4           |                                          |
+| 2  | 事業者_id                    | business_id              | VARCHAR    | 36   |    | FK |    | NN |       |                   | テーブルbusinessesのidカラムを参照           |
+| 3  | 書類発行日                   | document_issue_date      | DATE       |      |    |    |    |    |       |                   |                                          |
+| 4  | 書類番号                     | document_number          | VARCHAR    | 50   |    |    |    |    |       |                   |                                          |
+| 5  | 取引先名                     | customer_name            | VARCHAR    | 255  |    |    |    | NN |       |                   |                                          |
+| 6  | 敬称                        | customer_title           | VARCHAR    | 50   |    |    |    | NN |       |                   |                                          |
+| 7  | 事業者情報                   | business_details         | VARCHAR    | 510  |    |    |    |    |       |                   |                                          |
+| 8  | マスタ_角印_id               | m_seals_id               | VARCHAR    | 36   |    | FK |    |    |       |                   | テーブルm_sealsのidカラムを参照             |
+| 9  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
+| 10 | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+| 11 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
+
+
 **invoice_products**
 
 | №  | カラム論理名              | カラム物理名            | データ型   | 桁数  | PK | FK | UK | NN | INDEX | 初期値           | 備考                                      |
@@ -770,25 +721,9 @@
 | 6  | 数量                      | quantity             | INT       |      |    |    |    |    |       |                  |                                           |
 | 7  | 単位                      | unit                 | VARCHAR   | 20   |    |    |    |    |       |                  |                                           |
 | 8  | 単価                      | price                | DECIAML   | 12   |    |    |    |    |       |                  | 小数点以下の桁数：2                          |
-| 9  | 税区分                    | tax_classification   | INT       |      |    |    |    |    |       |                  | 0. 対象外　1. 8%（軽減税率）　2. 10％          |
+| 9  | 税区分                    | tax_classification   | INT       |      |    |    |    | NN |       |                  | 0. 対象外　1. 8%（軽減税率）　2. 10％          |
 | 10 | 作成日                    | created_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
 | 11 | 更新日                    | updated_at           | DATETIME  |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                           |
-
-**invoices**
-
-| №  | カラム論理名                 | カラム物理名                | データ型    | 桁数  | PK | FK | UK | NN | INDEX | 初期値            | 備考                                     |
-| -- | --------------------------- | ------------------------ | ---------- | ---- | -- | -- | -- | -- | ----- | ----------------- | ---------------------------------------- |
-| 1  | id                          | id                       | VARCHAR    | 36   | PK |    |    |    |       | UUID v4           |                                          |
-| 2  | 事業者_id                    | business_id              | VARCHAR    | 36   |    | FK |    | NN |       |                   | テーブルbusinessesのidカラムを参照          |
-| 3  | 書類発行日                   | document_issue_date      | DATE       |      |    |    |    | NN |       |                   |                                          |
-| 4  | 書類番号                     | document_number          | VARCHAR    | 50   |    |    |    | NN |       |                   |                                          |
-| 5  | 取引先名                     | customer_name            | VARCHAR    | 255  |    |    |    | NN |       |                   |                                          |
-| 6  | 敬称                        | customer_title           | VARCHAR    | 50   |    |    |    |    |       |                   |                                          |
-| 7  | 事業者情報                   | business_details         | VARCHAR    | 510  |    |    |    | NN |       |                   |                                          |
-| 8  | マスタ_角印_id               | m_seals_id               | VARCHAR    | 36   |    | FK |    |    |       |                   | テーブルm_sealsのidカラムを参照              |
-| 9  | 備考欄情報                  | notes                    | TEXT       |      |    |    |    |    |       |                   |                                          |
-| 10 | 作成日                     | created_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
-| 11 | 更新日                     | updated_at               | DATETIME   |      |    |    |    | NN |       | CURRENT_TIMESTAMP |                                          |
 
 **m_seals**
 

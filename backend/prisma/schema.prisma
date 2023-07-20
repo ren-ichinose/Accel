@@ -55,13 +55,13 @@ model BusinessMembership {
 model Invoice {
   id String @db.VarChar(36) @default(uuid()) @id
   businessId String @db.VarChar(36)
-  documentIssueDate DateTime
-  documentNumber String @db.VarChar(50)
+  documentIssueDate DateTime?
+  documentNumber String? @db.VarChar(50)
   customerName String @db.VarChar(255)
-  customerTitle String? @db.VarChar(50)
-  businessDetails String @db.VarChar(510)
+  customerTitle String @db.VarChar(50)
+  businessDetails String? @db.VarChar(510)
   mSealsId String? @db.VarChar(36)
-  notes String? @db.Text 
+  notes String? @db.Text
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   invoiceProducts InvoiceProduct[]
@@ -81,7 +81,7 @@ model InvoiceProduct {
   quantity Int?
   unit String? @db.VarChar(20)
   price Decimal? @db.Decimal(12,2)
-  taxClassification Int?
+  taxClassification Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
