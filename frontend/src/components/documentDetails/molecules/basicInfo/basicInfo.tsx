@@ -44,6 +44,7 @@ export default function BasicInfo({ register }: { register: any }) {
           inputId="customerTitle"
           width="72px"
           register={register}
+          textAlign="center"
         />
       </div>
     </div>

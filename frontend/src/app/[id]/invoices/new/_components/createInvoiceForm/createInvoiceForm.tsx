@@ -93,6 +93,7 @@ export default function CreateInvoiceForm({
     formState: { errors },
   } = useForm({
     resolver: yupResolver(errorScheme),
+    defaultValues: { customerTitle: '御中' },
   })
 
   const { createInvoiceMutation } = useMutateInvoice(reset)

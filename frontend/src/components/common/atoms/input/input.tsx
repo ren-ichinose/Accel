@@ -10,11 +10,13 @@ export default function Input({
   height = '36px',
   marginBottom = '0',
   register = '',
+  textAlign = 'left',
 }: InputProps) {
   const inputStyles = {
     width,
     height,
     marginBottom,
+    textAlign,
   }
 
   return (
@@ -39,4 +41,5 @@ interface InputProps {
   height?: string
   marginBottom?: string
   register?: any
+  textAlign?: string
 }
