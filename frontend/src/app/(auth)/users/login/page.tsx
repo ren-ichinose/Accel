@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Button from '@/components/common/atoms/button/button'
+import Motion from '@/components/common/layout/motion/motion'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
 import { User } from '@/interfaces/main.interface'
@@ -62,28 +63,30 @@ export default function Login() {
   }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <AuthHead title="ログイン" />
-      {showErrors(serverErrors, clientErrors)}
-      <InputWithLabel
-        title="ログインID"
-        placeholder="ログインIDを入力してください"
-        inputId="loginId"
-        height="48px"
-        marginBottom="16px"
-        register={register}
-      />
-      <InputWithLabel
-        title="パスワード"
-        type="password"
-        placeholder="パスワードを入力してください"
-        inputId="password"
-        height="48px"
-        marginBottom="32px"
-        register={register}
-      />
-      <Button className="authSubmid" type="submit" text="ログイン" />
-      <AuthFoot href="/users/register" text="新規登録はこちら" />
-    </form>
+    <Motion>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <AuthHead title="ログイン" />
+        {showErrors(serverErrors, clientErrors)}
+        <InputWithLabel
+          title="ログインID"
+          placeholder="ログインIDを入力してください"
+          inputId="loginId"
+          height="48px"
+          marginBottom="16px"
+          register={register}
+        />
+        <InputWithLabel
+          title="パスワード"
+          type="password"
+          placeholder="パスワードを入力してください"
+          inputId="password"
+          height="48px"
+          marginBottom="32px"
+          register={register}
+        />
+        <Button className="authSubmid" type="submit" text="ログイン" />
+        <AuthFoot href="/users/register" text="新規登録はこちら" />
+      </form>
+    </Motion>
   )
 }
