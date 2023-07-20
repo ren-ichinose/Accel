@@ -4,6 +4,7 @@
   font-size: 56px;
   text-align: center;
   transform: translateX(-3px);
+  color: var(--main-color);
 }
 
 .title {
