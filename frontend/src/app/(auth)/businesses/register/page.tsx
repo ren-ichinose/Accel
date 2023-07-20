@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation'
 import Button from '@/components/common/atoms/button/button'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
+import useQueryBusinessAll from '@/hooks/useQueryBusinessAll'
 import { Business, BussinesAuth } from '@/interfaces/main.interface'
 import postData from '@/utils/postData'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -14,6 +15,7 @@ import AuthHead from '../../_components/auth/molecules/authHead/authHead'
 
 export default function Register() {
   const router = useRouter()
+  const { data: isNewBusinesses } = useQueryBusinessAll()
 
   const errorScheme = yup.object().shape({
     businessName: yup.string().required('・ログインID: 入力必須'),
@@ -62,7 +64,12 @@ export default function Register() {
         register={register}
       />
       <Button className="authSubmid" type="submit" text="登録" />
-      <AuthFoot href="/businesses/select" text="現在登録済みの事業者はこちら" />
+      {isNewBusinesses && isNewBusinesses.length > 0 && (
+        <AuthFoot
+          href="/businesses/select"
+          text="現在登録済みの事業者はこちら"
+        />
+      )}
     </form>
   )
 }

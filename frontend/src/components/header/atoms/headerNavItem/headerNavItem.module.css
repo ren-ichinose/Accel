@@ -8,6 +8,7 @@
   align-items: center;
   width: 100%;
   padding: 12px 16px;
+  font-size: 14px;
   color: #eee;
   border-radius: 4px;
   transition: 0.2s;
@@ -19,8 +20,9 @@
 }
 
 .icon {
-  margin-right: 4px;
+  margin-right: 8px;
   font-size: 21px;
+  line-height: 21px;
 }
 
 @media screen and (1340px >= width) {

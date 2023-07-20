@@ -12,6 +12,6 @@
 
 html {
   color: var(--dark-color);
-  letter-spacing: 0.175em;
+  letter-spacing: 0.15em;
   background-color: var(--background-base-color);
 }
