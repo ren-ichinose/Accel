@@ -1,8 +1,10 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Button from '@/components/common/atoms/button/button'
 import Motion from '@/components/common/layout/motion/motion'
+import LoadingGrid from '@/components/common/molecules/loadingGrid/loadingGrid'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
 import useQueryBusinessAll from '@/hooks/useQueryBusinessAll'
 import { yupResolver } from '@hookform/resolvers/yup'
@@ -14,6 +16,7 @@ import SelectBusiness from '../../_components/auth/molecules/selectBusiness/sele
 
 export default function Select() {
   const router = useRouter()
+  const [isSelect, setIsSelect] = useState(false)
   const { data: businessList, isSuccess } = useQueryBusinessAll()
 
   const errorScheme = yup.object().shape({
@@ -36,29 +39,27 @@ export default function Select() {
 
   const onSubmit = (data: { businessId: string }) => {
     reset()
+    setIsSelect(true)
     router.push(`/${data.businessId}`)
   }
 
-  return (
-    isSuccess && (
-      <Motion>
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <AuthHead title="事業者選択" className="select" />
-          {errorMessages.length > 0 && (
-            <ErrorMassages errorMassages={errorMessages} />
-          )}
-          <SelectBusiness
-            register={register}
-            control={control}
-            businessList={businessList}
-          />
-          <Button className="authSubmid" type="submit" text="決定" />
-          <AuthFoot
-            href="/businesses/register"
-            text="事業者の新規登録はこちら"
-          />
-        </form>
-      </Motion>
-    )
+  return isSuccess && !isSelect ? (
+    <Motion>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <AuthHead title="事業者選択" className="select" />
+        {errorMessages.length > 0 && (
+          <ErrorMassages errorMassages={errorMessages} />
+        )}
+        <SelectBusiness
+          register={register}
+          control={control}
+          businessList={businessList}
+        />
+        <Button className="authSubmid" type="submit" text="決定" />
+        <AuthFoot href="/businesses/register" text="事業者の新規登録はこちら" />
+      </form>
+    </Motion>
+  ) : (
+    <LoadingGrid />
   )
 }
