@@ -1,10 +1,14 @@
-'use client'
-
 import Button from '@/components/common/atoms/button/button'
 import fontkit from '@pdf-lib/fontkit'
 import { PDFDocument, rgb } from 'pdf-lib'
 
-export default function PrintInvoiceButton() {
+export default function PrintInvoiceButton({
+  handleShow,
+  handleUri,
+}: {
+  handleShow: () => void
+  handleUri: (dataUri: string) => void
+}) {
   async function createPdf() {
     const pdfPath = '/pdf/invoiceTest.pdf'
     const fontPath = '/font/LINESeedJP_Rg.ttf'
@@ -30,10 +34,10 @@ export default function PrintInvoiceButton() {
       font: fontData,
       color: rgb(0.2, 0.2, 0.2),
     })
-    const pdfBytes = await pdfDoc.save()
-    const blob = new Blob([pdfBytes], { type: 'application/pdf' })
-    const url = URL.createObjectURL(blob)
-    window.open(url)
+
+    const dataUri = await pdfDoc.saveAsBase64({ dataUri: true })
+    handleUri(dataUri)
+    handleShow()
   }
 
   const handleDownload = async () => {
