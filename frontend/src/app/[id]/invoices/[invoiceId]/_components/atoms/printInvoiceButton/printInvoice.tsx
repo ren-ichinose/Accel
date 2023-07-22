@@ -1,4 +1,6 @@
 import Button from '@/components/common/atoms/button/button'
+import formatDate from '@/utils/formatDate'
+import formatToJPY from '@/utils/formatToJPY'
 import fontkit from '@pdf-lib/fontkit'
 import { PDFDocument, rgb } from 'pdf-lib'
 
@@ -8,8 +10,8 @@ type InvoiceProduct = {
   transactionDate: string | null
   productName: string
   quantity: number
-  unit: string
-  price: string
+  unit: string | null
+  price: number
   taxClassification: number
 }
 
@@ -45,7 +47,7 @@ const sampleData: Invoice = {
       productName: 'サンプル商品',
       quantity: 1000,
       unit: '個',
-      price: '1000',
+      price: 1000,
       taxClassification: 2,
     },
     {
@@ -54,8 +56,8 @@ const sampleData: Invoice = {
       transactionDate: '2023-06-10T15:00:00.000Z',
       productName: 'サンプル商品',
       quantity: 1000,
-      unit: '個',
-      price: '1000',
+      unit: null,
+      price: 1000,
       taxClassification: 2,
     },
     {
@@ -65,7 +67,7 @@ const sampleData: Invoice = {
       productName: 'サンプル商品',
       quantity: 1000,
       unit: '個',
-      price: '1000',
+      price: 1000,
       taxClassification: 1,
     },
   ],
@@ -81,7 +83,7 @@ export default function PrintInvoiceButton({
   handleUri: (dataUri: string) => void
 }) {
   async function createPdf() {
-    const pdfPath = '/pdf/invoice.pdf'
+    const pdfPath = '/pdf/invoiceTest.pdf'
     const fontPath = '/font/LINESeedJP_Rg.ttf'
 
     const existingPdfBytes = await fetch(pdfPath).then((res) =>
@@ -100,8 +102,8 @@ export default function PrintInvoiceButton({
 
     const fontSize = 6.55
 
-    // Todo：日付の関数が完了次第修正する。
-    firstPage.drawText(invoiceData.documentNumber, {
+    const formattedDate = formatDate(invoiceData.documentIssueDate)
+    firstPage.drawText(formattedDate, {
       x: 482,
       y: 770.5,
       size: 5.475,
@@ -171,62 +173,84 @@ export default function PrintInvoiceButton({
       color: rgb(0.8, 0.2, 0.2),
     })
 
-    // invoiceProducts
-    // Todo：日付の関数が完了次第修正する。
-    if (invoiceProductsData[0].transactionDate)
-      firstPage.drawText(invoiceProductsData[0].transactionDate, {
-        x: 66,
-        y: 534.5,
-        size: fontSize,
-        font: fontData,
-        color: rgb(0.2, 0.2, 0.2),
-      })
+    const invoiceProductsLineHeight = 22.9
+    invoiceProductsData.forEach((invoiceProduct, index) => {
+      if (invoiceProduct.transactionDate) {
+        const formattedTransactionDate = formatDate(
+          invoiceProduct.transactionDate
+        )
+        firstPage.drawText(formattedTransactionDate, {
+          x: 63,
+          y: 534.5 - index * invoiceProductsLineHeight,
+          size: fontSize,
+          font: fontData,
+          color: rgb(0.8, 0.2, 0.2),
+        })
+      }
 
-    if (invoiceProductsData[0].productName)
-      firstPage.drawText(invoiceProductsData[0].productName, {
-        x: 116,
-        y: 534.5,
-        size: fontSize,
-        font: fontData,
-        color: rgb(0.2, 0.2, 0.2),
-      })
+      if (
+        invoiceProduct.productName &&
+        invoiceProduct.taxClassification === 2
+      ) {
+        firstPage.drawText(invoiceProduct.productName, {
+          x: 116,
+          y: 534.5 - index * invoiceProductsLineHeight,
+          size: fontSize,
+          font: fontData,
+          color: rgb(0.2, 0.2, 0.2),
+        })
+      }
 
-    // Todo：カンマ区切りの関数が完了次第修正する。
-    if (invoiceProductsData[0].quantity && invoiceProductsData[0].unit) {
-      const quantityAndUnit = `${invoiceProductsData[0].quantity} ${invoiceProductsData[0].unit}`
-      const textWidth = fontData.widthOfTextAtSize(quantityAndUnit, fontSize)
-      firstPage.drawText(quantityAndUnit, {
-        x: 418 - textWidth,
-        y: 534.5,
+      if (invoiceProduct.productName && invoiceProduct.taxClassification === 1)
+        firstPage.drawText(`${invoiceProduct.productName} ※`, {
+          x: 116,
+          y: 534.5 - index * invoiceProductsLineHeight,
+          size: fontSize,
+          font: fontData,
+          color: rgb(0.8, 0.2, 0.2),
+        })
+
+      if (invoiceProduct.quantity) {
+        let quantityAndUnit = ''
+        const formattedQuantity = invoiceProduct.quantity.toLocaleString()
+
+        if (invoiceProduct.unit) {
+          quantityAndUnit = `${formattedQuantity} ${invoiceProduct.unit}`
+        }
+
+        const textWidth = fontData.widthOfTextAtSize(
+          quantityAndUnit || formattedQuantity,
+          fontSize
+        )
+        firstPage.drawText(quantityAndUnit || formattedQuantity, {
+          x: 418 - textWidth,
+          y: 534.5 - index * invoiceProductsLineHeight,
+          size: fontSize,
+          font: fontData,
+          color: rgb(0.8, 0.2, 0.2),
+        })
+      }
+
+      if (invoiceProduct.price) {
+        const formattedPrice = formatToJPY(invoiceProduct.price)
+        const textWidth = fontData.widthOfTextAtSize(formattedPrice, fontSize)
+        firstPage.drawText(formattedPrice, {
+          x: 480 - textWidth,
+          y: 534.5 - index * invoiceProductsLineHeight,
+          size: fontSize,
+          font: fontData,
+          color: rgb(0.8, 0.2, 0.2),
+        })
+      }
+
+      const taxWidth = fontData.widthOfTextAtSize('¥1,000,000', fontSize)
+      firstPage.drawText('¥1,000,000', {
+        x: 540 - taxWidth,
+        y: 534.5 - index * invoiceProductsLineHeight,
         size: fontSize,
         font: fontData,
         color: rgb(0.8, 0.2, 0.2),
       })
-    }
-
-    // Todo：計算の関数が完了次第修正する。
-    if (invoiceProductsData[0].price) {
-      const textWidth = fontData.widthOfTextAtSize(
-        invoiceProductsData[0].price.toString(),
-        fontSize
-      )
-      firstPage.drawText(invoiceProductsData[0].price.toString(), {
-        x: 480 - textWidth,
-        y: 534.5,
-        size: fontSize,
-        font: fontData,
-        color: rgb(0.8, 0.2, 0.2),
-      })
-    }
-
-    // Todo：計算の関数が完了次第修正する。
-    const textWidth = fontData.widthOfTextAtSize('¥1,000,000', fontSize)
-    firstPage.drawText('¥1,000,000', {
-      x: 540 - textWidth,
-      y: 534.5,
-      size: fontSize,
-      font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
     })
 
     const taxExcludedPrice10Width = fontData.widthOfTextAtSize(
