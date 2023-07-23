@@ -42,7 +42,7 @@ export default function TaxDetailsTableBody({
       )}
       {taxExcludedPrice0 > 0 && (
         <tr>
-          <th className={styles.rowHeader}>非課税</th>
+          <th className={styles.rowHeader}>対象外</th>
           <td>{formatToJPY(taxExcludedPrice0)}</td>
           <td>¥0</td>
           <td>{formatToJPY(taxIncludedPrice0)}</td>

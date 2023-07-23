@@ -6,35 +6,35 @@ import {
 
 const calculateTaxDetails = (productsData: any): TaxDetailsAll => {
   const taxExcludedPrice10 = productsData.reduce((acc: number, cur: any) => {
-    if (cur.taxClassification === '2') {
+    if (Number(cur.taxClassification) === 2) {
       return acc + cur.price * cur.quantity
     }
     return acc
   }, 0)
 
   const taxPrice10 = productsData?.reduce((acc: number, cur: any) => {
-    if (cur.taxClassification === '2') {
+    if (Number(cur.taxClassification) === 2) {
       return acc + cur.price * cur.quantity * 0.1
     }
     return acc
   }, 0)
 
   const taxExcludedPrice8 = productsData?.reduce((acc: number, cur: any) => {
-    if (cur.taxClassification === '1') {
+    if (Number(cur.taxClassification) === 1) {
       return acc + cur.price * cur.quantity
     }
     return acc
   }, 0)
 
   const taxPrice8 = productsData?.reduce((acc: number, cur: any) => {
-    if (cur.taxClassification === '1') {
+    if (Number(cur.taxClassification) === 1) {
       return acc + cur.price * cur.quantity * 0.08
     }
     return acc
   }, 0)
 
   const taxExcludedPrice0 = productsData?.reduce((acc: number, cur: any) => {
-    if (cur.taxClassification === '0') {
+    if (Number(cur.taxClassification) === 0) {
       return acc + cur.price * cur.quantity
     }
     return acc
