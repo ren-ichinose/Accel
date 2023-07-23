@@ -1,6 +1,7 @@
 import Button from '@/components/common/atoms/button/button'
 import formatDate from '@/utils/formatDate'
 import formatToJPY from '@/utils/formatToJPY'
+import getFinancialData from '@/utils/getFinancialData'
 import fontkit from '@pdf-lib/fontkit'
 import { PDFDocument, rgb } from 'pdf-lib'
 
@@ -45,7 +46,7 @@ const sampleData: Invoice = {
       itemOrder: 0,
       transactionDate: '2023-06-10T15:00:00.000Z',
       productName: 'サンプル商品',
-      quantity: 1000,
+      quantity: 10000,
       unit: '個',
       price: 1000,
       taxClassification: 2,
@@ -55,8 +56,8 @@ const sampleData: Invoice = {
       itemOrder: 1,
       transactionDate: '2023-06-10T15:00:00.000Z',
       productName: 'サンプル商品',
-      quantity: 1000,
-      unit: null,
+      quantity: 10000,
+      unit: '個',
       price: 1000,
       taxClassification: 2,
     },
@@ -65,7 +66,7 @@ const sampleData: Invoice = {
       itemOrder: 2,
       transactionDate: '2023-06-10T15:00:00.000Z',
       productName: 'サンプル商品',
-      quantity: 1000,
+      quantity: 10000,
       unit: '個',
       price: 1000,
       taxClassification: 1,
@@ -74,6 +75,8 @@ const sampleData: Invoice = {
 }
 
 const { invoiceProducts: invoiceProductsData, ...invoiceData } = sampleData
+const { taxDetails10, taxDetails8, totalAmount } =
+  getFinancialData(invoiceProductsData)
 
 export default function PrintInvoiceButton({
   handleShow,
@@ -83,8 +86,9 @@ export default function PrintInvoiceButton({
   handleUri: (dataUri: string) => void
 }) {
   async function createPdf() {
-    const pdfPath = '/pdf/invoiceTest.pdf'
+    const pdfPath = '/pdf/invoice.pdf'
     const fontPath = '/font/LINESeedJP_Rg.ttf'
+    const fontSize = 6.55
 
     const existingPdfBytes = await fetch(pdfPath).then((res) =>
       res.arrayBuffer()
@@ -100,15 +104,14 @@ export default function PrintInvoiceButton({
     const pages = pdfDoc.getPages()
     const firstPage = pages[0]
 
-    const fontSize = 6.55
-
+    // Document Header
     const formattedDate = formatDate(invoiceData.documentIssueDate)
     firstPage.drawText(formattedDate, {
       x: 482,
       y: 770.5,
       size: 5.475,
       font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
+      color: rgb(0.2, 0.2, 0.2),
     })
 
     firstPage.drawText(invoiceData.documentNumber, {
@@ -135,44 +138,43 @@ export default function PrintInvoiceButton({
       color: rgb(0.2, 0.2, 0.2),
     })
 
-    // businessDetails
-    // 下揃えのためロジックが複雑になっている。
-
     const businessDetailsArray = invoiceData.businessDetails.split('\n')
     const longestLine = businessDetailsArray
       .slice()
       .sort((a, b) => b.length - a.length)
-    const lineHeight = 10.1
+    const businessDetailsLineHeight = 10.1
     const businessDetailsWidth = fontData.widthOfTextAtSize(
       longestLine[0],
       fontSize
     )
-    const startingY = 597.5 + (businessDetailsArray.length - 1) * lineHeight
+    const startingY =
+      597.5 + (businessDetailsArray.length - 1) * businessDetailsLineHeight
     const startingX = 542 - (businessDetailsWidth + 16)
 
     businessDetailsArray.forEach((line, index) => {
       firstPage.drawText(line, {
         x: startingX,
-        y: startingY - index * lineHeight,
+        y: startingY - index * businessDetailsLineHeight,
         size: fontSize,
         font: fontData,
-        color: rgb(0.8, 0.2, 0.2),
+        color: rgb(0.2, 0.2, 0.2),
       })
     })
 
-    // Todo：計算の関数が完了次第修正する。
+    const formtedTotalAmount = formatToJPY(totalAmount.totalTaxIncludedPrice)
     const textWidthTotalAmount = fontData.widthOfTextAtSize(
-      '¥3,280,000',
+      formtedTotalAmount,
       11.485
     )
-    firstPage.drawText('¥3,280,000', {
+    firstPage.drawText(formtedTotalAmount, {
       x: 236 - textWidthTotalAmount,
       y: 600,
       size: 11.485,
       font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
+      color: rgb(0.2, 0.2, 0.2),
     })
 
+    // Invoice Products
     const invoiceProductsLineHeight = 22.9
     invoiceProductsData.forEach((invoiceProduct, index) => {
       if (invoiceProduct.transactionDate) {
@@ -184,7 +186,7 @@ export default function PrintInvoiceButton({
           y: 534.5 - index * invoiceProductsLineHeight,
           size: fontSize,
           font: fontData,
-          color: rgb(0.8, 0.2, 0.2),
+          color: rgb(0.2, 0.2, 0.2),
         })
       }
 
@@ -207,7 +209,7 @@ export default function PrintInvoiceButton({
           y: 534.5 - index * invoiceProductsLineHeight,
           size: fontSize,
           font: fontData,
-          color: rgb(0.8, 0.2, 0.2),
+          color: rgb(0.2, 0.2, 0.2),
         })
 
       if (invoiceProduct.quantity) {
@@ -227,7 +229,7 @@ export default function PrintInvoiceButton({
           y: 534.5 - index * invoiceProductsLineHeight,
           size: fontSize,
           font: fontData,
-          color: rgb(0.8, 0.2, 0.2),
+          color: rgb(0.2, 0.2, 0.2),
         })
       }
 
@@ -239,117 +241,146 @@ export default function PrintInvoiceButton({
           y: 534.5 - index * invoiceProductsLineHeight,
           size: fontSize,
           font: fontData,
-          color: rgb(0.8, 0.2, 0.2),
+          color: rgb(0.2, 0.2, 0.2),
         })
       }
 
-      const taxWidth = fontData.widthOfTextAtSize('¥1,000,000', fontSize)
-      firstPage.drawText('¥1,000,000', {
+      const formattedProductTotalPrice = formatToJPY(
+        invoiceProduct.price * invoiceProduct.quantity
+      )
+      const taxWidth = fontData.widthOfTextAtSize(
+        formattedProductTotalPrice,
+        fontSize
+      )
+      firstPage.drawText(formattedProductTotalPrice, {
         x: 540 - taxWidth,
         y: 534.5 - index * invoiceProductsLineHeight,
         size: fontSize,
         font: fontData,
-        color: rgb(0.8, 0.2, 0.2),
+        color: rgb(0.2, 0.2, 0.2),
       })
     })
 
+    // Tax Details
+    // 10%
+    const formtedTaxExcludedPrice10 = formatToJPY(taxDetails10.taxExcludedPrice)
     const taxExcludedPrice10Width = fontData.widthOfTextAtSize(
-      '¥2,000,000',
+      formtedTaxExcludedPrice10,
       fontSize
     )
-    firstPage.drawText('¥2,000,000', {
+    firstPage.drawText(formtedTaxExcludedPrice10, {
       x: 256 - taxExcludedPrice10Width,
       y: 210,
       size: fontSize,
       font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
+      color: rgb(0.2, 0.2, 0.2),
     })
 
-    const taxPrice10Width = fontData.widthOfTextAtSize('¥200,000', fontSize)
-    firstPage.drawText('¥200,000', {
+    const formtedTaxPrice10 = formatToJPY(taxDetails10.taxPrice)
+    const taxPrice10Width = fontData.widthOfTextAtSize(
+      formtedTaxPrice10,
+      fontSize
+    )
+    firstPage.drawText(formtedTaxPrice10, {
       x: 317 - taxPrice10Width,
       y: 210,
       size: fontSize,
       font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
+      color: rgb(0.2, 0.2, 0.2),
     })
 
+    const formtedTaxIncludedPrice10 = formatToJPY(taxDetails10.taxIncludedPrice)
     const taxIncludedPrice10Width = fontData.widthOfTextAtSize(
-      '¥2,200,000',
+      formtedTaxIncludedPrice10,
       fontSize
     )
-    firstPage.drawText('¥2,200,000', {
+    firstPage.drawText(formtedTaxIncludedPrice10, {
       x: 378 - taxIncludedPrice10Width,
       y: 210,
       size: fontSize,
       font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
+      color: rgb(0.2, 0.2, 0.2),
     })
 
+    // 8%
+    const formtedTaxExcludedPrice8 = formatToJPY(taxDetails8.taxExcludedPrice)
     const taxExcludedPrice8Width = fontData.widthOfTextAtSize(
-      '¥1,000,000',
+      formtedTaxExcludedPrice8,
       fontSize
     )
-    firstPage.drawText('¥1,000,000', {
+    firstPage.drawText(formtedTaxExcludedPrice8, {
       x: 256 - taxExcludedPrice8Width,
       y: 187.5,
       size: fontSize,
       font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
+      color: rgb(0.2, 0.2, 0.2),
     })
 
-    const taxPrice8Width = fontData.widthOfTextAtSize('¥80,000', fontSize)
-    firstPage.drawText('¥80,000', {
+    const formtedTaxPrice8 = formatToJPY(taxDetails8.taxPrice)
+    const taxPrice8Width = fontData.widthOfTextAtSize(
+      formtedTaxPrice8,
+      fontSize
+    )
+    firstPage.drawText(formtedTaxPrice8, {
       x: 317 - taxPrice8Width,
       y: 187.5,
       size: fontSize,
       font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
+      color: rgb(0.2, 0.2, 0.2),
     })
 
+    const formtedTaxIncludedPrice8 = formatToJPY(taxDetails8.taxIncludedPrice)
     const taxIncludedPrice8Width = fontData.widthOfTextAtSize(
-      '¥1,080,000',
+      formtedTaxIncludedPrice8,
       fontSize
     )
-    firstPage.drawText('¥1,080,000', {
+    firstPage.drawText(formtedTaxIncludedPrice8, {
       x: 378 - taxIncludedPrice8Width,
       y: 187.5,
       size: fontSize,
       font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
+      color: rgb(0.2, 0.2, 0.2),
     })
 
+    // Total Amount
+    const formtedTotalTaxExcludedPrice = formatToJPY(
+      totalAmount.totalTaxExcludedPrice
+    )
     const totalTaxExcludedPrice = fontData.widthOfTextAtSize(
-      '¥3,000,000',
+      formtedTotalTaxExcludedPrice,
       fontSize
     )
-    firstPage.drawText('¥3,000,000', {
+    firstPage.drawText(formtedTotalTaxExcludedPrice, {
       x: 540 - totalTaxExcludedPrice,
       y: 232.5,
       size: fontSize,
       font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
+      color: rgb(0.2, 0.2, 0.2),
     })
 
-    const totalTaxPrice = fontData.widthOfTextAtSize('¥280,000', fontSize)
-    firstPage.drawText('¥280,000', {
+    const formtedTotalTaxPrice = formatToJPY(totalAmount.totalTaxPrice)
+    const totalTaxPrice = fontData.widthOfTextAtSize(
+      formtedTotalTaxPrice,
+      fontSize
+    )
+    firstPage.drawText(formtedTotalTaxPrice, {
       x: 540 - totalTaxPrice,
       y: 210,
       size: fontSize,
       font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
+      color: rgb(0.2, 0.2, 0.2),
     })
 
     const totalTaxIncludedPrice = fontData.widthOfTextAtSize(
-      '¥3,280,000',
+      formtedTotalAmount,
       fontSize
     )
-    firstPage.drawText('¥3,280,000', {
+    firstPage.drawText(formtedTotalAmount, {
       x: 540 - totalTaxIncludedPrice,
       y: 187.5,
       size: fontSize,
       font: fontData,
-      color: rgb(0.8, 0.2, 0.2),
+      color: rgb(0.2, 0.2, 0.2),
     })
 
     // note
