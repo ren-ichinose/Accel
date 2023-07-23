@@ -12,25 +12,29 @@ export interface BussinesAuth {
   businessName: string
 }
 
-export interface TaxDetails8 {
-  taxExcludedPrice: string
-  taxPrice: string
-  taxIncludedPrice: string
-}
-export interface TaxDetails10 {
-  taxExcludedPrice: string
-  taxPrice: string
-  taxIncludedPrice: string
-}
-export interface TaxDetailsProps {
-  taxDetails8: TaxDetails8
-  taxDetails10: TaxDetails10
+export interface TaxDetails {
+  taxExcludedPrice: number
+  taxPrice: number
+  taxIncludedPrice: number
 }
 
-export interface TotalAmountTableProps {
-  totalTaxExcludedPrice: string
-  totalTaxPrice: string
-  totalTaxIncludedPrice: string
+export interface TaxDetailsAll {
+  taxDetails10: TaxDetails
+  taxDetails8: TaxDetails
+  taxDetails0: TaxDetails
+}
+
+export interface TotalAmount {
+  totalTaxExcludedPrice: number
+  totalTaxPrice: number
+  totalTaxIncludedPrice: number
+}
+
+export interface FinancialData {
+  taxDetails10: TaxDetails
+  taxDetails8: TaxDetails
+  taxDetails0: TaxDetails
+  totalAmount: TotalAmount
 }
 
 export interface IProduct {
