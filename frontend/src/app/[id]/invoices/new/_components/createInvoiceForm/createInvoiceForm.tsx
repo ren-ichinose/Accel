@@ -154,6 +154,11 @@ export default function CreateInvoiceForm({
         <Notes register={register} />
         <MainFoot cancelButtonOnClick={handeleCancel} />
       </form>
+      {isLoading && (
+        <div className={styles.wrapper}>
+          <LoadingGrid />
+        </div>
+      )}
     </CreateInvoiceFormContainer>
   )
 }

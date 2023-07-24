@@ -1,0 +1,11 @@
+.wrapper {
+  position: fixed;
+  top: 72px;
+  left: 180px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: calc(100vw - 180px);
+  height: calc(100vh - 72px);
+  background-color: rgb(255 255 255 / 80%);
+}

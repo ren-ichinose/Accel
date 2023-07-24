@@ -3,7 +3,7 @@ import Motion from '@/components/common/layout/motion/motion'
 import MainHead from '@/components/mainHead/organisms/mainHead/mainHead'
 import PrintInvoiceFootAndModal from './_components/molecules/printInvoiceFootAndModal/printInvoiceFootAndModal'
 
-export default function ShowInvoice({
+export default function InvoiceDetail({
   params,
 }: {
   params: { id: string; invoiceId: string }
