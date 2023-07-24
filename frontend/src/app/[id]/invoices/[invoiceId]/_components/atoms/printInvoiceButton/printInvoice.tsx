@@ -46,24 +46,28 @@ export default function PrintInvoiceButton({
     const firstPage = pages[0]
 
     // Document Header
-    const formattedDate = formatDate(
-      invoiceWithoutProductsData.documentIssueDate
-    )
-    firstPage.drawText(formattedDate, {
-      x: 482,
-      y: 770.5,
-      size: 5.475,
-      font: fontData,
-      color: rgb(0.2, 0.2, 0.2),
-    })
+    if (invoiceWithoutProductsData.documentIssueDate) {
+      const formattedDate = formatDate(
+        invoiceWithoutProductsData.documentIssueDate
+      )
+      firstPage.drawText(formattedDate, {
+        x: 482,
+        y: 770.5,
+        size: 5.475,
+        font: fontData,
+        color: rgb(0.2, 0.2, 0.2),
+      })
+    }
 
-    firstPage.drawText(invoiceWithoutProductsData.documentNumber, {
-      x: 482,
-      y: 760.5,
-      size: 5.475,
-      font: fontData,
-      color: rgb(0.2, 0.2, 0.2),
-    })
+    if (invoiceWithoutProductsData.documentNumber) {
+      firstPage.drawText(invoiceWithoutProductsData.documentNumber, {
+        x: 482,
+        y: 760.5,
+        size: 5.475,
+        font: fontData,
+        color: rgb(0.2, 0.2, 0.2),
+      })
+    }
 
     firstPage.drawText(invoiceWithoutProductsData.customerName, {
       x: 55,
@@ -127,7 +131,7 @@ export default function PrintInvoiceButton({
         )
         firstPage.drawText(formattedTransactionDate, {
           x: 63,
-          y: 534.5 - index * invoiceProductsLineHeight,
+          y: 536.5 - index * invoiceProductsLineHeight,
           size: fontSize,
           font: fontData,
           color: rgb(0.2, 0.2, 0.2),
@@ -140,7 +144,7 @@ export default function PrintInvoiceButton({
       ) {
         firstPage.drawText(invoiceProduct.productName, {
           x: 116,
-          y: 534.5 - index * invoiceProductsLineHeight,
+          y: 536.5 - index * invoiceProductsLineHeight,
           size: fontSize,
           font: fontData,
           color: rgb(0.2, 0.2, 0.2),
@@ -150,7 +154,7 @@ export default function PrintInvoiceButton({
       if (invoiceProduct.productName && invoiceProduct.taxClassification === 1)
         firstPage.drawText(`${invoiceProduct.productName} ※`, {
           x: 116,
-          y: 534.5 - index * invoiceProductsLineHeight,
+          y: 536.5 - index * invoiceProductsLineHeight,
           size: fontSize,
           font: fontData,
           color: rgb(0.2, 0.2, 0.2),
@@ -170,7 +174,7 @@ export default function PrintInvoiceButton({
         )
         firstPage.drawText(quantityAndUnit || formattedQuantity, {
           x: 418 - textWidth,
-          y: 534.5 - index * invoiceProductsLineHeight,
+          y: 536.5 - index * invoiceProductsLineHeight,
           size: fontSize,
           font: fontData,
           color: rgb(0.2, 0.2, 0.2),
@@ -182,7 +186,7 @@ export default function PrintInvoiceButton({
         const textWidth = fontData.widthOfTextAtSize(formattedPrice, fontSize)
         firstPage.drawText(formattedPrice, {
           x: 480 - textWidth,
-          y: 534.5 - index * invoiceProductsLineHeight,
+          y: 536.5 - index * invoiceProductsLineHeight,
           size: fontSize,
           font: fontData,
           color: rgb(0.2, 0.2, 0.2),
@@ -198,7 +202,7 @@ export default function PrintInvoiceButton({
       )
       firstPage.drawText(formattedProductTotalPrice, {
         x: 540 - taxWidth,
-        y: 534.5 - index * invoiceProductsLineHeight,
+        y: 536.5 - index * invoiceProductsLineHeight,
         size: fontSize,
         font: fontData,
         color: rgb(0.2, 0.2, 0.2),
