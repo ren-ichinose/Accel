@@ -17,7 +17,7 @@ import styles from './select.module.css'
 
 export default function Select() {
   const router = useRouter()
-  const [isSelect, setIsSelect] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
   const { data: businessList, isSuccess } = useQueryBusinessAll()
 
   const errorScheme = yup.object().shape({
@@ -39,30 +39,36 @@ export default function Select() {
     .map((error) => error.message)
 
   const onSubmit = (data: { businessId: string }) => {
+    setIsLoading(true)
     reset()
-    setIsSelect(true)
     router.push(`/${data.businessId}`)
   }
 
-  return isSuccess && !isSelect ? (
-    <Motion>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <AuthHead title="事業者選択" className="select" />
-        {errorMessages.length > 0 && (
-          <ErrorMassages errorMassages={errorMessages} />
+  return (
+    isSuccess && (
+      <Motion>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <AuthHead title="事業者選択" className="select" />
+          {errorMessages.length > 0 && (
+            <ErrorMassages errorMassages={errorMessages} />
+          )}
+          <SelectBusiness
+            register={register}
+            control={control}
+            businessList={businessList}
+          />
+          <Button className="authSubmid" type="submit" text="決定" />
+          <AuthFoot
+            href="/businesses/register"
+            text="事業者の新規登録はこちら"
+          />
+        </form>
+        {isLoading && (
+          <div className={styles.wrapper}>
+            <LoadingGrid />
+          </div>
         )}
-        <SelectBusiness
-          register={register}
-          control={control}
-          businessList={businessList}
-        />
-        <Button className="authSubmid" type="submit" text="決定" />
-        <AuthFoot href="/businesses/register" text="事業者の新規登録はこちら" />
-      </form>
-    </Motion>
-  ) : (
-    <div className={styles.wrapper}>
-      <LoadingGrid />
-    </div>
+      </Motion>
+    )
   )
 }
