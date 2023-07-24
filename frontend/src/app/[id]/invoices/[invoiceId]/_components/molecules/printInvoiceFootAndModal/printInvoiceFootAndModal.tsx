@@ -4,7 +4,7 @@ import { useState } from 'react'
 import PrintInvoiceModal from '../../atoms/printInvoiceModal/printInvoiceModal'
 import PrintInvoiceFoot from '../printInvoiceFoot/printInvoiceFoot'
 
-export default function PrintInvoiceVew() {
+export default function PrintInvoiceFootAndModal() {
   const [isShow, setIsShow] = useState<boolean>(false)
   const [uri, isUri] = useState<string | undefined>(undefined)
   const handleShow = () => {

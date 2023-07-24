@@ -3,80 +3,8 @@ import formatDate from '@/utils/formatDate'
 import formatToJPY from '@/utils/formatToJPY'
 import getFinancialData from '@/utils/getFinancialData'
 import fontkit from '@pdf-lib/fontkit'
+import { QueryClient, useQueryClient } from '@tanstack/react-query'
 import { PDFDocument, rgb } from 'pdf-lib'
-
-type InvoiceProduct = {
-  id: string
-  itemOrder: number
-  transactionDate: string | null
-  productName: string
-  quantity: number
-  unit: string | null
-  price: number
-  taxClassification: number
-}
-
-type Invoice = {
-  id: string
-  businessId: string
-  documentIssueDate: string
-  documentNumber: string
-  customerName: string
-  customerTitle: string
-  businessDetails: string
-  notes: string
-  mSeal: string | null
-  invoiceProducts: InvoiceProduct[]
-}
-
-const sampleData: Invoice = {
-  id: '0e434ee2-2a71-49c7-a705-46d34bd02882',
-  businessId: '01caa997-c433-402e-9ea8-1a736e80f396',
-  documentIssueDate: '2023-07-20T15:00:00.000Z',
-  documentNumber: '0001',
-  customerName: '株式会社〇〇コンサルティング',
-  customerTitle: '御中',
-  businessDetails:
-    '〇 〇 商 事 株 式 会 社\n〒100-0001\n東京都千代田区千代田1番1号\n登録番号：T1234567890123\n\nTEL：03-1234-5678\nFAX：03-1234-1234\nE-Mail：XXX@example.co.jp\n担当：日本　太郎',
-  notes: '振込先：〇〇銀⾏ 〇〇⽀店 普通 1234567 マルマルシヨウジ(カ',
-  mSeal: null,
-  invoiceProducts: [
-    {
-      id: '95855115-10d3-4d5c-a454-de1a9f798210',
-      itemOrder: 0,
-      transactionDate: '2023-06-10T15:00:00.000Z',
-      productName: 'サンプル商品',
-      quantity: 10000,
-      unit: '個',
-      price: 1000,
-      taxClassification: 2,
-    },
-    {
-      id: '95855115-10d3-4d5c-a454-de1a9f798210',
-      itemOrder: 1,
-      transactionDate: '2023-06-10T15:00:00.000Z',
-      productName: 'サンプル商品',
-      quantity: 10000,
-      unit: '個',
-      price: 1000,
-      taxClassification: 2,
-    },
-    {
-      id: '95855115-10d3-4d5c-a454-de1a9f798210',
-      itemOrder: 2,
-      transactionDate: '2023-06-10T15:00:00.000Z',
-      productName: 'サンプル商品',
-      quantity: 10000,
-      unit: '個',
-      price: 1000,
-      taxClassification: 1,
-    },
-  ],
-}
-
-const { invoiceProducts: invoiceProductsData, ...invoiceData } = sampleData
-const { taxDetails10, taxDetails8, totalAmount } =
-  getFinancialData(invoiceProductsData)
 
 export default function PrintInvoiceButton({
   handleShow,
@@ -85,6 +13,17 @@ export default function PrintInvoiceButton({
   handleShow: () => void
   handleUri: (dataUri: string) => void
 }) {
+  const queryClient: QueryClient = useQueryClient()
+  const invoiceData: any = queryClient.getQueryData(['invoice'])
+
+  const {
+    invoiceProducts: invoiceProductsData,
+    ...invoiceWithoutProductsData
+  } = invoiceData
+
+  const { taxDetails10, taxDetails8, totalAmount } =
+    getFinancialData(invoiceProductsData)
+
   async function createPdf() {
     const pdfPath = '/pdf/invoice.pdf'
     const fontPath = '/font/LINESeedJP_Rg.ttf'
@@ -105,7 +44,9 @@ export default function PrintInvoiceButton({
     const firstPage = pages[0]
 
     // Document Header
-    const formattedDate = formatDate(invoiceData.documentIssueDate)
+    const formattedDate = formatDate(
+      invoiceWithoutProductsData.documentIssueDate
+    )
     firstPage.drawText(formattedDate, {
       x: 482,
       y: 770.5,
@@ -114,7 +55,7 @@ export default function PrintInvoiceButton({
       color: rgb(0.2, 0.2, 0.2),
     })
 
-    firstPage.drawText(invoiceData.documentNumber, {
+    firstPage.drawText(invoiceWithoutProductsData.documentNumber, {
       x: 482,
       y: 760.5,
       size: 5.475,
@@ -122,7 +63,7 @@ export default function PrintInvoiceButton({
       color: rgb(0.2, 0.2, 0.2),
     })
 
-    firstPage.drawText(invoiceData.customerName, {
+    firstPage.drawText(invoiceWithoutProductsData.customerName, {
       x: 55,
       y: 708.5,
       size: 9.3,
@@ -130,7 +71,7 @@ export default function PrintInvoiceButton({
       color: rgb(0.2, 0.2, 0.2),
     })
 
-    firstPage.drawText(invoiceData.customerTitle, {
+    firstPage.drawText(invoiceWithoutProductsData.customerTitle, {
       x: 195,
       y: 708.5,
       size: 9.3,
@@ -138,10 +79,11 @@ export default function PrintInvoiceButton({
       color: rgb(0.2, 0.2, 0.2),
     })
 
-    const businessDetailsArray = invoiceData.businessDetails.split('\n')
+    const businessDetailsArray =
+      invoiceWithoutProductsData.businessDetails.split('\n')
     const longestLine = businessDetailsArray
       .slice()
-      .sort((a, b) => b.length - a.length)
+      .sort((a: any, b: any) => b.length - a.length)
     const businessDetailsLineHeight = 10.1
     const businessDetailsWidth = fontData.widthOfTextAtSize(
       longestLine[0],
@@ -151,7 +93,7 @@ export default function PrintInvoiceButton({
       597.5 + (businessDetailsArray.length - 1) * businessDetailsLineHeight
     const startingX = 542 - (businessDetailsWidth + 16)
 
-    businessDetailsArray.forEach((line, index) => {
+    businessDetailsArray.forEach((line: any, index: any) => {
       firstPage.drawText(line, {
         x: startingX,
         y: startingY - index * businessDetailsLineHeight,
@@ -176,7 +118,7 @@ export default function PrintInvoiceButton({
 
     // Invoice Products
     const invoiceProductsLineHeight = 22.9
-    invoiceProductsData.forEach((invoiceProduct, index) => {
+    invoiceProductsData.forEach((invoiceProduct: any, index: any) => {
       if (invoiceProduct.transactionDate) {
         const formattedTransactionDate = formatDate(
           invoiceProduct.transactionDate
@@ -384,7 +326,7 @@ export default function PrintInvoiceButton({
     })
 
     // note
-    if (invoiceData.notes)
+    if (invoiceWithoutProductsData.notes)
       firstPage.drawText(invoiceData.notes, {
         x: 55,
         y: 130,
