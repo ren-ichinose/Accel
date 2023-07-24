@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import DocumentDetails from '@/components/documentDetails/organisms/documentDetails/documentDetails'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
 import FinancialSummary from '@/components/financialSummary/financialSummary'
@@ -30,8 +29,7 @@ export default function CreateInvoiceForm({
     customerTitle: yup.string().required('敬称：入力が必須の項目です。'),
     businessDetails: yup
       .string()
-      .nullable()
-      .transform((curr, origin) => (origin === '' ? null : curr)),
+      .required('事業者情報：入力が必須の項目です。'),
     mSealsId: yup
       .string()
       .nullable()
@@ -97,7 +95,6 @@ export default function CreateInvoiceForm({
   })
 
   const { createInvoiceMutation } = useMutateInvoice(reset)
-  const [isSccess, setIsSccess] = useState<boolean>(false)
 
   const onSubmit = (data: any) => {
     const invoiceProducts = data.invoiceProducts
@@ -108,7 +105,6 @@ export default function CreateInvoiceForm({
       businessId: params.id,
       formData: newData,
     })
-    setIsSccess(true)
   }
 
   const prodauctsErrorMessages = [
@@ -140,9 +136,6 @@ export default function CreateInvoiceForm({
     <form onSubmit={handleSubmit(onSubmit)}>
       {Object.values(errors).length > 0 && (
         <ErrorMassages errorMassages={createInvoiceErrorMessages()} />
-      )}
-      {isSccess && (
-        <ErrorMassages errorMassages={['Success:請求書を作成しました。']} />
       )}
       <DocumentDetails register={register} />
       <ProductsTable register={register} control={control} />

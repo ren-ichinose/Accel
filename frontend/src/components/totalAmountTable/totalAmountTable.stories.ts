@@ -15,9 +15,9 @@ type Story = StoryObj<typeof TotalAmountTable>
 export const Default: Story = {
   args: {
     totalAmount: {
-      totalTaxExcludedPrice: '¥10,000,000',
-      totalTaxPrice: '¥940,000',
-      totalTaxIncludedPrice: '¥10,940,000',
+      totalTaxExcludedPrice: 10000000,
+      totalTaxPrice: 940000,
+      totalTaxIncludedPrice: 10940000,
     },
   },
 }

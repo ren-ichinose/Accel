@@ -31,7 +31,12 @@ export default function Button({
 }
 
 interface ButtonProps {
-  className?: 'button' | 'mainFootSubmit' | 'mainFootCancel' | 'authSubmid'
+  className?:
+    | 'button'
+    | 'mainFootSubmit'
+    | 'mainFootCancel'
+    | 'authSubmid'
+    | 'mainFootPrintInvoice'
   type: 'submit' | 'button'
   text: string
   onClick?: () => void

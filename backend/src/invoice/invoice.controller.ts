@@ -9,7 +9,6 @@ import {
 } from '@nestjs/common';
 import { User } from '@prisma/client';
 import UserAuthGuard from 'src/auth/guards/user.guard';
-import { Msg } from 'src/interfaces/main.interfaces';
 import { InvoiceService } from './invoice.service';
 import CreateInvoiceDto from './dto/create-invoice.dto';
 import { InvoiceResponse } from './interfaces/invoice.interface';
@@ -24,9 +23,13 @@ export class InvoiceController {
     @Body() dto: CreateInvoiceDto,
     @Param('business_id') businessId: string,
     @Req() { user }: { user: User },
-  ): Promise<Msg> {
-    const massage = await this.invoiceService.create(dto, user.id, businessId);
-    return massage;
+  ): Promise<InvoiceResponse> {
+    const invoiceData = await this.invoiceService.create(
+      dto,
+      user.id,
+      businessId,
+    );
+    return invoiceData;
   }
 
   @Get('/invoices/:invoice_id')

@@ -6,7 +6,7 @@ export interface InvoiceData {
   documentNumber?: string | null;
   customerName: string;
   customerTitle: string;
-  businessDetails?: string | null;
+  businessDetails: string;
   mSealsId?: string | null;
   notes?: string | null;
 }

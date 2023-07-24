@@ -7,14 +7,23 @@ export default function useMutateInvoice(reset: any) {
 
   const createInvoiceMutation = useMutation(
     async ({ businessId, formData }: { businessId: string; formData: any }) => {
-      await postData(
+      console.log(businessId)
+      const invoice: any = await postData(
         `${process.env.NEXT_PUBLIC_API_URL}/business/${businessId}/invoices`,
         formData
       )
+      return { businessId, invoice }
     },
     {
-      onSuccess: () => {
+      onSuccess: ({
+        businessId,
+        invoice,
+      }: {
+        businessId: string
+        invoice: any
+      }) => {
         reset()
+        router.push(`/${businessId}/invoices/${invoice.id}`)
       },
       onError: (err: any) => {
         if (err.status === 401 || err.status === 403) {

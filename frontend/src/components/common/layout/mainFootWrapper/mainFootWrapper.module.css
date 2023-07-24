@@ -11,10 +11,14 @@
 .container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   width: 320px;
   height: 96px;
   margin: 0 auto;
+}
+
+.container > button:nth-child(2) {
+  margin-left: auto;
 }
 
 @media screen and (1340px >= width) {
