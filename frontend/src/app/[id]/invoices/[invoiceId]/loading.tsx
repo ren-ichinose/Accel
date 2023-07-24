@@ -1,5 +1,5 @@
 import LoadingGrid from '@/components/common/molecules/loadingGrid/loadingGrid'
-import styles from './root.module.css'
+import styles from './invoiceDetail.module.css'
 
 export default function Loading() {
   return (

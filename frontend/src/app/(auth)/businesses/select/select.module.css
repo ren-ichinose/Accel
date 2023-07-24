@@ -2,18 +2,11 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100vw;
   height: 100vh;
-  padding-left: 180px;
   background-color: rgb(51 51 51 / 20%);
 }
 
-@media screen and (1340px >= width) {
-  .wrapper {
-    padding-left: 0;
-  }
-}

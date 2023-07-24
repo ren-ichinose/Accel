@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Motion from '@/components/common/layout/motion/motion'
 import { HiPencilAlt } from 'react-icons/hi'
-import styles from './welcome.module.css'
+import styles from './root.module.css'
 
 export default function Welcome() {
   return (

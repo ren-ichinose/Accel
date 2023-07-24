@@ -1,9 +1,11 @@
 'use client'
 
+import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import Button from '@/components/common/atoms/button/button'
 import Motion from '@/components/common/layout/motion/motion'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
+import LoadingGrid from '@/components/common/molecules/loadingGrid/loadingGrid'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
 import useQueryBusinessAll from '@/hooks/useQueryBusinessAll'
 import { Business, BussinesAuth } from '@/interfaces/main.interface'
@@ -13,10 +15,12 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import AuthFoot from '../../_components/auth/atoms/formFoot/authFoot'
 import AuthHead from '../../_components/auth/molecules/authHead/authHead'
+import styles from './register.module.css'
 
 export default function Register() {
   const router = useRouter()
   const { data: isNewBusinesses } = useQueryBusinessAll()
+  const [isLoading, setIsLoading] = useState(false)
 
   const errorScheme = yup.object().shape({
     businessName: yup.string().required('・ログインID: 入力必須'),
@@ -37,6 +41,7 @@ export default function Register() {
 
   const onSubmit = async (data: BussinesAuth) => {
     try {
+      setIsLoading(true)
       const business: Business = await postData(
         `${process.env.NEXT_PUBLIC_API_URL}/business`,
         data
@@ -45,8 +50,10 @@ export default function Register() {
       router.push(`/${business.id}`)
     } catch (error) {
       if (error instanceof Error) {
+        setIsLoading(false)
         throw new Error(error.message)
       }
+      setIsLoading(false)
       throw new Error('エラーが発生しました')
     }
   }
@@ -74,6 +81,11 @@ export default function Register() {
           />
         )}
       </form>
+      {isLoading && (
+        <div className={styles.wrapper}>
+          <LoadingGrid />
+        </div>
+      )}
     </Motion>
   )
 }

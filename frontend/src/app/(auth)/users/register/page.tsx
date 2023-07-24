@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import Button from '@/components/common/atoms/button/button'
 import Motion from '@/components/common/layout/motion/motion'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
+import LoadingGrid from '@/components/common/molecules/loadingGrid/loadingGrid'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
 import type { User } from '@/interfaces/main.interface'
 import postData from '@/utils/postData'
@@ -13,10 +14,12 @@ import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import AuthFoot from '../../_components/auth/atoms/formFoot/authFoot'
 import AuthHead from '../../_components/auth/molecules/authHead/authHead'
+import styles from './register.module.css'
 
 export default function Register() {
   const router = useRouter()
   const [serverErrors, setServerErrors] = useState<string[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const errorScheme = yup.object().shape({
     loginId: yup
@@ -40,11 +43,13 @@ export default function Register() {
 
   const onSubmit = async (data: User) => {
     try {
+      setIsLoading(true)
       await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/signup`, data)
       await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, data)
       reset()
       router.push('/businesses/register')
     } catch (error: any) {
+      setIsLoading(false)
       if (error.status === 403) setServerErrors([error.info.message])
     }
   }
@@ -88,6 +93,11 @@ export default function Register() {
         <Button className="authSubmid" type="submit" text="新規登録" />
         <AuthFoot href="/users/login" text="アカウントをお持ちの方はこちら" />
       </form>
+      {isLoading && (
+        <div className={styles.wrapper}>
+          <LoadingGrid />
+        </div>
+      )}
     </Motion>
   )
 }
