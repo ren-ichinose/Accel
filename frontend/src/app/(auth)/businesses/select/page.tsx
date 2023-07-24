@@ -13,6 +13,7 @@ import * as yup from 'yup'
 import AuthFoot from '../../_components/auth/atoms/formFoot/authFoot'
 import AuthHead from '../../_components/auth/molecules/authHead/authHead'
 import SelectBusiness from '../../_components/auth/molecules/selectBusiness/selectBusiness'
+import styles from './select.module.css'
 
 export default function Select() {
   const router = useRouter()
@@ -60,6 +61,8 @@ export default function Select() {
       </form>
     </Motion>
   ) : (
-    <LoadingGrid />
+    <div className={styles.wrapper}>
+      <LoadingGrid />
+    </div>
   )
 }

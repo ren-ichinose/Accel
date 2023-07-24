@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import CreateInvoiceFormContainer from '@/components/common/layout/createInvoiceFormContainer/createInvoiceFormContainer'
 import LoadingGrid from '@/components/common/molecules/loadingGrid/loadingGrid'
 import DocumentDetails from '@/components/documentDetails/organisms/documentDetails/documentDetails'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
@@ -12,6 +13,7 @@ import useMutateInvoice from '@/hooks/useMutateInvoice'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
+import styles from './createInvoiceForm.module.css'
 
 export default function CreateInvoiceForm({
   params,
@@ -137,17 +139,21 @@ export default function CreateInvoiceForm({
   }
 
   return isLoading ? (
-    <LoadingGrid />
+    <div className={styles.wrapper}>
+      <LoadingGrid />
+    </div>
   ) : (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      {Object.values(errors).length > 0 && (
-        <ErrorMassages errorMassages={createInvoiceErrorMessages()} />
-      )}
-      <DocumentDetails register={register} />
-      <ProductsTable register={register} control={control} />
-      <FinancialSummary control={control} />
-      <Notes register={register} />
-      <MainFoot cancelButtonOnClick={handeleCancel} />
-    </form>
+    <CreateInvoiceFormContainer>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        {Object.values(errors).length > 0 && (
+          <ErrorMassages errorMassages={createInvoiceErrorMessages()} />
+        )}
+        <DocumentDetails register={register} />
+        <ProductsTable register={register} control={control} />
+        <FinancialSummary control={control} />
+        <Notes register={register} />
+        <MainFoot cancelButtonOnClick={handeleCancel} />
+      </form>
+    </CreateInvoiceFormContainer>
   )
 }
