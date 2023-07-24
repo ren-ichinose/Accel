@@ -30,7 +30,7 @@ export default class CreateInvoiceDto {
 
   @IsNotEmpty()
   @IsString()
-  businessDetails?: string | null;
+  businessDetails: string;
 
   @IsOptional()
   @IsString()
