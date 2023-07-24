@@ -15,14 +15,14 @@ type Story = StoryObj<typeof TaxDetailsTable>
 export const Default: Story = {
   args: {
     taxDetails8: {
-      taxExcludedPrice: '¥3,000,000',
-      taxPrice: '¥240,000',
-      taxIncludedPrice: '¥3,240,000',
+      taxExcludedPrice: 3000000,
+      taxPrice: 240000,
+      taxIncludedPrice: 3240000,
     },
     taxDetails10: {
-      taxExcludedPrice: '¥7,000,000',
-      taxPrice: '700,000',
-      taxIncludedPrice: '7,700,000',
+      taxExcludedPrice: 7000000,
+      taxPrice: 700000,
+      taxIncludedPrice: 7700000,
     },
   },
 }
