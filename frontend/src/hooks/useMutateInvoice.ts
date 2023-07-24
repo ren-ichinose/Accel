@@ -7,7 +7,6 @@ export default function useMutateInvoice(reset: any) {
 
   const createInvoiceMutation = useMutation(
     async ({ businessId, formData }: { businessId: string; formData: any }) => {
-      console.log(businessId)
       const invoice: any = await postData(
         `${process.env.NEXT_PUBLIC_API_URL}/business/${businessId}/invoices`,
         formData
