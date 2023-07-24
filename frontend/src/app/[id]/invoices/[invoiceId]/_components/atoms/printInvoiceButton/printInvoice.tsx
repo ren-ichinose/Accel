@@ -9,12 +9,14 @@ import { PDFDocument, rgb } from 'pdf-lib'
 export default function PrintInvoiceButton({
   handleShow,
   handleUri,
+  invoiceId,
 }: {
   handleShow: () => void
   handleUri: (dataUri: string) => void
+  invoiceId: string
 }) {
   const queryClient: QueryClient = useQueryClient()
-  const invoiceData: any = queryClient.getQueryData(['invoice'])
+  const invoiceData: any = queryClient.getQueryData([`invoice_${invoiceId}`])
 
   const {
     invoiceProducts: invoiceProductsData,

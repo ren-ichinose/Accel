@@ -4,7 +4,11 @@ import { useState } from 'react'
 import PrintInvoiceModal from '../../atoms/printInvoiceModal/printInvoiceModal'
 import PrintInvoiceFoot from '../printInvoiceFoot/printInvoiceFoot'
 
-export default function PrintInvoiceFootAndModal() {
+export default function PrintInvoiceFootAndModal({
+  invoiceId,
+}: {
+  invoiceId: string
+}) {
   const [isShow, setIsShow] = useState<boolean>(false)
   const [uri, isUri] = useState<string | undefined>(undefined)
   const handleShow = () => {
@@ -20,7 +24,11 @@ export default function PrintInvoiceFootAndModal() {
   return (
     <div>
       <PrintInvoiceModal isShow={isShow} handleHide={handleHide} uri={uri} />
-      <PrintInvoiceFoot handleShow={handleShow} handleUri={handleUri} />
+      <PrintInvoiceFoot
+        handleShow={handleShow}
+        handleUri={handleUri}
+        invoiceId={invoiceId}
+      />
     </div>
   )
 }

@@ -12,7 +12,7 @@ export default function ShowInvoice({
     <Motion>
       <MainContentWrapper marginBottom="96px">
         <MainHead title="請求書の詳細" businessId={params.id} />
-        <PrintInvoiceFootAndModal />
+        <PrintInvoiceFootAndModal invoiceId={params.invoiceId} />
       </MainContentWrapper>
     </Motion>
   )

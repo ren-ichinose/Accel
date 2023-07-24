@@ -15,7 +15,7 @@ export default function useQueryInvoice(invoiceId: string) {
   }
 
   return useQuery<any, Error>({
-    queryKey: ['invoice'],
+    queryKey: [`invoice_${invoiceId}`],
     queryFn: () => getInvoice(invoiceId),
     onError: (err: any) => {
       if (err.status === 401 || err.status === 403) router.push('/users/login')
