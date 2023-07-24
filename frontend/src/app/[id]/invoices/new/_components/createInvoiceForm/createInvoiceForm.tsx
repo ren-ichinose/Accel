@@ -1,5 +1,7 @@
 'use client'
 
+import { useState } from 'react'
+import LoadingGrid from '@/components/common/molecules/loadingGrid/loadingGrid'
 import DocumentDetails from '@/components/documentDetails/organisms/documentDetails/documentDetails'
 import ErrorMassages from '@/components/errorMassages/errorMassages'
 import FinancialSummary from '@/components/financialSummary/financialSummary'
@@ -16,6 +18,7 @@ export default function CreateInvoiceForm({
 }: {
   params: { id: string }
 }) {
+  const [isLoading, setIsLoading] = useState(false)
   const errorScheme = yup.object().shape({
     documentIssueDate: yup
       .date()
@@ -97,6 +100,7 @@ export default function CreateInvoiceForm({
   const { createInvoiceMutation } = useMutateInvoice(reset)
 
   const onSubmit = (data: any) => {
+    setIsLoading(true)
     const invoiceProducts = data.invoiceProducts
       .map((product: any, index: any) => ({ itemOrder: index, ...product }))
       .filter((product: any) => product.productName)
@@ -132,7 +136,9 @@ export default function CreateInvoiceForm({
     if (window.confirm('入力内容をリセットしますか？')) reset()
   }
 
-  return (
+  return isLoading ? (
+    <LoadingGrid />
+  ) : (
     <form onSubmit={handleSubmit(onSubmit)}>
       {Object.values(errors).length > 0 && (
         <ErrorMassages errorMassages={createInvoiceErrorMessages()} />
