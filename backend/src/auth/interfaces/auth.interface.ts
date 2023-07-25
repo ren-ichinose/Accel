@@ -14,6 +14,4 @@ export interface Jwt {
 export interface Payload {
   sub: string;
   loginId: string;
-  businessId?: string;
-  businessName?: string;
 }

@@ -37,27 +37,6 @@ export interface FinancialData {
   totalAmount: TotalAmount
 }
 
-export interface IProduct {
-  itemOrder: string
-  transactionDate?: Date | null
-  productName?: string | null
-  quantity?: number | null
-  unit?: string | null
-  price?: number | null
-  taxClassification: number
-}
-
-export interface IInvoice {
-  documentIssueDate: Date
-  documentNumber: string
-  customerName: string
-  customerTitle: string
-  businessDetails: string
-  mSealsId?: string | null
-  notes?: string | null
-  invoiceProducts: IProduct[]
-}
-
 export interface InvoiceProduct {
   id: string
   itemOrder: number
