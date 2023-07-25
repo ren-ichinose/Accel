@@ -139,7 +139,8 @@ export default function PrintInvoiceButton({
       }
 
       if (
-        invoiceProduct.productName &&
+        (invoiceProduct.productName &&
+          invoiceProduct.taxClassification === 0) ||
         invoiceProduct.taxClassification === 2
       ) {
         firstPage.drawText(invoiceProduct.productName, {
