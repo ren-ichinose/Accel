@@ -32,23 +32,23 @@ export interface MSealResponse {
 export interface InvoiceProductResponse {
   id: string;
   itemOrder: number;
-  transactionDate?: Date;
+  transactionDate?: Date | null;
   productName: string;
-  quantity?: number;
-  unit?: string;
-  price?: Decimal;
+  quantity?: number | null;
+  unit?: string | null;
+  price?: Decimal | null;
   taxClassification: number;
 }
 
 export interface InvoiceResponse {
   id: string;
   businessId: string;
-  documentIssueDate: Date;
-  documentNumber: string;
+  documentIssueDate?: Date | null;
+  documentNumber?: string | null;
   customerName: string;
-  customerTitle?: string;
+  customerTitle: string;
   businessDetails: string;
-  notes?: string;
-  mSeals?: MSealResponse;
+  mSeals?: string | null;
+  notes?: string | null;
   invoiceProducts: InvoiceProductResponse[];
 }

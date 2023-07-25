@@ -10,12 +10,9 @@ export default function SelectBusiness({
   businessList,
 }: {
   register: UseFormRegister<{ businessId: string }>
-  control: Control<
-    {
-      businessId: string
-    },
-    any
-  >
+  control: Control<{
+    businessId: string
+  }>
   businessList: Business[]
 }) {
   const watchBusinessId = useWatch({ control, name: 'businessId' })

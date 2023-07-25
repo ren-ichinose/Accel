@@ -1,3 +1,4 @@
+import { UseFormRegister } from 'react-hook-form'
 import Input from '../../atoms/input/input'
 import styles from './inputWithLabel.module.css'
 
@@ -10,7 +11,7 @@ export default function InputWithLabel({
   height = '36px',
   marginRight = '0',
   marginBottom = '0',
-  register = '',
+  register = undefined,
   textAlign = 'left',
 }: InputWithLabelProps) {
   const labelStyles = {
@@ -45,6 +46,6 @@ interface InputWithLabelProps {
   height?: string
   marginRight?: string
   marginBottom?: string
-  register?: any
+  register?: UseFormRegister<any>
   textAlign?: string
 }

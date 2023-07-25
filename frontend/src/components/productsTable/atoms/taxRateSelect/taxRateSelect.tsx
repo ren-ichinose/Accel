@@ -1,3 +1,4 @@
+import { UseFormRegister } from 'react-hook-form'
 import styles from './taxRateSelect.module.css'
 
 export default function TaxRateSelect({
@@ -22,5 +23,5 @@ export default function TaxRateSelect({
 
 interface TaxRateSelectProps {
   itemOrder: number
-  register: any
+  register?: UseFormRegister<any>
 }

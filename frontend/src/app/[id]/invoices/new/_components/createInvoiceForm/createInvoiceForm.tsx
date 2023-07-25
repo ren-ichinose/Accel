@@ -10,6 +10,7 @@ import MainFoot from '@/components/mainFoot/mainFoot'
 import Notes from '@/components/notes/notes'
 import ProductsTable from '@/components/productsTable/organisms/productsTable/productsTable'
 import useMutateInvoice from '@/hooks/useMutateInvoice'
+import type { CreateInvoice } from '@/interfaces/main.interface'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -21,7 +22,7 @@ export default function CreateInvoiceForm({
   params: { id: string }
 }) {
   const [isLoading, setIsLoading] = useState(false)
-  const errorScheme = yup.object().shape({
+  const errorScheme: yup.ObjectSchema<CreateInvoice> = yup.object().shape({
     documentIssueDate: yup
       .date()
       .nullable()
@@ -43,49 +44,56 @@ export default function CreateInvoiceForm({
       .string()
       .nullable()
       .transform((curr, origin) => (origin === '' ? null : curr)),
-    invoiceProducts: yup.array().of(
-      yup.object().shape({
-        transactionDate: yup
-          .date()
-          .nullable()
-          .transform((curr, origin) => (origin === '' ? null : curr)),
-        productName: yup
-          .string()
-          .nullable()
-          .when(['transactionDate', 'quantity', 'unit', 'price'], {
-            is: (
-              transactionDate: Date,
-              quantity: number,
-              unit: string,
-              price: number
-            ) => transactionDate || quantity || unit || price,
-            then: (schema) => schema.required(),
-            otherwise: (schema) =>
-              schema.transform((curr, origin) => (origin === '' ? null : curr)),
-          }),
-        quantity: yup
-          .number()
-          .nullable()
-          .when(['price'], {
-            is: (price: number) => {
-              if (price === null) return false
-              return true
-            },
-            then: (schema) => schema.required(),
-            otherwise: (schema) =>
-              schema.transform((curr, origin) => (origin === '' ? null : curr)),
-          }),
-        unit: yup
-          .string()
-          .nullable()
-          .transform((curr, origin) => (origin === '' ? null : curr)),
-        price: yup
-          .number()
-          .nullable()
-          .transform((curr, origin) => (origin === '' ? null : curr)),
-        taxClassification: yup.number().required(),
-      })
-    ),
+    invoiceProducts: yup
+      .array()
+      .of(
+        yup.object().shape({
+          transactionDate: yup
+            .date()
+            .nullable()
+            .transform((curr, origin) => (origin === '' ? null : curr)),
+          productName: yup
+            .string()
+            .nullable()
+            .when(['transactionDate', 'quantity', 'unit', 'price'], {
+              is: (
+                transactionDate: Date,
+                quantity: number,
+                unit: string,
+                price: number
+              ) => transactionDate || quantity || unit || price,
+              then: (schema) => schema.required(),
+              otherwise: (schema) =>
+                schema.transform((curr, origin) =>
+                  origin === '' ? null : curr
+                ),
+            }),
+          quantity: yup
+            .number()
+            .nullable()
+            .when(['price'], {
+              is: (price: number) => {
+                if (price === null) return false
+                return true
+              },
+              then: (schema) => schema.required(),
+              otherwise: (schema) =>
+                schema.transform((curr, origin) =>
+                  origin === '' ? null : curr
+                ),
+            }),
+          unit: yup
+            .string()
+            .nullable()
+            .transform((curr, origin) => (origin === '' ? null : curr)),
+          price: yup
+            .number()
+            .nullable()
+            .transform((curr, origin) => (origin === '' ? null : curr)),
+          taxClassification: yup.number().required(),
+        })
+      )
+      .required(), // 請求明細が空の場合、エラーを出す項目を追加した。,
   })
 
   const {
@@ -94,18 +102,18 @@ export default function CreateInvoiceForm({
     reset,
     control,
     formState: { errors },
-  } = useForm({
+  } = useForm<CreateInvoice>({
     resolver: yupResolver(errorScheme),
     defaultValues: { customerTitle: '御中' },
   })
 
   const { createInvoiceMutation } = useMutateInvoice(reset)
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data: CreateInvoice) => {
     setIsLoading(true)
     const invoiceProducts = data.invoiceProducts
-      .map((product: any, index: any) => ({ itemOrder: index, ...product }))
-      .filter((product: any) => product.productName)
+      .map((product, index) => ({ itemOrder: index, ...product }))
+      .filter((product) => product.productName)
     const newData = { ...data, invoiceProducts }
     createInvoiceMutation.mutate({
       businessId: params.id,

@@ -1,3 +1,4 @@
+import { UseFormRegister } from 'react-hook-form'
 import Textarea from '../../atoms/textarea/textarea'
 import styles from './textareaWithLabel.module.css'
 
@@ -9,7 +10,7 @@ export default function TextareaWithLabel({
   height = '128px',
   marginRight = '0',
   marginBottom = '0',
-  register = '',
+  register = undefined,
 }: TextareaWithLabelProps) {
   const labelStyles = {
     width,
@@ -41,5 +42,5 @@ interface TextareaWithLabelProps {
   height?: string
   marginRight?: string
   marginBottom?: string
-  register?: any
+  register?: UseFormRegister<any>
 }

@@ -1,13 +1,21 @@
 import { useRouter } from 'next/navigation'
+import type { CreateInvoice, Invoice } from '@/interfaces/main.interface'
 import postData from '@/utils/postData'
 import { useMutation } from '@tanstack/react-query'
+import { UseFormReset } from 'react-hook-form'
 
-export default function useMutateInvoice(reset: any) {
+export default function useMutateInvoice(reset: UseFormReset<CreateInvoice>) {
   const router = useRouter()
 
   const createInvoiceMutation = useMutation(
-    async ({ businessId, formData }: { businessId: string; formData: any }) => {
-      const invoice: any = await postData(
+    async ({
+      businessId,
+      formData,
+    }: {
+      businessId: string
+      formData: CreateInvoice
+    }) => {
+      const invoice: Invoice = await postData(
         `${process.env.NEXT_PUBLIC_API_URL}/business/${businessId}/invoices`,
         formData
       )
@@ -19,7 +27,7 @@ export default function useMutateInvoice(reset: any) {
         invoice,
       }: {
         businessId: string
-        invoice: any
+        invoice: Invoice
       }) => {
         reset()
         router.push(`/${businessId}/invoices/${invoice.id}`)
