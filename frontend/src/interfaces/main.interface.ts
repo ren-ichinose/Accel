@@ -57,3 +57,27 @@ export interface IInvoice {
   notes?: string | null
   invoiceProducts: IProduct[]
 }
+
+export interface InvoiceProduct {
+  id: string
+  itemOrder: number
+  transactionDate?: Date | null
+  productName: string
+  quantity?: number | null
+  unit?: string | null
+  price?: number | null
+  taxClassification: number
+}
+
+export interface Invoice {
+  id: string
+  businessId: string
+  documentIssueDate?: Date | null
+  documentNumber?: string | null
+  customerName: string
+  customerTitle: string
+  businessDetails: string
+  mSeals?: string | null
+  notes?: string | null
+  invoiceProducts: InvoiceProduct[]
+}

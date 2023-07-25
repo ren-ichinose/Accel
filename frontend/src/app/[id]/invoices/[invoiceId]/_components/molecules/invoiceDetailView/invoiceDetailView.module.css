@@ -1,0 +1,107 @@
+.container {
+  height: 100%;
+  overflow: auto;
+}
+
+.container p {
+  line-height: 1.75;
+}
+
+.container h4 {
+  font-weight: 500;
+}
+
+.contentTitle {
+  padding: 0.5em;
+  font-size: 28px;
+  border-left: solid 3px var(--accent-color);
+}
+
+.itemsTitle {
+  margin-bottom: 12px;
+}
+
+.itemsTitleIcon {
+  margin-right: 8px;
+  font-size: 24px;
+}
+
+.itemContainer {
+  padding: 32px;
+  border-bottom: 1px solid var(--light-dark-color);
+}
+
+.itemContainer:last-child {
+  padding: 32px;
+  border-bottom: none;
+}
+
+.itemTitleContainer {
+  display: flex;
+}
+
+.itemTitle {
+  width: 120px;
+}
+
+.productItemsContainer {
+  margin-bottom: 8px;
+}
+
+.productItemContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.productItemContainer:last-child {
+  font-size: 14px;
+  color: var(--light-dark-color);
+}
+
+/* テーブル共通 */
+.itemContainer td {
+  padding: 0 16px;
+}
+
+/* 合計テーブル */
+.totalAmountTable th {
+  width: 120px;
+  font-weight: normal;
+}
+
+.totalAmountTable td {
+  text-align: right;
+}
+
+/* 税率別内訳テーブル */
+
+.taxDetailsTable tbody th {
+  width: 160px;
+  font-weight: normal;
+}
+
+.taxDetailsTable tbody td {
+  text-align: right;
+}
+
+
+/* テーブル共通 */
+.itemContainer table {
+  letter-spacing: 0.15em;
+}
+
+.itemContainer tr {
+  line-height: 1.75;
+}
+
+.itemContainer thead th {
+  padding-bottom: 4px;
+  font-weight: normal;
+  text-align: center;
+  border-bottom: 1px solid var(--light-dark-color);
+}
+
+.itemContainer tr:first-child td,
+.itemContainer tr:first-child th {
+  padding-top: 8px;
+}
