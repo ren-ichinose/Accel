@@ -1,10 +1,15 @@
+import { CreateInvoice } from '@/interfaces/main.interface'
 import getFinancialData from '@/utils/getFinancialData'
-import { useWatch } from 'react-hook-form'
+import { Control, useWatch } from 'react-hook-form'
 import TaxDetailsTable from '../taxDetailsTable/organisms/taxDetailsTable/taxDetailsTable'
 import TotalAmountTable from '../totalAmountTable/totalAmountTable'
 import styles from './financialSummary.module.css'
 
-export default function FinancialSummary({ control }: { control: any }) {
+export default function FinancialSummary({
+  control,
+}: {
+  control: Control<CreateInvoice>
+}) {
   const watchProducts = useWatch({ control, name: 'invoiceProducts' })
 
   const { taxDetails10, taxDetails8, taxDetails0, totalAmount } =

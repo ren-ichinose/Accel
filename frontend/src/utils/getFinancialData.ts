@@ -1,39 +1,48 @@
-import {
+import type {
+  CreateInvoiceProduct,
   FinancialData,
+  InvoiceProduct,
   TaxDetailsAll,
   TotalAmount,
 } from '@/interfaces/main.interface'
 
-const calculateTaxDetails = (productsData: any): TaxDetailsAll => {
-  const taxExcludedPrice10 = productsData.reduce((acc: number, cur: any) => {
+const calculateTaxDetails = (
+  productsData: CreateInvoiceProduct[]
+): TaxDetailsAll => {
+  const taxExcludedPrice10 = productsData.reduce((acc: number, cur) => {
+    if (!cur.price || !cur.quantity) return acc
     if (Number(cur.taxClassification) === 2) {
       return acc + cur.price * cur.quantity
     }
     return acc
   }, 0)
 
-  const taxPrice10 = productsData?.reduce((acc: number, cur: any) => {
+  const taxPrice10 = productsData?.reduce((acc: number, cur) => {
+    if (!cur.price || !cur.quantity) return acc
     if (Number(cur.taxClassification) === 2) {
       return acc + cur.price * cur.quantity * 0.1
     }
     return acc
   }, 0)
 
-  const taxExcludedPrice8 = productsData?.reduce((acc: number, cur: any) => {
+  const taxExcludedPrice8 = productsData?.reduce((acc: number, cur) => {
+    if (!cur.price || !cur.quantity) return acc
     if (Number(cur.taxClassification) === 1) {
       return acc + cur.price * cur.quantity
     }
     return acc
   }, 0)
 
-  const taxPrice8 = productsData?.reduce((acc: number, cur: any) => {
+  const taxPrice8 = productsData?.reduce((acc: number, cur) => {
+    if (!cur.price || !cur.quantity) return acc
     if (Number(cur.taxClassification) === 1) {
       return acc + cur.price * cur.quantity * 0.08
     }
     return acc
   }, 0)
 
-  const taxExcludedPrice0 = productsData?.reduce((acc: number, cur: any) => {
+  const taxExcludedPrice0 = productsData?.reduce((acc: number, cur) => {
+    if (!cur.price || !cur.quantity) return acc
     if (Number(cur.taxClassification) === 0) {
       return acc + cur.price * cur.quantity
     }
@@ -61,7 +70,9 @@ const calculateTaxDetails = (productsData: any): TaxDetailsAll => {
   return taxDetails
 }
 
-const calculateTotalAmount = (productsData: any): TotalAmount => {
+const calculateTotalAmount = (
+  productsData: CreateInvoiceProduct[] | InvoiceProduct[]
+): TotalAmount => {
   const taxDetails = calculateTaxDetails(productsData)
   const totalAmount = {
     totalTaxExcludedPrice:
@@ -78,7 +89,9 @@ const calculateTotalAmount = (productsData: any): TotalAmount => {
   return totalAmount
 }
 
-export default function getFinancialData(productsData: any): FinancialData {
+export default function getFinancialData(
+  productsData: CreateInvoiceProduct[] | InvoiceProduct[]
+): FinancialData {
   if (!productsData) {
     const financialDataZero = {
       taxDetails10: {

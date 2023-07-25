@@ -81,3 +81,23 @@ export interface Invoice {
   notes?: string | null
   invoiceProducts: InvoiceProduct[]
 }
+
+export interface CreateInvoiceProduct {
+  transactionDate?: Date | null
+  productName?: string | null
+  quantity?: number | null
+  unit?: string | null
+  price?: number | null
+  taxClassification: number
+}
+
+export interface CreateInvoice {
+  documentIssueDate?: Date | null
+  documentNumber?: string | null
+  customerName: string
+  customerTitle: string
+  businessDetails: string
+  mSealsId?: string | null
+  notes?: string | null
+  invoiceProducts: CreateInvoiceProduct[]
+}

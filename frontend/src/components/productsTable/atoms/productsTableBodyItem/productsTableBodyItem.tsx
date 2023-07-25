@@ -1,3 +1,4 @@
+import type { UseFormRegister } from 'react-hook-form'
 import styles from './productsTableBodyItem.module.css'
 
 export default function ProductsTableBodyItem({
@@ -25,6 +26,6 @@ interface ProductsTableBodyItemProps {
   textAlign?: 'left' | 'right' | 'center'
   itemOrder: number
   columnName: string
-  register: any
+  register: UseFormRegister<any>
   type?: string
 }

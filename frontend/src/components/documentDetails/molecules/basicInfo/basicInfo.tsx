@@ -1,8 +1,14 @@
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
+import { CreateInvoice } from '@/interfaces/main.interface'
+import { UseFormRegister } from 'react-hook-form'
 import DocumentDetailsTitle from '../../atoms/documentDetailsTitle/documentDetailsTitle'
 import styles from './basicInfo.module.css'
 
-export default function BasicInfo({ register }: { register: any }) {
+export default function BasicInfo({
+  register,
+}: {
+  register: UseFormRegister<CreateInvoice>
+}) {
   const InputWithLabels = [
     {
       title: '発行日',

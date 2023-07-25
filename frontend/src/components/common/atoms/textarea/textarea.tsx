@@ -1,3 +1,4 @@
+import { UseFormRegister } from 'react-hook-form'
 import styles from './textarea.module.css'
 
 export default function Textarea({
@@ -6,7 +7,7 @@ export default function Textarea({
   width = '100%',
   height = '128px',
   marginBottom = '0',
-  register = '',
+  register = undefined,
 }: TextareaProps) {
   const textareaStyles = {
     width,
@@ -32,5 +33,5 @@ interface TextareaProps {
   width?: string
   height?: string
   marginBottom?: string
-  register?: any
+  register?: UseFormRegister<any>
 }

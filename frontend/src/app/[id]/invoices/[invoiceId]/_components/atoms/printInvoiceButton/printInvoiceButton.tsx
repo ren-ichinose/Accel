@@ -1,4 +1,5 @@
 import Button from '@/components/common/atoms/button/button'
+import { Invoice } from '@/interfaces/main.interface'
 import formatDate from '@/utils/formatDate'
 import formatToJPY from '@/utils/formatToJPY'
 import getFinancialData from '@/utils/getFinancialData'
@@ -16,7 +17,10 @@ export default function PrintInvoiceButton({
   invoiceId: string
 }) {
   const queryClient: QueryClient = useQueryClient()
-  const invoiceData: any = queryClient.getQueryData([`invoice_${invoiceId}`])
+  const invoiceData = queryClient.getQueryData<Invoice>([
+    `invoice_${invoiceId}`,
+  ])
+  if (!invoiceData) return null
 
   const {
     invoiceProducts: invoiceProductsData,
@@ -89,7 +93,7 @@ export default function PrintInvoiceButton({
       invoiceWithoutProductsData.businessDetails.split('\n')
     const longestLine = businessDetailsArray
       .slice()
-      .sort((a: any, b: any) => b.length - a.length)
+      .sort((a: string, b: string) => b.length - a.length)
     const businessDetailsLineHeight = 10.1
     const businessDetailsWidth = fontData.widthOfTextAtSize(
       longestLine[0],
@@ -99,7 +103,7 @@ export default function PrintInvoiceButton({
       597.5 + (businessDetailsArray.length - 1) * businessDetailsLineHeight
     const startingX = 542 - (businessDetailsWidth + 16)
 
-    businessDetailsArray.forEach((line: any, index: any) => {
+    businessDetailsArray.forEach((line: string, index: number) => {
       firstPage.drawText(line, {
         x: startingX,
         y: startingY - index * businessDetailsLineHeight,
@@ -124,7 +128,7 @@ export default function PrintInvoiceButton({
 
     // Invoice Products
     const invoiceProductsLineHeight = 22.9
-    invoiceProductsData.forEach((invoiceProduct: any, index: any) => {
+    invoiceProductsData.forEach((invoiceProduct, index) => {
       if (invoiceProduct.transactionDate) {
         const formattedTransactionDate = formatDate(
           invoiceProduct.transactionDate
@@ -194,20 +198,22 @@ export default function PrintInvoiceButton({
         })
       }
 
-      const formattedProductTotalPrice = formatToJPY(
-        invoiceProduct.price * invoiceProduct.quantity
-      )
-      const taxWidth = fontData.widthOfTextAtSize(
-        formattedProductTotalPrice,
-        fontSize
-      )
-      firstPage.drawText(formattedProductTotalPrice, {
-        x: 540 - taxWidth,
-        y: 536.5 - index * invoiceProductsLineHeight,
-        size: fontSize,
-        font: fontData,
-        color: rgb(0.2, 0.2, 0.2),
-      })
+      if (invoiceProduct.price && invoiceProduct.quantity) {
+        const formattedProductTotalPrice = formatToJPY(
+          invoiceProduct.price * invoiceProduct.quantity
+        )
+        const taxWidth = fontData.widthOfTextAtSize(
+          formattedProductTotalPrice,
+          fontSize
+        )
+        firstPage.drawText(formattedProductTotalPrice, {
+          x: 540 - taxWidth,
+          y: 536.5 - index * invoiceProductsLineHeight,
+          size: fontSize,
+          font: fontData,
+          color: rgb(0.2, 0.2, 0.2),
+        })
+      }
     })
 
     // Tax Details
@@ -334,7 +340,7 @@ export default function PrintInvoiceButton({
 
     // note
     if (invoiceWithoutProductsData.notes)
-      firstPage.drawText(invoiceData.notes, {
+      firstPage.drawText(invoiceWithoutProductsData.notes, {
         x: 55,
         y: 130,
         size: fontSize,
