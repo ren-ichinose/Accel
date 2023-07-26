@@ -49,7 +49,7 @@ https://ren-app.jp/
 
 ## システム構成図
 
-![システム構成図](/docs/img/system-architecture/system-architecture.png)
+![システム構成図](/docs/img/system-architecture/system-architecture_1.1.png)
 
 ## ER図
 
