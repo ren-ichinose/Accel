@@ -9,7 +9,7 @@
 ※4 フェーズ1とは、本プロダクトの開発における第1段階のことを指します。詳細はHOW（どのように課題を解決するのか）をご覧ください。
 
 ### システム構成図
-![システム構成図](./img/system-architecture/system-architecture.png)
+![システム構成図](./img/system-architecture/system-architecture_1.1.png)
 
 ### 技術スタック
 | Category          | Technology Stack                                     |
@@ -606,7 +606,7 @@
 <details>
 <summary><h3>システム構成図</3></summary>　　
 
-![システム構成図](./img/system-architecture/system-architecture.png)
+![システム構成図](./img/system-architecture/system-architecture_1.1.png)
 
 </details>
 
@@ -772,7 +772,7 @@
 <details>
 <summary><h3>システム構成図</3></summary>　　
 
-![システム構成図](./img/system-architecture/system-architecture.png)
+![システム構成図](./img/system-architecture/system-architecture_1.1.png)
 
 </details>
 
