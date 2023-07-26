@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  padding: 4vw;
+  padding: 16vw;
 }
 
 .contentWrapper {
@@ -50,6 +50,8 @@
 
 .message {
   margin-bottom: 2.5vw;
-  font-size: 1.5vw;
+  font-size: 1.25vw;
+  line-height: 1.5;
+  text-align: center;
   letter-spacing: 0.125em;
 }

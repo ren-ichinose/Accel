@@ -13,8 +13,7 @@
 }
 
 .welcomeLogin:hover {
-  color: rgb(21 63 79 / 70%);
-  border: 0.2vw solid var(--accent-color);
+  opacity: 0.5;
   transition: 0.2s;
 }
 
