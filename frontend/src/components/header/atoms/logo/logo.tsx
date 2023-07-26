@@ -7,7 +7,7 @@ export default function Logo() {
       <span className={styles.icon}>
         <HiLightningBolt />
       </span>
-      MyApp
+      Accel
     </h1>
   )
 }
