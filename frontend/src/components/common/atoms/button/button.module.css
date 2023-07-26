@@ -3,6 +3,34 @@
   border-radius: 5px;
 }
 
+.welcomeLogin {
+  width: 48%;
+  height: 3.75vw;
+  font-size: 1.2vw;
+  color: var(--main-color);
+  border: 0.2vw solid var(--main-color);
+  transition: 0.2s;
+}
+
+.welcomeLogin:hover {
+  opacity: 0.5;
+  transition: 0.2s;
+}
+
+.welcomeSignup {
+  width: 48%;
+  height: 3.75vw;
+  font-size: 1.2vw;
+  color: #fff;
+  background-color: var(--main-color);
+  transition: 0.2s;
+}
+
+.welcomeSignup:hover {
+  opacity: 0.75;
+  transition: 0.2s;
+}
+
 .mainFootSubmit {
   width: 128px;
   height: 48px;

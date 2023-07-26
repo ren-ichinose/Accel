@@ -33,6 +33,8 @@ export default function Button({
 interface ButtonProps {
   className?:
     | 'button'
+    | 'welcomeLogin'
+    | 'welcomeSignup'
     | 'mainFootSubmit'
     | 'mainFootCancel'
     | 'authSubmid'

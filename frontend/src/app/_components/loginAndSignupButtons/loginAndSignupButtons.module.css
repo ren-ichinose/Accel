@@ -1,0 +1,21 @@
+.buttonWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.5vw;
+}
+
+.link {
+  font-size: 1vw;
+  transition: 0.1s;
+}
+
+.link:hover {
+  opacity: 0.6;
+  transition: 0.1s;
+}
+
+.iconPencil {
+  margin-left: 4px;
+  font-size: 1.25vw;
+}

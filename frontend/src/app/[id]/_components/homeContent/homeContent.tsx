@@ -5,7 +5,7 @@ import styles from './homeContent.module.css'
 export default function HomeContent({ businessId }: { businessId: string }) {
   return (
     <div className={styles.wrapper}>
-      <p>Wellcome to MyApp !</p>
+      <p>Wellcome to Accel</p>
       <Link href={`${businessId}/invoices/new`} className={styles.link}>
         Create Invoices Here
         <span className={styles.iconPencil}>

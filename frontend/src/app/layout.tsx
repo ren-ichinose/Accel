@@ -10,9 +10,9 @@ const notoSansJp = Noto_Sans_JP({
 })
 
 export const metadata = {
-  title: 'my-first-app',
+  title: 'Accel',
   description:
-    '取引書類の作成業務から経理・会計業務までを一元管理できる、統合的なソリューションを提供します。',
+    'インボイス制度に対応した請求書をWeb上で作成・発行できるサービスです。',
 }
 
 export default function RootLayout({
