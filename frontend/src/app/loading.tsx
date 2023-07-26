@@ -3,7 +3,7 @@ import styles from './root.module.css'
 
 export default function Loading() {
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.loadingWrapper}>
       <LoadingGrid />
     </div>
   )
