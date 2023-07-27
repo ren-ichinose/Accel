@@ -18,7 +18,7 @@ export default function Layout({
 }) {
   return (
     <QueryBusiness businessId={params.id}>
-      <Header busunessId={params.id} />
+      <Header businessId={params.id} />
       <FixedElementOffset>{children}</FixedElementOffset>
     </QueryBusiness>
   )

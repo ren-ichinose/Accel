@@ -3,13 +3,13 @@ import Logo from '../../atoms/logo/logo'
 import HeaderNavList from '../../molecules/headerNavList/headerNavList'
 import styles from './header.module.css'
 
-export default function Header({ busunessId }: { busunessId: string }) {
+export default function Header({ businessId }: { businessId: string }) {
   return (
     <header className={styles.container}>
       <Logo />
       <HiMenu className={styles.menuIcon} />
       <div className={styles.navModal}>
-        <HeaderNavList busunessId={busunessId} />
+        <HeaderNavList businessId={businessId} />
       </div>
     </header>
   )

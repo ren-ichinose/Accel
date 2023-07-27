@@ -1,0 +1,16 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: calc(100vh - 73px - 96px - 48px - 48px);
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  padding: 48px;
+  background-color: #fff;
+  border-radius: 16px;
+  box-shadow: 0 1px 7px 2px rgb(0 0 0 / 20%);
+}

@@ -1,7 +1,7 @@
 import styles from './button.module.css'
 
 export default function Button({
-  className = 'button',
+  className = 'default',
   type,
   text,
   onClick,
@@ -33,6 +33,7 @@ export default function Button({
 interface ButtonProps {
   className?:
     | 'button'
+    | 'default'
     | 'welcomeLogin'
     | 'welcomeSignup'
     | 'mainFootSubmit'
