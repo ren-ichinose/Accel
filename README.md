@@ -1,10 +1,12 @@
-# Accel
-
 ![ヘッダー画像](/docs/img/header/header.png)
+
+<br />
 
 ## サービスのURL
 
 https://ren-app.jp/
+
+<br />
 
 ## サービスへの想い
 
@@ -13,8 +15,12 @@ https://ren-app.jp/
 現在は請求書の作成・発行機能のみですが、段階的な機能追加を重ね、見積書・発注書・納品書などの取引書類の作成業務から、  
 お金や取引の流れに関わる経理・会計業務までを一元管理できる、統合的なソリューションの実現を目指しています。
 
+<br />
+
 ## アプリケーションのイメージ
 ![アプリケーションのイメージ](/docs/img/app-view/app-view.gif)
+
+<br />
 
 ## 機能一覧
 | トップ画面 |　ログイン画面 |
@@ -32,6 +38,7 @@ https://ren-app.jp/
 | ![請求書詳細画面](/docs/img/app-view/invoice-detail.png) | ![　PDF出力画面](/docs/img/app-view/print-invoice.png) |
 | 請求書データの表示機能を実装しました。 | PDFでの請求書発行機能を実装しました。 |
 
+<br />
 
 ## 使用技術
 
@@ -47,13 +54,19 @@ https://ren-app.jp/
 | Design            | Figma, Lucid                                         |
 | etc.              | Stylelint, ESLint, Prettier, Husky Jest, Git, GitHub |
 
+<br />
+
 ## システム構成図
 
 ![システム構成図](/docs/img/system-architecture/system-architecture_1.1.png)
 
+<br />
+
 ## ER図
 
 ![ER図](/docs/img/entity-relationship-diagram/entity-relationship-diagram_1.5.png)
+
+<br />
 
 ## 今後の展望
 
