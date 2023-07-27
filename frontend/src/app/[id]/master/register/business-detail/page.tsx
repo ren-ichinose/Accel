@@ -1,6 +1,5 @@
-import React from 'react'
-import Motion from '@/components/common/layout/motion/motion'
-import MainHead from '@/components/mainHead/organisms/mainHead/mainHead'
+import MasterRegisterMainContentWrapper from '../../_components/molecules/masterRegisterMainContentWrapper/masterRegisterMainContentWrapper'
+import BusinessDetailForm from './_components/businessDetailForm/businessDetailForm'
 
 export default function MasterBusinessDetail({
   params,
@@ -8,9 +7,11 @@ export default function MasterBusinessDetail({
   params: { id: string }
 }) {
   return (
-    <Motion>
-      <MainHead title="事業者情報マスタの登録" businessId={params.id} />
-      <div>MasterBusinessDetail</div>
-    </Motion>
+    <MasterRegisterMainContentWrapper
+      businessId={params.id}
+      title="事業者情報の登録"
+    >
+      <BusinessDetailForm />
+    </MasterRegisterMainContentWrapper>
   )
 }
