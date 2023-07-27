@@ -110,7 +110,7 @@ model MBusinessDetail {
   id String @db.VarChar(36) @default(uuid()) @id
   businessId String @db.VarChar(36)
   name String @db.VarChar(50)
-  business_detail String @db.VarChar(510)
+  businessDetail String @db.VarChar(510)
   selectFlag Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

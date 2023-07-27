@@ -5,6 +5,7 @@ import {
 } from '@nestjs/common';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { Invoice, Prisma } from '@prisma/client';
+import { BusinessService } from 'src/business/business.service';
 import CreateInvoiceDto from './dto/create-invoice.dto';
 import {
   InvoiceData,
@@ -15,7 +16,10 @@ import {
 
 @Injectable()
 export class InvoiceService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly businessService: BusinessService,
+  ) {}
 
   async create(
     dto: CreateInvoiceDto,
@@ -24,7 +28,10 @@ export class InvoiceService {
   ): Promise<InvoiceResponse> {
     const { invoiceProducts, ...invoice } = dto;
 
-    const isMember = await this.checkBusinessMembership(businessId, userId);
+    const isMember = await this.businessService.checkBusinessMembership(
+      businessId,
+      userId,
+    );
     if (!isMember) throw new ForbiddenException('アクセス権限がありません');
 
     try {
@@ -85,25 +92,13 @@ export class InvoiceService {
     if (!findedIvoice)
       throw new BadRequestException('請求書が見つかりませんでした');
 
-    const isMember = await this.checkBusinessMembership(
+    const isMember = await this.businessService.checkBusinessMembership(
       findedIvoice.businessId,
       userId,
     );
     if (!isMember) throw new ForbiddenException('アクセス権限がありません');
 
     return findedIvoice;
-  }
-
-  private async checkBusinessMembership(
-    businessId: string,
-    userId: string,
-  ): Promise<boolean> {
-    const businessMenberShips = await this.prisma.businessMembership.findMany({
-      where: { businessId },
-    });
-    return businessMenberShips.some(
-      (membership) => membership.userId === userId,
-    );
   }
 
   private createInvoice(invoiceData: InvoiceData): Promise<Invoice> {
