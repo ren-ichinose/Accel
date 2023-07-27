@@ -56,4 +56,16 @@ export class BusinessService {
       throw new ForbiddenException('事業者IDを確認してください。');
     }
   }
+
+  async checkBusinessMembership(
+    businessId: string,
+    userId: string,
+  ): Promise<boolean> {
+    const businessMenberShips = await this.prisma.businessMembership.findMany({
+      where: { businessId },
+    });
+    return businessMenberShips.some(
+      (membership) => membership.userId === userId,
+    );
+  }
 }

@@ -34,6 +34,7 @@ model Business {
   businessMemberships BusinessMembership[]
   invoices Invoice[]
   mSeals MSeal[]
+  mBusinessDetails MBusinessDetail[]
 
   @@map("businesses")
 }
@@ -103,4 +104,18 @@ model MSeal {
   business Business @relation(fields: [businessId], references: [id])
 
   @@map("m_seals")
+}
+
+model MBusinessDetail {
+  id String @db.VarChar(36) @default(uuid()) @id
+  businessId String @db.VarChar(36)
+  name String @db.VarChar(50)
+  businessDetail String @db.VarChar(510)
+  selectFlag Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id])
+
+  @@map("m_business_details")
 }
