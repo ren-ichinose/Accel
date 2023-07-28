@@ -1,0 +1,7 @@
+.container {
+  padding: 24px 12px;
+  margin-bottom: 32px;
+  line-height: 1.5;
+  background-color: var(--background-main-color);
+  border-radius: 5px;
+}

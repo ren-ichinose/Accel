@@ -11,7 +11,7 @@ export default function MasterBusinessDetail({
       businessId={params.id}
       title="事業者情報の登録"
     >
-      <BusinessDetailForm />
+      <BusinessDetailForm businessId={params.id} />
     </MasterRegisterMainContentWrapper>
   )
 }
