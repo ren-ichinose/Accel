@@ -1,6 +1,6 @@
+import { Control, useWatch } from 'react-hook-form'
 import { CreateInvoice } from '@/interfaces/main.interface'
 import getFinancialData from '@/utils/getFinancialData'
-import { Control, useWatch } from 'react-hook-form'
 import TaxDetailsTable from '../taxDetailsTable/organisms/taxDetailsTable/taxDetailsTable'
 import TotalAmountTable from '../totalAmountTable/totalAmountTable'
 import styles from './financialSummary.module.css'

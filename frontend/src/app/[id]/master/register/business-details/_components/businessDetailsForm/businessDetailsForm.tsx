@@ -1,6 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
 import Motion from '@/components/common/layout/motion/motion'
 import ErrorMassages from '@/components/common/molecules/errorMassages/errorMassages'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
@@ -9,9 +12,6 @@ import SuccessMassages from '@/components/common/molecules/successMassages/succe
 import TextareaWithLabel from '@/components/common/molecules/textareaWithLabel/textareaWithLabel'
 import MainFoot from '@/components/mainFoot/mainFoot'
 import postData from '@/utils/postData'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
 import styles from './businessDetailsForm.module.css'
 
 interface BusinessDetails {

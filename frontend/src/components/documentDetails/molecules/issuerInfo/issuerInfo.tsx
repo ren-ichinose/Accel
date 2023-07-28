@@ -1,8 +1,8 @@
 'use client'
 
+import type { UseFormRegister, UseFormSetValue } from 'react-hook-form'
 import TextareaWithLabel from '@/components/common/molecules/textareaWithLabel/textareaWithLabel'
 import type { CreateInvoice } from '@/interfaces/main.interface'
-import type { UseFormRegister, UseFormSetValue } from 'react-hook-form'
 import DocumentDetailsTitle from '../../atoms/documentDetailsTitle/documentDetailsTitle'
 import PopupBusinessDetails from '../popupBusinessDetails/popupBusinessDetails'
 import styles from './issuerInfo.module.css'

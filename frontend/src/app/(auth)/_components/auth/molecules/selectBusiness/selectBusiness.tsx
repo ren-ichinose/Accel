@@ -1,7 +1,7 @@
 'use client'
 
-import { Business } from '@/interfaces/main.interface'
 import { Control, UseFormRegister, useWatch } from 'react-hook-form'
+import { Business } from '@/interfaces/main.interface'
 import styles from './selectBusiness.module.css'
 
 export default function SelectBusiness({

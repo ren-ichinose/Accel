@@ -1,5 +1,5 @@
-import { CreateInvoice } from '@/interfaces/main.interface'
 import { UseFormRegister } from 'react-hook-form'
+import { CreateInvoice } from '@/interfaces/main.interface'
 import TextareaWithLabel from '../common/molecules/textareaWithLabel/textareaWithLabel'
 
 export default function Notes({

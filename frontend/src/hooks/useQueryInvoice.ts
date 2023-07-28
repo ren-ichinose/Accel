@@ -1,8 +1,8 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
-import getData from '@/utils/getData'
 import { useQuery } from '@tanstack/react-query'
+import getData from '@/utils/getData'
 
 export default function useQueryInvoice(invoiceId: string) {
   const router = useRouter()

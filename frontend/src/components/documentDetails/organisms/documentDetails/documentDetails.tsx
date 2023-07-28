@@ -1,5 +1,5 @@
-import type { CreateInvoice } from '@/interfaces/main.interface'
 import type { UseFormRegister, UseFormSetValue } from 'react-hook-form'
+import type { CreateInvoice } from '@/interfaces/main.interface'
 import BasicInfo from '../../molecules/basicInfo/basicInfo'
 import IssuerInfo from '../../molecules/issuerInfo/issuerInfo'
 import styles from './documentDetails.module.css'

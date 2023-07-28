@@ -1,6 +1,6 @@
+import { useQuery } from '@tanstack/react-query'
 import { MBusinessDetails } from '@/interfaces/main.interface'
 import getData from '@/utils/getData'
-import { useQuery } from '@tanstack/react-query'
 
 export default function useQueryMBusinessDetails(businessId: string) {
   const getMBusinessDetails = async (id: string) => {

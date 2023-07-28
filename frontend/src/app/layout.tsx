@@ -1,7 +1,7 @@
 import { Noto_Sans_JP } from 'next/font/google'
-import QueryProvider from '@/components/common/layout/queryProvider/queryProvider'
 import 'src/styles/reset.css'
 import 'src/styles/globals.css'
+import QueryProvider from '@/components/common/layout/queryProvider/queryProvider'
 
 const notoSansJp = Noto_Sans_JP({
   subsets: ['latin'],

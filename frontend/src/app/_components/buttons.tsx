@@ -1,8 +1,8 @@
 'use client'
 
 import Link from 'next/link'
-import Button from '@/components/common/atoms/button/button'
 import { HiPencilAlt } from 'react-icons/hi'
+import Button from '@/components/common/atoms/button/button'
 import styles from './root.module.css'
 
 export default function Buttons() {
