@@ -101,6 +101,7 @@ export default function CreateInvoiceForm({
     handleSubmit,
     reset,
     control,
+    setValue,
     formState: { errors },
   } = useForm<CreateInvoice>({
     resolver: yupResolver(errorScheme),
@@ -156,7 +157,11 @@ export default function CreateInvoiceForm({
         {Object.values(errors).length > 0 && (
           <ErrorMassages errorMassages={createInvoiceErrorMessages()} />
         )}
-        <DocumentDetails register={register} />
+        <DocumentDetails
+          register={register}
+          businessId={params.id}
+          setValue={setValue}
+        />
         <ProductsTable register={register} control={control} />
         <FinancialSummary control={control} />
         <Notes register={register} />

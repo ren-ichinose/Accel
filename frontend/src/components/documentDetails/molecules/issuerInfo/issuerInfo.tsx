@@ -1,14 +1,25 @@
+'use client'
+
 import TextareaWithLabel from '@/components/common/molecules/textareaWithLabel/textareaWithLabel'
 import type { CreateInvoice } from '@/interfaces/main.interface'
-import type { UseFormRegister } from 'react-hook-form'
+import type { UseFormRegister, UseFormSetValue } from 'react-hook-form'
 import DocumentDetailsTitle from '../../atoms/documentDetailsTitle/documentDetailsTitle'
+import PopupBusinessDetails from '../popupBusinessDetails/popupBusinessDetails'
 import styles from './issuerInfo.module.css'
 
 export default function IssuerInfo({
+  businessId,
   register,
+  setValue,
 }: {
+  businessId: string
   register: UseFormRegister<CreateInvoice>
+  setValue: UseFormSetValue<CreateInvoice>
 }) {
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setValue('businessDetails', e.target.value)
+  }
+
   return (
     <div className={styles.container}>
       <DocumentDetailsTitle title="発行元情報" />
@@ -17,7 +28,12 @@ export default function IssuerInfo({
         title="事業者情報"
         height="128px"
         register={register}
-      />
+      >
+        <PopupBusinessDetails
+          businessId={businessId}
+          handleChange={handleChange}
+        />
+      </TextareaWithLabel>
     </div>
   )
 }

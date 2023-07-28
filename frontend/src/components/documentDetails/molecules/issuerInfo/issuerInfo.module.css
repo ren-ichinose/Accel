@@ -2,3 +2,35 @@
   width: 50%;
   padding-left: 24px;
 }
+
+.icon {
+  font-size: 21px;
+  transform: translateY(3px);
+}
+
+.iconWrapper {
+  position: relative;
+}
+
+.selectWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 21px;
+  display: none;
+  background-color: #f0dada;
+}
+
+.iconWrapper:hover .selectWrapper {
+  display: inline-block;
+  animation: fade-in 0.2s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
