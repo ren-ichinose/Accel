@@ -21,7 +21,7 @@ export class MBusinessDetailsController {
     private readonly mBusinessDetailsService: MBusinessDetailsService,
   ) {}
 
-  @Post('/business/:business_id/m-business-detail')
+  @Post('/business/:business_id/m-business-details')
   async create(
     @Body() dto: CreateMBusinessDetailsDto,
     @Param('business_id') businessId: string,
@@ -35,7 +35,7 @@ export class MBusinessDetailsController {
     return msg;
   }
 
-  @Get('/business/:business_id/m-business-detail')
+  @Get('/business/:business_id/m-business-details')
   async getAll(
     @Param('business_id') businessId: string,
     @Req() { user }: { user: User },
