@@ -1,0 +1,14 @@
+.select {
+  padding: 8px 16px;
+  background-color: #fff;
+  border: 1px solid var(--light-dark-color);
+  border-radius: 5px;
+}
+
+.select:hover {
+  border: 1px solid var(--accent-color);
+}
+
+.select:focus {
+  outline: none;
+}

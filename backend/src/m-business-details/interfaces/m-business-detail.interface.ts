@@ -1,4 +1,4 @@
-export interface MBusinessDetailWithoutTimestamps {
+export interface MBusinessDetailsWithoutTimestamps {
   id: string;
   businessId: string;
   name: string;

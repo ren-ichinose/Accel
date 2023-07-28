@@ -3,6 +3,7 @@ import Textarea from '../../atoms/textarea/textarea'
 import styles from './textareaWithLabel.module.css'
 
 export default function TextareaWithLabel({
+  children = undefined,
   title = '',
   textareaId,
   placeholder = '',
@@ -22,6 +23,7 @@ export default function TextareaWithLabel({
     <div style={labelStyles}>
       <label className={styles.label} htmlFor={textareaId}>
         {title}
+        {children}
       </label>
       <Textarea
         placeholder={placeholder}
@@ -35,6 +37,7 @@ export default function TextareaWithLabel({
 }
 
 interface TextareaWithLabelProps {
+  children?: React.ReactNode
   title?: string
   textareaId: string
   placeholder?: string

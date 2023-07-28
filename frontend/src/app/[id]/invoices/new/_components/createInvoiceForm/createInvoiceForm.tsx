@@ -1,19 +1,19 @@
 'use client'
 
 import { useState } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useForm } from 'react-hook-form'
+import * as yup from 'yup'
 import CreateInvoiceFormContainer from '@/components/common/layout/createInvoiceFormContainer/createInvoiceFormContainer'
+import ErrorMassages from '@/components/common/molecules/errorMassages/errorMassages'
 import LoadingGrid from '@/components/common/molecules/loadingGrid/loadingGrid'
 import DocumentDetails from '@/components/documentDetails/organisms/documentDetails/documentDetails'
-import ErrorMassages from '@/components/errorMassages/errorMassages'
 import FinancialSummary from '@/components/financialSummary/financialSummary'
 import MainFoot from '@/components/mainFoot/mainFoot'
 import Notes from '@/components/notes/notes'
 import ProductsTable from '@/components/productsTable/organisms/productsTable/productsTable'
 import useMutateInvoice from '@/hooks/useMutateInvoice'
 import type { CreateInvoice } from '@/interfaces/main.interface'
-import { yupResolver } from '@hookform/resolvers/yup'
-import { useForm } from 'react-hook-form'
-import * as yup from 'yup'
 import styles from './createInvoiceForm.module.css'
 
 export default function CreateInvoiceForm({
@@ -101,6 +101,7 @@ export default function CreateInvoiceForm({
     handleSubmit,
     reset,
     control,
+    setValue,
     formState: { errors },
   } = useForm<CreateInvoice>({
     resolver: yupResolver(errorScheme),
@@ -156,7 +157,11 @@ export default function CreateInvoiceForm({
         {Object.values(errors).length > 0 && (
           <ErrorMassages errorMassages={createInvoiceErrorMessages()} />
         )}
-        <DocumentDetails register={register} />
+        <DocumentDetails
+          register={register}
+          businessId={params.id}
+          setValue={setValue}
+        />
         <ProductsTable register={register} control={control} />
         <FinancialSummary control={control} />
         <Notes register={register} />

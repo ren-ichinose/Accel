@@ -1,9 +1,9 @@
 'use client'
 
 import { useRouter } from 'next/navigation'
+import { useQuery } from '@tanstack/react-query'
 import { Business } from '@/interfaces/main.interface'
 import getData from '@/utils/getData'
-import { useQuery } from '@tanstack/react-query'
 
 export default function useQueryBusiness(businessId: string) {
   const router = useRouter()

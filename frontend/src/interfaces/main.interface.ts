@@ -80,3 +80,11 @@ export interface CreateInvoice {
   notes?: string | null
   invoiceProducts: CreateInvoiceProduct[]
 }
+
+export interface MBusinessDetails {
+  id: string
+  businessId: string
+  name: string
+  businessDetail: string
+  selectFlag: number
+}

@@ -1,0 +1,25 @@
+.itemContainer {
+  display: block;
+  padding: 16px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+}
+
+.itemContainer:last-child {
+  margin-bottom: 0;
+}
+
+.itemContainer:hover {
+  background-color: var(--background-main-color);
+}
+
+.itemContainer p:first-child {
+  margin-bottom: 8px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.icon {
+  margin-right: 8px;
+  font-size: 24px;
+}

@@ -1,0 +1,30 @@
+.icon {
+  font-size: 21px;
+  transform: translateY(2px);
+}
+
+.wrapper {
+  position: relative;
+}
+
+.contentWrapper {
+  position: absolute;
+  bottom: 0;
+  left: 21px;
+  display: none;
+}
+
+.wrapper:hover .contentWrapper {
+  display: inline-block;
+  animation: fade-in 0.2s cubic-bezier(0.33, 1, 0.68, 1) 1 forwards;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

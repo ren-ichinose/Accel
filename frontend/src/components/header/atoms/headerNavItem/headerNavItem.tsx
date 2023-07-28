@@ -2,10 +2,10 @@
 
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import postData from '@/utils/postData'
 import { useQueryClient } from '@tanstack/react-query'
-import { HiLogout, HiPencil } from 'react-icons/hi'
+import { HiLogout, HiOutlineDatabase, HiPencil } from 'react-icons/hi'
 import { HiWindow } from 'react-icons/hi2'
+import postData from '@/utils/postData'
 import styles from './headerNavItem.module.css'
 
 export default function HeaderNavItem({
@@ -55,6 +55,15 @@ export default function HeaderNavItem({
             {title}
           </button>
         )
+      case 'masterRegister':
+        return (
+          <Link href={href} className={styles.item}>
+            <span className={styles.icon}>
+              <HiOutlineDatabase />
+            </span>
+            {title}
+          </Link>
+        )
       default:
         return null
     }
@@ -62,19 +71,6 @@ export default function HeaderNavItem({
 
   return (
     <li className={styles.container} key={id}>
-      {/* {id !== 'logout' && (
-        <Link href={href} className={styles.item}>
-          <span className={styles.icon}>
-            <BiHomeAlt2 />
-          </span>
-          {title}
-        </Link>
-      )}
-      {id === 'logout' && (
-        <button className={styles.item} type="button" onClick={handleClick}>
-          {title}
-        </button>
-      )} */}
       {createNavItem(id)}
     </li>
   )

@@ -1,5 +1,5 @@
-import { CreateInvoice } from '@/interfaces/main.interface'
 import type { Control, UseFormRegister } from 'react-hook-form'
+import { CreateInvoice } from '@/interfaces/main.interface'
 import ProductsTableBody from '../../molecules/productsTableBody/productsTableBody'
 import ProductsTableHeader from '../../molecules/productsTableHeader/productsTableHeader'
 import styles from './productsTable.module.css'

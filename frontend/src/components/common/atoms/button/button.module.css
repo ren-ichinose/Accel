@@ -3,6 +3,19 @@
   border-radius: 5px;
 }
 
+.default {
+  width: 128px;
+  height: 48px;
+  color: #fff;
+  background-color: var(--main-color);
+  transition: 0.1s;
+}
+
+.default:hover {
+  opacity: 0.8;
+  transition: 0.1s;
+}
+
 .welcomeLogin {
   width: 48%;
   height: 3.75vw;
