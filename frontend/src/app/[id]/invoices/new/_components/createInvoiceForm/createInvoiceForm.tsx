@@ -10,7 +10,7 @@ import LoadingGrid from '@/components/common/molecules/loadingGrid/loadingGrid'
 import DocumentDetails from '@/components/documentDetails/organisms/documentDetails/documentDetails'
 import FinancialSummary from '@/components/financialSummary/financialSummary'
 import MainFoot from '@/components/mainFoot/mainFoot'
-import Notes from '@/components/notes/notes'
+import Notes from '@/components/notes/note'
 import ProductsTable from '@/components/productsTable/organisms/productsTable/productsTable'
 import useMutateInvoice from '@/hooks/useMutateInvoice'
 import type { CreateInvoice } from '@/interfaces/main.interface'
@@ -164,7 +164,7 @@ export default function CreateInvoiceForm({
         />
         <ProductsTable register={register} control={control} />
         <FinancialSummary control={control} />
-        <Notes register={register} />
+        <Notes register={register} businessId={params.id} setValue={setValue} />
         <MainFoot cancelButtonOnClick={handeleCancel} />
       </form>
       {isLoading && (
