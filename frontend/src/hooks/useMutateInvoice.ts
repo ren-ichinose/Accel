@@ -37,7 +37,7 @@ export default function useMutateInvoice(reset: UseFormReset<CreateInvoice>) {
           reset()
           router.push('/users/login')
         }
-        console.error(err)
+        throw new Error(err)
       },
     }
   )
