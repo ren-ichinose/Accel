@@ -1,10 +1,6 @@
 // import Link from 'next/link'
 import Link from 'next/link'
-import {
-  // HiOutlineFingerPrint,
-  // HiOutlineLibrary,
-  HiOutlineOfficeBuilding,
-} from 'react-icons/hi'
+import { HiOutlineOfficeBuilding, HiOutlineTag } from 'react-icons/hi'
 import styles from './selectMaster.module.css'
 
 export default function SelectBusiness({ businessId }: { businessId: string }) {
@@ -24,16 +20,19 @@ export default function SelectBusiness({ businessId }: { businessId: string }) {
           事業者情報を登録することで請求書の作成時に呼び出すことができます。
         </p>
       </Link>
+      <Link
+        className={styles.itemContainer}
+        href={`/${businessId}/master/register/note`}
+      >
+        <p>
+          <HiOutlineTag className={styles.icon} />
+          備考欄情報
+        </p>
+        <p>
+          備考欄情報を登録することで請求書の作成時に呼び出すことができます。
+        </p>
+      </Link>
       {/* <div className={styles.itemContainer}>
-        <p>
-          <HiOutlineLibrary className={styles.icon} />
-          支払先情報
-        </p>
-        <p>
-          支払先情報を登録することで請求書の作成時に呼び出すことができます。
-        </p>
-      </div>
-      <div className={styles.itemContainer}>
         <p>
           <HiOutlineFingerPrint className={styles.icon} />
           印鑑情報
