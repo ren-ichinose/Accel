@@ -6,6 +6,7 @@ import { BusinessModule } from './business/business.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { SentryModule } from './sentry/sentry.module';
 import { MBusinessDetailsModule } from './m-business-details/m-business-details.module';
+import { MNoteModule } from './m-note/m-note.module';
 import AppController from './app.controller';
 import AppService from './app.service';
 
@@ -18,6 +19,7 @@ import AppService from './app.service';
     InvoiceModule,
     SentryModule,
     MBusinessDetailsModule,
+    MNoteModule,
   ],
   controllers: [AppController],
   providers: [AppService],

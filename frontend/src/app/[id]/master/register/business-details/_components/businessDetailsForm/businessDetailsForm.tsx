@@ -80,7 +80,7 @@ export default function BusinessDetailsForm({
       setIsLoading(true)
       const reqestData = { ...data, selectFlag: 2 }
       await postData(
-        `${process.env.NEXT_PUBLIC_API_URL}/business/${businessId}/m-business-detail`,
+        `${process.env.NEXT_PUBLIC_API_URL}/business/${businessId}/m-business-details`,
         reqestData
       )
       reset()

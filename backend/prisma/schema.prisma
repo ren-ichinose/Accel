@@ -35,6 +35,7 @@ model Business {
   invoices Invoice[]
   mSeals MSeal[]
   mBusinessDetails MBusinessDetail[]
+  MNotes MNote[]
 
   @@map("businesses")
 }
@@ -118,4 +119,18 @@ model MBusinessDetail {
   business Business @relation(fields: [businessId], references: [id])
 
   @@map("m_business_details")
+}
+
+model MNote {
+  id String @db.VarChar(36) @default(uuid()) @id
+  businessId String @db.VarChar(36)
+  name String @db.VarChar(50)
+  note String @db.Text
+  selectFlag Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  business Business @relation(fields: [businessId], references: [id])
+
+  @@map("m_notes")
 }

@@ -5,7 +5,7 @@ import getData from '@/utils/getData'
 export default function useQueryMBusinessDetails(businessId: string) {
   const getMBusinessDetails = async (id: string) => {
     const data: MBusinessDetails[] = await getData(
-      `${process.env.NEXT_PUBLIC_API_URL}/business/${id}/m-business-detail`
+      `${process.env.NEXT_PUBLIC_API_URL}/business/${id}/m-business-details`
     )
     return data
   }
