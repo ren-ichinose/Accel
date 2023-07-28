@@ -31,7 +31,7 @@ export default function NoteForm({ businessId }: { businessId: string }) {
       .max(15, '・管理名: 15文字以内'),
     note: yup
       .string()
-      .required('備考欄情報: 入力必須')
+      .required('・備考欄情報: 入力必須')
       .max(500, '・備考欄情報: 500文字以内'),
   })
 

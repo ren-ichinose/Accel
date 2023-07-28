@@ -1,7 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import 'src/styles/reset.css'
 import 'src/styles/globals.css'
-import Notes from './notes'
+import Notes from './note'
 
 const meta: Meta<typeof Notes> = {
   title: 'Notes/Notes',

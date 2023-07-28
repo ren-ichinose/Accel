@@ -1,6 +1,7 @@
 .textarea {
   max-width: 100%;
   padding: 8px;
+  line-height: 1.5;
   border: 1px solid var(--light-dark-color);
   border-radius: 4px;
 }

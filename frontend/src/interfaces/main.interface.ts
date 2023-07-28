@@ -88,3 +88,11 @@ export interface MBusinessDetails {
   businessDetail: string
   selectFlag: number
 }
+
+export interface MNote {
+  id: string
+  businessId: string
+  name: string
+  note: string
+  selectFlag: number
+}
