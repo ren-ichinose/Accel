@@ -40,7 +40,10 @@ export class MBusinessDetailsController {
     @Param('business_id') businessId: string,
     @Req() { user }: { user: User },
   ): Promise<MBusinessDetailsWithoutTimestamps[]> {
-    const msg = await this.mBusinessDetailsService.getAll(user.id, businessId);
-    return msg;
+    const mBusinessDetails = await this.mBusinessDetailsService.getAll(
+      user.id,
+      businessId,
+    );
+    return mBusinessDetails;
   }
 }
