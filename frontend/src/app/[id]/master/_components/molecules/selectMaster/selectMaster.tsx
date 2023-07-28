@@ -12,7 +12,7 @@ export default function SelectBusiness({ businessId }: { businessId: string }) {
     <div>
       <Link
         className={styles.itemContainer}
-        href={`/${businessId}/master/register/business-detail`}
+        href={`/${businessId}/master/register/business-details`}
       >
         <p>
           <span>

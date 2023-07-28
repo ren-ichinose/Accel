@@ -2,18 +2,18 @@ import { ForbiddenException, Injectable } from '@nestjs/common';
 import { Msg } from 'src/interfaces/main.interfaces';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { BusinessService } from 'src/business/business.service';
-import CreateMBusinessDetailDto from './dto/create-m-business-detail';
-import { MBusinessDetailWithoutTimestamps } from './interfaces/m-business-detail.interface';
+import CreateMBusinessDetailsDto from './dto/create-m-business-details';
+import { MBusinessDetailsWithoutTimestamps } from './interfaces/m-business-detail.interface';
 
 @Injectable()
-export class MBusinessDetailService {
+export class MBusinessDetailsService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly businessService: BusinessService,
   ) {}
 
   async create(
-    dto: CreateMBusinessDetailDto,
+    dto: CreateMBusinessDetailsDto,
     userId: string,
     businessId: string,
   ): Promise<Msg> {
@@ -35,7 +35,7 @@ export class MBusinessDetailService {
   async getAll(
     userId: string,
     businessId: string,
-  ): Promise<MBusinessDetailWithoutTimestamps[]> {
+  ): Promise<MBusinessDetailsWithoutTimestamps[]> {
     const isMember = await this.businessService.checkBusinessMembership(
       businessId,
       userId,

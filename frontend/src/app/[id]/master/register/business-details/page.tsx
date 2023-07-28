@@ -1,5 +1,5 @@
 import MasterRegisterMainContentWrapper from '../../_components/molecules/masterRegisterMainContentWrapper/masterRegisterMainContentWrapper'
-import BusinessDetailForm from './_components/businessDetailForm/businessDetailForm'
+import BusinessDetailForm from './_components/businessDetailsForm/businessDetailsForm'
 
 export default function MasterBusinessDetail({
   params,

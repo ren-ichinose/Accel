@@ -12,14 +12,14 @@ import postData from '@/utils/postData'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
-import styles from './businessDetailForm.module.css'
+import styles from './businessDetailsForm.module.css'
 
-interface BusinessDetail {
+interface BusinessDetails {
   name: string
   businessDetail: string
 }
 
-export default function BusinessDetailForm({
+export default function BusinessDetailsForm({
   businessId,
 }: {
   businessId: string
@@ -45,7 +45,7 @@ export default function BusinessDetailForm({
     reset,
     watch,
     formState: { errors },
-  } = useForm<BusinessDetail>({
+  } = useForm<BusinessDetails>({
     resolver: yupResolver(errorScheme),
   })
 
@@ -75,7 +75,7 @@ export default function BusinessDetailForm({
     return null
   }
 
-  const onSubmit = async (data: BusinessDetail) => {
+  const onSubmit = async (data: BusinessDetails) => {
     try {
       setIsLoading(true)
       const reqestData = { ...data, selectFlag: 2 }

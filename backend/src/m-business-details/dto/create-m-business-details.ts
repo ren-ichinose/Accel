@@ -6,7 +6,7 @@ import {
   MaxLength,
 } from 'class-validator';
 
-export default class CreateMBusinessDetailDto {
+export default class CreateMBusinessDetailsDto {
   @IsNotEmpty()
   @IsString()
   name: string;

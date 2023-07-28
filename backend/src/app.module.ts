@@ -5,7 +5,7 @@ import { PrismaModule } from './prisma/prisma.module';
 import { BusinessModule } from './business/business.module';
 import { InvoiceModule } from './invoice/invoice.module';
 import { SentryModule } from './sentry/sentry.module';
-import { MBusinessDetailModule } from './m-business-detail/m-business-detail.module';
+import { MBusinessDetailsModule } from './m-business-details/m-business-details.module';
 import AppController from './app.controller';
 import AppService from './app.service';
 
@@ -17,7 +17,7 @@ import AppService from './app.service';
     BusinessModule,
     InvoiceModule,
     SentryModule,
-    MBusinessDetailModule,
+    MBusinessDetailsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
