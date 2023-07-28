@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import CreateInvoiceFormContainer from '@/components/common/layout/createInvoiceFormContainer/createInvoiceFormContainer'
+import ErrorMassages from '@/components/common/molecules/errorMassages/errorMassages'
 import LoadingGrid from '@/components/common/molecules/loadingGrid/loadingGrid'
 import DocumentDetails from '@/components/documentDetails/organisms/documentDetails/documentDetails'
-import ErrorMassages from '@/components/errorMassages/errorMassages'
 import FinancialSummary from '@/components/financialSummary/financialSummary'
 import MainFoot from '@/components/mainFoot/mainFoot'
 import Notes from '@/components/notes/notes'
