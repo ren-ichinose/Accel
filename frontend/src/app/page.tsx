@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Motion from '@/components/common/layout/motion/motion'
 import LoginAndSignupButtons from './_components/loginAndSignupButtons/loginAndSignupButtons'
+import TrialButton from './_components/trialButton/trialButton'
 import styles from './root.module.css'
 
 export default function Welcome() {
@@ -16,6 +17,7 @@ export default function Welcome() {
               Web上で作成・発行できるサービスです。
             </p>
             <LoginAndSignupButtons />
+            <TrialButton />
           </div>
           <div className={styles.container}>
             <Image
