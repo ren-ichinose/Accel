@@ -73,16 +73,9 @@ export default function PrintInvoiceButton({
       })
     }
 
-    firstPage.drawText(invoiceWithoutProductsData.customerName, {
+    const customerNameAndTitle = `${invoiceWithoutProductsData.customerName} ${invoiceWithoutProductsData.customerTitle}`
+    firstPage.drawText(customerNameAndTitle, {
       x: 55,
-      y: 708.5,
-      size: 9.3,
-      font: fontData,
-      color: rgb(0.2, 0.2, 0.2),
-    })
-
-    firstPage.drawText(invoiceWithoutProductsData.customerTitle, {
-      x: 195,
       y: 708.5,
       size: 9.3,
       font: fontData,
@@ -94,19 +87,19 @@ export default function PrintInvoiceButton({
     const longestLine = businessDetailsArray
       .slice()
       .sort((a: string, b: string) => b.length - a.length)
-    const businessDetailsLineHeight = 10.1
+    const textAreaLineHeight = 10.1
     const businessDetailsWidth = fontData.widthOfTextAtSize(
       longestLine[0],
       fontSize
     )
     const startingY =
-      597.5 + (businessDetailsArray.length - 1) * businessDetailsLineHeight
+      597.5 + (businessDetailsArray.length - 1) * textAreaLineHeight
     const startingX = 542 - (businessDetailsWidth + 16)
 
     businessDetailsArray.forEach((line: string, index: number) => {
       firstPage.drawText(line, {
         x: startingX,
-        y: startingY - index * businessDetailsLineHeight,
+        y: startingY - index * textAreaLineHeight,
         size: fontSize,
         font: fontData,
         color: rgb(0.2, 0.2, 0.2),
@@ -339,14 +332,21 @@ export default function PrintInvoiceButton({
     })
 
     // note
-    if (invoiceWithoutProductsData.notes)
-      firstPage.drawText(invoiceWithoutProductsData.notes, {
-        x: 55,
-        y: 130,
-        size: fontSize,
-        font: fontData,
-        color: rgb(0.2, 0.2, 0.2),
+    const noteArray = invoiceWithoutProductsData.notes
+      ? invoiceWithoutProductsData.notes.split('\n')
+      : []
+
+    if (noteArray.length > 0) {
+      noteArray.forEach((line: string, index: number) => {
+        firstPage.drawText(line, {
+          x: 55,
+          y: 130 - index * textAreaLineHeight,
+          size: fontSize,
+          font: fontData,
+          color: rgb(0.2, 0.2, 0.2),
+        })
       })
+    }
 
     const dataUri = await pdfDoc.saveAsBase64({ dataUri: true })
     handleUri(dataUri)

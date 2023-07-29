@@ -30,6 +30,10 @@ export default function InvoiceDetailView({
   const businessDetailsArray =
     invoiceWithoutProductsData.businessDetails.split('\n')
 
+  const noteArray = invoiceWithoutProductsData.notes
+    ? invoiceWithoutProductsData.notes.split('\n')
+    : []
+
   return (
     <div className={styles.container}>
       <h3 className={styles.contentTitle}>請求書</h3>
@@ -207,10 +211,10 @@ export default function InvoiceDetailView({
           </span>
           備考
         </h4>
-
-        {invoiceWithoutProductsData.notes && (
-          <p> {invoiceWithoutProductsData.notes}</p>
-        )}
+        {noteArray.length > 0 &&
+          noteArray.map((businessDetail) => (
+            <p key={businessDetail}>{businessDetail}</p>
+          ))}
       </div>
     </div>
   )
