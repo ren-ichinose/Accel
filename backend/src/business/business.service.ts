@@ -57,6 +57,13 @@ export class BusinessService {
     }
   }
 
+  async deleteById(businessId: string, userId: string): Promise<void> {
+    const isMember = await this.checkBusinessMembership(businessId, userId);
+    if (!isMember) throw new ForbiddenException('アクセス権限がありません');
+    await this.prisma.businessMembership.deleteMany({ where: { businessId } });
+    await this.prisma.business.delete({ where: { id: businessId } });
+  }
+
   async checkBusinessMembership(
     businessId: string,
     userId: string,

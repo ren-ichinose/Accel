@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
   Req,
@@ -42,5 +45,14 @@ export class BusinessController {
   ): Promise<Business> {
     const business = await this.businessService.getById(businessId, user.id);
     return business;
+  }
+
+  @Delete(':businessId')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async delete(
+    @Param('businessId') businessId: string,
+    @Req() { user }: { user: Omit<User, 'password'> },
+  ): Promise<void> {
+    await this.businessService.deleteById(businessId, user.id);
   }
 }
