@@ -1,4 +1,4 @@
-name: frontend CI/CD
+name: frontend CI
 
 on:
   push:
@@ -33,7 +33,9 @@ jobs:
           cache-dependency-path: ./frontend/yarn.lock
       - name: Install dependencies
         run: yarn
-      - name: Format code
-        run: yarn prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css,scss}'
       - name: Lint code
         run: yarn lint
+      - name: Format code
+        run: yarn format
+      - name: Format style
+        run: yarn lint:style:fix

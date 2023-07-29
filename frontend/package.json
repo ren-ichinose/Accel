@@ -10,6 +10,7 @@
     "prepare": "cd .. && husky install frontend/.husky",
     "lint:style": "stylelint --ignore-path .gitignore './**/*.{css,scss}'",
     "lint:style:fix": "stylelint --ignore-path .gitignore --fix './**/*.{css,scss}'",
+    "format": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css,scss}'",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
