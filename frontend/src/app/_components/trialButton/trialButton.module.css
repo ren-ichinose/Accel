@@ -1,0 +1,29 @@
+.wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(51 51 51 / 20%);
+}
+
+.button {
+  font-size: 1vw;
+  color: var(--light-dark-color);
+  letter-spacing: 0.1em;
+  transition: 0.3s;
+}
+
+.button:hover {
+  color: var(--main-color);
+  transition: 0.2s;
+}
+
+.icon {
+  margin-left: 0.2vw;
+  font-size: 1.5vw;
+  transform: translateY(0.1vw);
+}
