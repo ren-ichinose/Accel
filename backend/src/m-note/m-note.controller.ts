@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
   Req,
@@ -36,5 +39,15 @@ export class MNoteController {
   ): Promise<MNoteWithoutTimestamps[]> {
     const mNotes = await this.mNoteService.getAll(user.id, businessId);
     return mNotes;
+  }
+
+  @Delete('/business/:business_id/m-note/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async deleteById(
+    @Param('id') id: string,
+    @Param('business_id') businessId: string,
+    @Req() { user }: { user: User },
+  ): Promise<void> {
+    await this.mNoteService.deleteById(user.id, businessId, id);
   }
 }

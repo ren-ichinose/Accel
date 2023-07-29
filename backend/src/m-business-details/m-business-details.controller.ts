@@ -1,7 +1,10 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
+  HttpCode,
+  HttpStatus,
   Param,
   Post,
   Req,
@@ -45,5 +48,15 @@ export class MBusinessDetailsController {
       businessId,
     );
     return mBusinessDetails;
+  }
+
+  @Delete('/business/:business_id/m-business-details/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  async deleteById(
+    @Param('id') id: string,
+    @Param('business_id') businessId: string,
+    @Req() { user }: { user: User },
+  ): Promise<void> {
+    await this.mBusinessDetailsService.deleteById(user.id, businessId, id);
   }
 }
