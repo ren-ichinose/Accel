@@ -54,4 +54,22 @@ export class MNoteService {
     });
     return findedMNote;
   }
+
+  async deleteById(
+    userId: string,
+    businessId: string,
+    id: string,
+  ): Promise<void> {
+    const isMember = await this.businessService.checkBusinessMembership(
+      businessId,
+      userId,
+    );
+    if (!isMember) throw new ForbiddenException('アクセス権限がありません');
+
+    try {
+      await this.prisma.mNote.delete({ where: { id } });
+    } catch (error) {
+      throw new Error('事業者情報マスタの削除ができませんでした');
+    }
+  }
 }
