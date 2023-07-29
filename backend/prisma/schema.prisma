@@ -47,8 +47,8 @@ model BusinessMembership {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  user User @relation(fields: [userId], references: [id])
-  business Business @relation(fields: [businessId], references: [id])
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
 
   @@id([userId, businessId])
   @@map("business_memberships")
@@ -68,8 +68,8 @@ model Invoice {
   updatedAt DateTime @updatedAt
   invoiceProducts InvoiceProduct[]
 
-  business Business @relation(fields: [businessId], references: [id])
-  mSeal MSeal? @relation(fields: [mSealsId], references: [id])
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
+  mSeal MSeal? @relation(fields: [mSealsId], references: [id], onDelete: SetNull)
 
   @@map("invoices")
 }
@@ -87,7 +87,7 @@ model InvoiceProduct {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  invoice Invoice @relation(fields: [invoiceId], references: [id])
+  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
 
   @@map("invoice_products")
 }
@@ -102,7 +102,7 @@ model MSeal {
   updatedAt DateTime @updatedAt
   invoices Invoice[]
 
-  business Business @relation(fields: [businessId], references: [id])
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
 
   @@map("m_seals")
 }
@@ -116,7 +116,7 @@ model MBusinessDetail {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  business Business @relation(fields: [businessId], references: [id])
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
 
   @@map("m_business_details")
 }
@@ -130,7 +130,7 @@ model MNote {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  business Business @relation(fields: [businessId], references: [id])
+  business Business @relation(fields: [businessId], references: [id], onDelete: Cascade)
 
   @@map("m_notes")
 }
