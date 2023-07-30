@@ -2,12 +2,12 @@ import { Control, UseFormRegister } from 'react-hook-form'
 import { CreateInvoice } from '@/interfaces/main.interface'
 import ProductsTableRow from '../productsTableRow/productsTableRow'
 
-const rows = [0, 1, 2, 3, 4, 5, 6]
-
 export default function ProductsTableBody({
+  rows,
   register,
   control,
 }: {
+  rows: number[]
   register: UseFormRegister<CreateInvoice>
   control: Control<CreateInvoice>
 }) {
