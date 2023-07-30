@@ -1,5 +1,28 @@
+.container {
+  margin-bottom: 48px;
+}
+
 .table {
   width: 100%;
-  margin-bottom: 48px;
+  margin-bottom: 8px;
   border-bottom: 2px solid var(--light-dark-color);
 }
+
+.button {
+  font-size: 14px;
+  color: var(--light-dark-color);
+  letter-spacing: 0.1em;
+  transition: 0.3s;
+}
+
+.button:hover {
+  color: var(--main-color);
+  transition: 0.2s;
+}
+
+.icon {
+  margin-right: 4px;
+  font-size: 21px;
+  transform: translateY(3px);
+}
+
