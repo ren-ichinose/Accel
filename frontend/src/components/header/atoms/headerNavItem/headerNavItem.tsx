@@ -23,7 +23,7 @@ export default function HeaderNavItem({
   const handleClick = async () => {
     cueryClient.removeQueries()
     await postData(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {})
-    router.push('/users/login')
+    router.push('/')
   }
 
   const createNavItem = (navItemId: string) => {
