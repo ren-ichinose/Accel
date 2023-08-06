@@ -5,8 +5,7 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  font-size: 18px;
-  letter-spacing: 0.07em;
+  background-color: rgb(51 51 51 / 20%);
 }
 
 /* page.tsx */
