@@ -36,7 +36,7 @@
 }
 
 .title {
-  margin-bottom: 1vw;
+  margin-bottom: 1.5vw;
   font-size: 7vw;
   color: transparent;
   letter-spacing: 0.05em;
@@ -49,9 +49,31 @@
 }
 
 .message {
-  margin-bottom: 2.5vw;
+  margin-bottom: 1.5vw;
   font-size: 1.25vw;
   line-height: 1.5;
   text-align: center;
   letter-spacing: 0.125em;
+}
+
+@media screen and (1600px <= width) {
+  .contentWrapper {
+    display: flex;
+    align-items: center;
+    width: 1087px;
+  }
+
+  .title {
+    margin-bottom: 25px;
+    font-size: 112px;
+  }
+
+  .message {
+    margin-bottom: 24px;
+    font-size: 20px;
+  }
+
+  .container:nth-child(1) {
+    padding: 43px;
+  }
 }

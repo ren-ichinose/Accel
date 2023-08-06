@@ -16,27 +16,19 @@ export default function LoginAndSignupButtons() {
     router.push('/users/register')
   }
   return (
-    <>
-      <div className={styles.buttonWrapper}>
-        <Button
-          className="welcomeLogin"
-          type="button"
-          text="ログイン"
-          onClick={handleClickLogin}
-        />
-        <Button
-          className="welcomeSignup"
-          type="button"
-          text="新規登録"
-          onClick={handleClickSignup}
-        />
-      </div>
-      {/* <Link href="/users/login" className={styles.link}>
-        ゲストモードでログインはこちら
-        <span className={styles.iconPencil}>
-          <HiPencilAlt />
-        </span>
-      </Link> */}
-    </>
+    <div className={styles.buttonWrapper}>
+      <Button
+        className="welcomeLogin"
+        type="button"
+        text="ログイン"
+        onClick={handleClickLogin}
+      />
+      <Button
+        className="welcomeSignup"
+        type="button"
+        text="新規登録"
+        onClick={handleClickSignup}
+      />
+    </div>
   )
 }

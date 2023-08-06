@@ -99,3 +99,16 @@
   opacity: 0.8;
   transition: 0.1s;
 }
+
+@media screen and (1600px <= width) {
+  .welcomeLogin,
+  .welcomeSignup {
+    width: 219px;
+    height: 61px;
+    font-size: 19px;
+  }
+
+  .welcomeLogin {
+    border: 3px solid var(--main-color);
+  }
+}
