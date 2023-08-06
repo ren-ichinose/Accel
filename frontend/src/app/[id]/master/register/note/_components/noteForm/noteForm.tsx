@@ -1,16 +1,17 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
+import MasterRegisterMainFootWrapper from '@/app/[id]/master/_components/molecules/masterMainFootWrapper/masterRegisterMainFootWrapper'
 import Motion from '@/components/common/layout/motion/motion'
 import ErrorMassages from '@/components/common/molecules/errorMassages/errorMassages'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
 import LoadingGrid from '@/components/common/molecules/loadingGrid/loadingGrid'
 import SuccessMassages from '@/components/common/molecules/successMassages/successMassages'
 import TextareaWithLabel from '@/components/common/molecules/textareaWithLabel/textareaWithLabel'
-import MainFoot from '@/components/mainFoot/mainFoot'
 import postData from '@/utils/postData'
 import styles from './noteForm.module.css'
 
@@ -23,6 +24,8 @@ export default function NoteForm({ businessId }: { businessId: string }) {
   const [serverErrors, setServerErrors] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [issuccess, setIsSuccess] = useState(false)
+
+  const router = useRouter()
 
   const errorScheme = yup.object().shape({
     name: yup
@@ -88,9 +91,7 @@ export default function NoteForm({ businessId }: { businessId: string }) {
     }
   }
 
-  const handleReset = () => {
-    reset()
-  }
+  const handleReturn = () => router.push(`/${businessId}/master/register`)
 
   return (
     <>
@@ -110,7 +111,7 @@ export default function NoteForm({ businessId }: { businessId: string }) {
           textareaId="note"
           register={register}
         />
-        <MainFoot cancelButtonOnClick={handleReset} />
+        <MasterRegisterMainFootWrapper handleReturn={handleReturn} />
       </form>
       {isLoading && (
         <div className={styles.wrapper}>
