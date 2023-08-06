@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
@@ -23,6 +24,8 @@ export default function NoteForm({ businessId }: { businessId: string }) {
   const [serverErrors, setServerErrors] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [issuccess, setIsSuccess] = useState(false)
+
+  const router = useRouter()
 
   const errorScheme = yup.object().shape({
     name: yup
@@ -88,9 +91,7 @@ export default function NoteForm({ businessId }: { businessId: string }) {
     }
   }
 
-  const handleReset = () => {
-    reset()
-  }
+  const handleReturn = () => router.push(`/${businessId}/master/register`)
 
   return (
     <>
@@ -110,7 +111,7 @@ export default function NoteForm({ businessId }: { businessId: string }) {
           textareaId="note"
           register={register}
         />
-        <MainFoot cancelButtonOnClick={handleReset} />
+        <MainFoot handleReturn={handleReturn} />
       </form>
       {isLoading && (
         <div className={styles.wrapper}>
