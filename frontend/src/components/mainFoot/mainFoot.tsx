@@ -2,17 +2,17 @@ import Button from '../common/atoms/button/button'
 import MainFootWrapper from '../common/layout/mainFootWrapper/mainFootWrapper'
 
 export default function MainFoot({
-  handleReturn,
+  cancelButtonOnClick,
 }: {
-  handleReturn: () => void
+  cancelButtonOnClick: () => void
 }) {
   return (
     <MainFootWrapper>
       <Button
         className="mainFootCancel"
         type="button"
-        text="戻る"
-        onClick={handleReturn}
+        text="リセット"
+        onClick={cancelButtonOnClick}
       />
       <Button className="mainFootSubmit" type="submit" text="保存" />
     </MainFootWrapper>

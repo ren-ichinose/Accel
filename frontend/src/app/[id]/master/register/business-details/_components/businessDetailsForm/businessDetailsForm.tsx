@@ -5,13 +5,13 @@ import { useRouter } from 'next/navigation'
 import { yupResolver } from '@hookform/resolvers/yup'
 import { useForm } from 'react-hook-form'
 import * as yup from 'yup'
+import MasterRegisterMainFootWrapper from '@/app/[id]/master/_components/molecules/masterMainFootWrapper/masterRegisterMainFootWrapper'
 import Motion from '@/components/common/layout/motion/motion'
 import ErrorMassages from '@/components/common/molecules/errorMassages/errorMassages'
 import InputWithLabel from '@/components/common/molecules/inputWithLabel/inputWithLabel'
 import LoadingGrid from '@/components/common/molecules/loadingGrid/loadingGrid'
 import SuccessMassages from '@/components/common/molecules/successMassages/successMassages'
 import TextareaWithLabel from '@/components/common/molecules/textareaWithLabel/textareaWithLabel'
-import MainFoot from '@/components/mainFoot/mainFoot'
 import postData from '@/utils/postData'
 import styles from './businessDetailsForm.module.css'
 
@@ -115,7 +115,7 @@ export default function BusinessDetailsForm({
           textareaId="businessDetail"
           register={register}
         />
-        <MainFoot handleReturn={handleReturn} />
+        <MasterRegisterMainFootWrapper handleReturn={handleReturn} />
       </form>
       {isLoading && (
         <div className={styles.wrapper}>
